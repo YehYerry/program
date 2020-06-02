@@ -25,7 +25,7 @@ namespace form
         byte t2 = 0;
         byte t3 = 0;
         byte t4 = 0;
-        byte wait1 = 1;
+        byte wait1 = 0;
         byte wait2 = 0;        
         int label = 0;
         public Form1()
@@ -51,14 +51,14 @@ namespace form
 
         public void button1_Click(object sender, EventArgs e)
         {
-            //byte wait1 = (byte)(a + 1);
+            //wait1 = (byte)(a + 1);
             if (wait1 == 10)
             {
                 wait1 = 0;
                 wait2 = (byte)(wait2 + 1);
             }
             //array = new byte[] { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
-            a = wait1;
+            //a = wait1;
             wait1 += 1;
             //comport.Write(array, 0, 12);
             label += 1;
@@ -94,9 +94,9 @@ namespace form
                             try
                             {
                                 //MessageBox.Show("12213");
-                                byte waits1 = wait1;
-                                waits1 -= 1;
-                                byte[] array1 = { 0xED, 0xED, wait2, waits1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
+                                //byte waits1 = wait1;
+                                //waits1 -= 1;
+                                byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
                                 comport.Write(array1, 0, 11);
                             }
                             catch (TimeoutException timeoutEx)
@@ -108,7 +108,7 @@ namespace form
                         {
                             try
                             {
-                                if (wait2 == 0 && (wait1 - 1) != 0)
+                                if (wait2 == 0 && wait1 != 0)
                                 {
                                     //byte waits1 = wait1;
                                     wait1 -= 1;
@@ -132,7 +132,7 @@ namespace form
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
                                 }
-                                else if (wait2 != 0 && (wait1 - 1) == 0)
+                                else if (wait2 != 0 && wait1 == 0)
                                 {
                                     //byte waits1 = wait1;
                                     wait2 -= 1;
@@ -157,7 +157,7 @@ namespace form
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
                                 }
-                                else if (wait2 != 0 && (wait1 - 1) != 0)
+                                else if (wait2 != 0 && wait1 != 0)
                                 {
                                     //byte waits1 = wait1;
                                     wait1 -= 1;
@@ -181,11 +181,11 @@ namespace form
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
                                 }
-                                else if (wait2 == 0 && (wait1 - 1) == 0)
+                                else if (wait2 == 0 && wait1 == 0)
                                 {
                                     MessageBox.Show("no wait");
                                     //byte waits1 = wait1;
-                                    wait1 -= 1;
+                                    //wait1 -= 1;
                                     byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x00, 0x00 };
                                     comport.Write(array1, 0, 11);
                                 }
