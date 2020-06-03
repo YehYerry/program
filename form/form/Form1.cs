@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.Media;
 
 namespace form
 {
@@ -51,15 +52,16 @@ namespace form
 
         public void button1_Click(object sender, EventArgs e)
         {
+
+            wait1 += 1;
             //wait1 = (byte)(a + 1);
             if (wait1 == 10)
             {
                 wait1 = 0;
-                wait2 = (byte)(wait2 + 1);
+                wait2 += 1;
             }
             //array = new byte[] { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
             //a = wait1;
-            wait1 += 1;
             //comport.Write(array, 0, 12);
             label += 1;
             label_wait.Text = label.ToString();
@@ -67,7 +69,7 @@ namespace form
             /*foreach (byte byteValue in array)//看ARRAY 中的數值
             {
                 Console.WriteLine(byteValue);
-            }*/
+            }*/            
         }
 
         private void DoReceive()
@@ -86,7 +88,13 @@ namespace form
                     Array.Resize(ref buffer, length);
                     Display d = new Display(DisplayText);
                     this.Invoke(d, new Object[] { buffer });
-                    
+
+                    SoundPlayer player = new SoundPlayer();
+                    SoundPlayer player1 = new SoundPlayer();
+                    SoundPlayer player2 = new SoundPlayer();
+                    //player.PlayLooping(); //迴圈播放模式
+                    //player.PlaySync(); //UI執行緒同步播放
+
                     try
                     {
                         if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 127)
@@ -104,14 +112,15 @@ namespace form
                                 MessageBox.Show("送出失敗");
                             }
                         }
-                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 01 && buffer[7] == 01 )
-                        {
+                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 01 && buffer[7] == 01)
+                        {                            
                             try
                             {
                                 if (wait2 == 0 && wait1 != 0)
                                 {
                                     //byte waits1 = wait1;
                                     wait1 -= 1;
+                                    t1 += 1;
                                     if (t1 == 10)
                                     {
                                         t1 = 0;
@@ -127,7 +136,6 @@ namespace form
                                         t3 = 0;
                                         t3 = (byte)(t3 + 1);
                                     }
-                                    t1 += 1;
                                     byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
@@ -137,6 +145,7 @@ namespace form
                                     //byte waits1 = wait1;
                                     wait2 -= 1;
                                     wait1 = 9;
+                                    t1 += 1;
                                     if (t1 == 10)
                                     {
                                         t1 = 0;
@@ -151,8 +160,7 @@ namespace form
                                     {
                                         t3 = 0;
                                         t3 = (byte)(t3 + 1);
-                                    }
-                                    t1 += 1;
+                                    }                                    
                                     byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
@@ -161,6 +169,7 @@ namespace form
                                 {
                                     //byte waits1 = wait1;
                                     wait1 -= 1;
+                                    t1 += 1;
                                     if (t1 == 10)
                                     {
                                         t1 = 0;
@@ -176,7 +185,6 @@ namespace form
                                         t3 = 0;
                                         t3 = (byte)(t3 + 1);
                                     }
-                                    t1 += 1;
                                     byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
@@ -189,15 +197,70 @@ namespace form
                                     byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x00, 0x00 };
                                     comport.Write(array1, 0, 11);
                                 }
-                                else 
+                                else
                                 {
                                     MessageBox.Show("等待有誤");
+                                }                                
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
+                                player.PlaySync();
+                                if (t4 == 0 && t3 == 0 & t2 == 0)
+                                {
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
+                                    player.PlaySync();
+                                    
                                 }
+                                else if (t4 == 0 && t3 == 0)
+                                {
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav"; 
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
+                                    player.PlaySync();
+                                }
+                                else if (t4 == 0)
+                                {
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
+                                    player.PlaySync();
+                                }                                
+                                else 
+                                {
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t4 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
+                                    player.PlaySync();
+                                }                             
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
+                                player.PlaySync();
                             }
                             catch (TimeoutException timeoutEx)
                             {
                                 MessageBox.Show("送出失敗");
                             }
+                        }
+                        else 
+                        {
+                            Console.WriteLine("陣列外");
                         }
                     }
                     catch (TimeoutException timeoutEx)
