@@ -31,6 +31,11 @@ namespace testprint
             pd.DefaultPageSettings.PaperSize = pageSize;
             //印表機事件設定
             pd.PrintPage += new PrintPageEventHandler(this.printCoupon_PrintPage);
+            //預覽列印
+            PrintPreviewDialog PPD = new PrintPreviewDialog();
+            PPD.Document = pd;
+            PPD.ShowDialog();
+            //預覽列印
             try
             {
                 pd.Print();//列印
@@ -43,11 +48,11 @@ namespace testprint
         }
         private void printCoupon_PrintPage(object sender, PrintPageEventArgs e)
         {
-
-
+            string str = System.Windows.Forms.Application.StartupPath;
             //列印圖片
-            Image temp = Image.FromFile(@"C:\Users\bock\Desktop\照片\cat.bmp");//圖片檔案
-                                                       //GetResultIntoImage(ref temp);//
+            Image temp = Image.FromFile(@"C:\Users\jerry\github\program\testprint\testprint\bin\Debug\photo\test.bmp");//圖片檔案
+            //C:\Users\jerry\github\program\testprint\testprint\bin\Debug\photo
+            //GetResultIntoImage(ref temp);//
 
             //設定圖片列印的x,y座標
             int x = 50;   //e.MarginBounds.X
@@ -68,15 +73,18 @@ namespace testprint
             // ImageAttributes imageAttr ImageAttributes，指定 image 物件的重新著色和 Gamma 資訊。
             //)
             //將圖片放入要列印的文件中
-            e.Graphics.DrawImage(temp, destRect, 10, 10, temp.Width, temp.Height, System.Drawing.GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(temp, destRect, 0, 0, temp.Width, temp.Height, System.Drawing.GraphicsUnit.Pixel);
 
             //列印文字
-            System.Drawing.Font printFont = new System.Drawing.Font("標楷體", 10);//設定字型與大小
+            Graphics MyGraphics = e.Graphics;
+            SolidBrush MyBrush = new SolidBrush(Color.Black);
+            Font MyFont = new Font("標楷體", 24);//設定字型與大小
+            Font MyFont1 = new Font("標楷體", 15);
             float leftMargin = e.MarginBounds.Left;//取得文件左邊界
             float topMargin = e.MarginBounds.Top;//取得文件上邊界
             int count = 10;//起始列印的行數
             float yPos = 0f;//收集成列印起始點的參數
-            yPos = topMargin + count * printFont.GetHeight(e.Graphics);
+            yPos = topMargin + count * MyFont.GetHeight(e.Graphics);
 
             // public void DrawString (
             // string s, 要繪製的字串。
@@ -87,10 +95,21 @@ namespace testprint
             // StringFormat format StringFormat，指定套用到所繪製文字的格式化屬性，例如，行距和對齊。
             //)
             //將要列印的文字放入要列印的文件中
-            e.Graphics.DrawString("milu", printFont, Brushes.Black, 0, 0, new StringFormat());
+            MyGraphics.DrawString("台北郵局", MyFont, MyBrush, 50, 120, new StringFormat());
+            MyGraphics.DrawString("叫號", MyFont, MyBrush, 60, 150, new StringFormat());
+            MyGraphics.DrawString("若過號請耐心等候", MyFont1, MyBrush, 60, 180, new StringFormat());
 
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string str = System.Windows.Forms.Application.StartupPath;
+            string str1 = System.IO.Directory.GetCurrentDirectory();
+            string str2 = System.Environment.CurrentDirectory;
 
+            MessageBox.Show(str);
+            MessageBox.Show(str1);
+            MessageBox.Show(str2);
         }
     }    
 }

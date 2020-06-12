@@ -8,3 +8,13 @@ C:\Users\bock\Desktop\testprint\testprint\bin\Debug\testprint.pdb
 C:\Users\bock\Desktop\testprint\testprint\obj\Debug\testprint.exe
 C:\Users\bock\Desktop\testprint\testprint\obj\Debug\testprint.pdb
 C:\Users\bock\Desktop\testprint\testprint\obj\Debug\testprint.Form1.resources
+C:\Users\jerry\github\program\testprint\testprint\bin\Debug\testprint.exe.config
+C:\Users\jerry\github\program\testprint\testprint\bin\Debug\testprint.exe
+C:\Users\jerry\github\program\testprint\testprint\bin\Debug\testprint.pdb
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.csprojAssemblyReference.cache
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.Form1.resources
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.Properties.Resources.resources
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.csproj.GenerateResource.cache
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.csproj.CoreCompileInputs.cache
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.exe
+C:\Users\jerry\github\program\testprint\testprint\obj\Debug\testprint.pdb
