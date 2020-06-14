@@ -50,16 +50,16 @@ namespace testprint
         {
             string str = System.Windows.Forms.Application.StartupPath;
             //列印圖片
-            Image temp = Image.FromFile(@"C:\Users\jerry\github\program\testprint\testprint\bin\Debug\photo\test.bmp");//圖片檔案
+            Image temp = Image.FromFile(@"C:\Users\bock\github\program\testprint\testprint\bin\Debug\photo\test.bmp");//圖片檔案
             //C:\Users\jerry\github\program\testprint\testprint\bin\Debug\photo
             //GetResultIntoImage(ref temp);//
 
             //設定圖片列印的x,y座標
-            int x = 50;   //e.MarginBounds.X
+            int x = 20;   //e.MarginBounds.X
             int y = 0;  //e.MarginBounds.Y
             //圖片列印的大小
-            int width = 150;//temp.Width;
-            int height = 120;//temp.Height;
+            int width = 220;//temp.Width;
+            int height = 80;//temp.Height;
             Rectangle destRect = new Rectangle(x, y, width, height);
 
             // public void DrawImage (
@@ -78,8 +78,9 @@ namespace testprint
             //列印文字
             Graphics MyGraphics = e.Graphics;
             SolidBrush MyBrush = new SolidBrush(Color.Black);
-            Font MyFont = new Font("標楷體", 24);//設定字型與大小
-            Font MyFont1 = new Font("標楷體", 15);
+            Font MyFont = new Font("標楷體", 20);//設定字型與大小
+            Font MyFont1 = new Font("標楷體", 10);
+            Font num = new Font("標楷體", 40);
             float leftMargin = e.MarginBounds.Left;//取得文件左邊界
             float topMargin = e.MarginBounds.Top;//取得文件上邊界
             int count = 10;//起始列印的行數
@@ -95,9 +96,10 @@ namespace testprint
             // StringFormat format StringFormat，指定套用到所繪製文字的格式化屬性，例如，行距和對齊。
             //)
             //將要列印的文字放入要列印的文件中
-            MyGraphics.DrawString("台北郵局", MyFont, MyBrush, 50, 120, new StringFormat());
-            MyGraphics.DrawString("叫號", MyFont, MyBrush, 60, 150, new StringFormat());
-            MyGraphics.DrawString("若過號請耐心等候", MyFont1, MyBrush, 60, 180, new StringFormat());
+            MyGraphics.DrawString("0017", num, MyBrush, 70, 85, new StringFormat());
+            MyGraphics.DrawString("日期:" + DateTime.Now.ToString("yyyy/MM/dd"), MyFont, MyBrush, 30, 145, new StringFormat());
+            MyGraphics.DrawString("時間:" + DateTime.Now.ToString("HH:mm:ss"), MyFont, MyBrush, 30, 175, new StringFormat());
+            MyGraphics.DrawString("請依叫號 等候辦理", MyFont1, MyBrush, 80, 210, new StringFormat());
 
         }
 
