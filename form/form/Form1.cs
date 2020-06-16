@@ -29,7 +29,7 @@ namespace form
         byte wait1 = 0;
         byte wait2 = 0;        
         int label = 0;
-        byte num1 ;
+        byte num1;
         byte num2;
         byte num3;
         byte num4;
@@ -343,7 +343,7 @@ namespace form
                                 MessageBox.Show("送出失敗");
                             }
                         }
-                        else if (buffer[0] == 165 && buffer[1] == 182 && (buffer[2] == 0 || buffer[2] == 1 || buffer[2] == 2 || buffer[2] == 3 || buffer[2] == 4 || buffer[2] == 5 || buffer[2] == 6 || buffer[2] == 7 || buffer[2] == 8 || buffer[2] == 9 ) && (buffer[3] == 0 || buffer[3] == 1 || buffer[3] == 2 || buffer[3] == 3 || buffer[3] == 4 || buffer[3] == 5 || buffer[3] == 6 || buffer[3] == 7 || buffer[3] == 8 || buffer[3] == 9) && (buffer[4] == 0 || buffer[4] == 1 || buffer[4] == 2 || buffer[4] == 3 || buffer[4] == 4 || buffer[4] == 5 || buffer[4] == 6 || buffer[4] == 7 || buffer[4] == 8 || buffer[4] == 9) && (buffer[5] == 0 || buffer[5] == 1 || buffer[5] == 2 || buffer[5] == 3 || buffer[5] == 4 || buffer[5] == 5 || buffer[5] == 6 || buffer[5] == 7 || buffer[5] == 8 || buffer[5] == 9) && buffer[6] == 127)//指定叫號
+                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 01 && buffer[7] == 02)//指定叫號
                         {
                             num1 = buffer[2];
                             num2 = buffer[3];
@@ -481,6 +481,8 @@ namespace form
                         }
                         else
                         {
+                            byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00 };
+                            comport.Write(array1, 0, 11);
                             Console.WriteLine("陣列外");
                         }
                     }

@@ -33,6 +33,10 @@ namespace form
         int print = 0;
         int i = 3;
         int decimalLength;
+        byte num1;
+        byte num2;
+        byte num3;
+        byte num4;
         public Form1()
         {
             InitializeComponent();
@@ -198,7 +202,7 @@ namespace form
 
                     try
                     {
-                        if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 127)
+                        if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && buffer[6] == 127)
                         {
                             try
                             {
@@ -302,8 +306,8 @@ namespace form
                                 {
                                     MessageBox.Show("等待有誤");
                                 }
-                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
-                                player.PlaySync();*/
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
+                                player.PlaySync();
                                 if (t4 == 0 && t3 == 0 && t2 == 0)
                                 {
                                     player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
@@ -419,7 +423,7 @@ namespace form
                                     player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
                                     player.PlaySync();
                                 }                             
-                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
                                 player.PlaySync();
                                 player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
                                 player.PlaySync();
@@ -428,15 +432,153 @@ namespace form
                                 player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
                                 player.PlaySync();
                                 player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
-                                player.PlaySync();*/
+                                player.PlaySync();
                             }
                             catch (TimeoutException timeoutEx)
                             {
                                 MessageBox.Show("送出失敗");
                             }
                         }
-                        else 
+                        else if (buffer[0] == 165 && buffer[1] == 182 && (buffer[2] == 0 || buffer[2] == 1 || buffer[2] == 2 || buffer[2] == 3 || buffer[2] == 4 || buffer[2] == 5 || buffer[2] == 6 || buffer[2] == 7 || buffer[2] == 8 || buffer[2] == 9) && (buffer[3] == 0 || buffer[3] == 1 || buffer[3] == 2 || buffer[3] == 3 || buffer[3] == 4 || buffer[3] == 5 || buffer[3] == 6 || buffer[3] == 7 || buffer[3] == 8 || buffer[3] == 9) && (buffer[4] == 0 || buffer[4] == 1 || buffer[4] == 2 || buffer[4] == 3 || buffer[4] == 4 || buffer[4] == 5 || buffer[4] == 6 || buffer[4] == 7 || buffer[4] == 8 || buffer[4] == 9) && (buffer[5] == 0 || buffer[5] == 1 || buffer[5] == 2 || buffer[5] == 3 || buffer[5] == 4 || buffer[5] == 5 || buffer[5] == 6 || buffer[5] == 7 || buffer[5] == 8 || buffer[5] == 9) && buffer[6] == 127 && buffer[6] == 127 && buffer[6] == 127)//指定叫號
                         {
+                            num1 = buffer[2];
+                            num2 = buffer[3];
+                            num3 = buffer[4];
+                            num4 = buffer[5];
+                            byte[] array1 = { 0xED, 0xED, wait2, wait1, num1, num2, num3, num4, 0x01, 0x02, 0x00 };
+                            comport.Write(array1, 0, 11);
+                            player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
+                                player.PlaySync();
+                            if (num1 == 0 && num2 == 0 && num3 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
+                                player.PlaySync();
+
+                            }
+                            else if (num1 == 0 && num2 == 0 && num3 == 1 && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                            }
+                            else if (num1 == 0 && num2 == 0 && num3 == 1 && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
+                                player.PlaySync();
+                            }
+                            else if (num1 == 0 && num2 == 0 && (num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                            }
+                            else if (num1 == 0 && num2 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
+                                player.PlaySync();
+                            }
+                            else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                player.PlaySync();
+                            }
+                            else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                            }
+                            else if (num1 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
+                                player.PlaySync();
+                            }
+                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && num2 == 0 && num3 == 0 && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
+                                player.PlaySync();
+                            }
+                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                player.PlaySync();
+                            }
+                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                            }
+                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
+                            {
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
+                                player.PlaySync();
+                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
+                                player.PlaySync();
+                            }
+                            player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                               player.PlaySync();
+                               player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
+                               player.PlaySync();
+                               player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
+                               player.PlaySync();
+                               player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                               player.PlaySync();
+                               player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
+                               player.PlaySync();
+                        }
+                        else
+                        {
+                            byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00 };
+                            comport.Write(array1, 0, 11);
                             Console.WriteLine("陣列外");
                         }
                     }
