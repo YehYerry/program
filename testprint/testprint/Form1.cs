@@ -17,6 +17,17 @@ namespace testprint
         public Form1()
         {
             InitializeComponent();
+            String[] pairs = { "Color1=red", "Color2=green", "Color3=blue",
+                 "Title=Code Repository" };
+            foreach (var pair in pairs)
+            {
+                int position = pair.IndexOf("=");
+                if (position < 0)
+                    continue;
+                Console.WriteLine("Key: {0}, Value: '{1}'",
+                              pair.Substring(0, position),
+                               pair.Substring(position + 1));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,7 +61,7 @@ namespace testprint
         {
             string str = System.Windows.Forms.Application.StartupPath;
             //列印圖片
-            Image temp = Image.FromFile(@"C:\Users\bock\github\program\testprint\testprint\bin\Debug\photo\test.bmp");//圖片檔案
+            Image temp = Image.FromFile(@"/*.\test.bmp");//圖片檔案
             //C:\Users\jerry\github\program\testprint\testprint\bin\Debug\photo
             //GetResultIntoImage(ref temp);//
 

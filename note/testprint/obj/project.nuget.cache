@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "acpzb+9a8Y1Q/n4eh6/Y+PWxByV3z6v1G6D/taWjk2lbrdOs3NbgBNikclONisYsSO6KYvbPK1F/xMa7jRwJqQ==",
+  "dgSpecHash": "AFj2lCaOClfp5xiKOpeVbvrldOwOtiueSlIz/o00qdLgi1KVs5JDoFy1juQb4CzSClWPNPeDkLxMUSfFHNvWQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jerry\\Desktop\\記事本\\testprint\\testprint.csproj",
+  "projectFilePath": "C:\\Users\\jerry\\github\\program\\note\\testprint\\testprint.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jerry\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],

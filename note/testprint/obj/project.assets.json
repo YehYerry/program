@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jerry\\Desktop\\記事本\\testprint\\testprint.csproj",
+      "projectUniqueName": "C:\\Users\\jerry\\github\\program\\note\\testprint\\testprint.csproj",
       "projectName": "testprint",
-      "projectPath": "C:\\Users\\jerry\\Desktop\\記事本\\testprint\\testprint.csproj",
+      "projectPath": "C:\\Users\\jerry\\github\\program\\note\\testprint\\testprint.csproj",
       "packagesPath": "C:\\Users\\jerry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jerry\\Desktop\\記事本\\testprint\\obj\\",
+      "outputPath": "C:\\Users\\jerry\\github\\program\\note\\testprint\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jerry\\AppData\\Roaming\\NuGet\\NuGet.Config",

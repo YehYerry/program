@@ -28,3 +28,13 @@ C:\Users\bock\github\program\form\form\obj\Debug\form.csproj.GenerateResource.ca
 C:\Users\bock\github\program\form\form\obj\Debug\form.csproj.CoreCompileInputs.cache
 C:\Users\bock\github\program\form\form\obj\Debug\form.exe
 C:\Users\bock\github\program\form\form\obj\Debug\form.pdb
+C:\Users\jerry\github\program\form\form\bin\Debug\form.exe.config
+C:\Users\jerry\github\program\form\form\bin\Debug\form.exe
+C:\Users\jerry\github\program\form\form\bin\Debug\form.pdb
+C:\Users\jerry\github\program\form\form\obj\Debug\form.csprojAssemblyReference.cache
+C:\Users\jerry\github\program\form\form\obj\Debug\form.Form1.resources
+C:\Users\jerry\github\program\form\form\obj\Debug\form.Properties.Resources.resources
+C:\Users\jerry\github\program\form\form\obj\Debug\form.csproj.GenerateResource.cache
+C:\Users\jerry\github\program\form\form\obj\Debug\form.csproj.CoreCompileInputs.cache
+C:\Users\jerry\github\program\form\form\obj\Debug\form.exe
+C:\Users\jerry\github\program\form\form\obj\Debug\form.pdb
