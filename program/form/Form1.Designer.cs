@@ -41,10 +41,10 @@
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(541, 297);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(721, 371);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(801, 503);
+            this.button1.Size = new System.Drawing.Size(1068, 629);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -59,9 +59,10 @@
             this.label_wait.AutoSize = true;
             this.label_wait.BackColor = System.Drawing.Color.White;
             this.label_wait.Font = new System.Drawing.Font("標楷體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_wait.Location = new System.Drawing.Point(1217, 707);
+            this.label_wait.Location = new System.Drawing.Point(1623, 884);
+            this.label_wait.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_wait.Name = "label_wait";
-            this.label_wait.Size = new System.Drawing.Size(32, 32);
+            this.label_wait.Size = new System.Drawing.Size(38, 40);
             this.label_wait.TabIndex = 5;
             this.label_wait.Text = "0";
             // 
@@ -73,17 +74,16 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.label_wait);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.HelpButton = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "程式";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

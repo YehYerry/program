@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
 using System.Media;
+using System.IO;
 
 namespace form
 {
@@ -33,6 +34,8 @@ namespace form
         byte num2;
         byte num3;
         byte num4;
+        string[] line = new string[1000];
+        int ctr = 0;
 
         public Form1()
         {
@@ -40,7 +43,19 @@ namespace form
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
+            StreamReader str = new StreamReader(@"C:\Users\jerry\github\program\note\test.ifm");//讀取文字檔                      
+            do
+            {
+                ctr++;
+                line[ctr] = str.ReadLine();
+                Console.WriteLine(line[ctr]);
+            } while (line[ctr] != null);
+
+            BackgroundImage = new Bitmap(@"C:\Users\jerry\github\program\program\form\background\back.jpg");
+            Image pic = new Bitmap(@"C:\Users\jerry\github\program\program\form\background\button.png"); ;
+
+            button1.BackgroundImage = pic;
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);

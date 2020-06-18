@@ -44,20 +44,23 @@ namespace form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /*label_wait.BackColor = Color.Transparent;
-            label_wait.Parent = button1;//将pictureBox1设为标签的父控件
-            label_wait.Location = new Point(100, 50);*/
+            BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
+            //BackgroundImageLayout = ImageLayout.Stretch;
+            //按鈕圖
+            Image pic = new Bitmap(Application.StartupPath + @"\background\button.png");
+            button1.BackgroundImage = pic;
+
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            if (!comport.IsOpen)
+            /*if (!comport.IsOpen)
             {
                 comport.Open();
                 receiving = true;
                 t = new Thread(DoReceive);
                 t.IsBackground = true;
                 t.Start();               
-            }
+            }*/
             MessageBox.Show("開啟");
         }
 
