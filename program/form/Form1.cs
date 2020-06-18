@@ -22,7 +22,7 @@ namespace form
         private Boolean receiving;
         private Thread t;
         byte[] array;
-        byte a = 0;
+        byte cont1 = 0x02;
         byte t1 = 0;
         byte t2 = 0;
         byte t3 = 0;
@@ -47,8 +47,8 @@ namespace form
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
             //BackgroundImageLayout = ImageLayout.Stretch;
             //按鈕圖
-            Image pic = new Bitmap(Application.StartupPath + @"\background\button.png");
-            button1.BackgroundImage = pic;
+            Image pic = new Bitmap(Application.StartupPath + @"\background\button.jpg");
+            //button1.BackgroundImage = pic;
 
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
