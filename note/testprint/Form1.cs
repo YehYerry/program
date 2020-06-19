@@ -48,8 +48,8 @@ namespace testprint
             //Console.WriteLine(info);
             
             str.Close();
-            label1.Text = s[2].Substring(9);
-            
+            label1.Text = s[2].Substring(6);
+            Console.WriteLine(Encoding.UTF8.GetBytes(s[2].Substring(6)));
         }
 
         private void button2_Click(object sender, EventArgs e)

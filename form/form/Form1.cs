@@ -19,10 +19,8 @@ namespace form
         private SerialPort comport;
         delegate void Display(Byte[] buffer);
         private Int32 totalLength = 0;
-        private Boolean receiving;
-        private Thread t;
-        byte[] array;
-        byte a = 0;
+        private Boolean receiving; 
+        byte cont1 ;
         byte t1 = 0;
         byte t2 = 0;
         byte t3 = 0;
@@ -44,19 +42,24 @@ namespace form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            StreamReader str = new StreamReader(@"C:\Users\jerry\github\program\note\test.ifm");//讀取文字檔                      
+            StreamReader str = new StreamReader(Application.StartupPath + @"\test.ifm");//讀取文字檔                      
             do
             {
                 ctr++;
                 line[ctr] = str.ReadLine();
-                Console.WriteLine(line[ctr]);
+                //Console.WriteLine(line[ctr]);
             } while (line[ctr] != null);
 
-            BackgroundImage = new Bitmap(@"C:\Users\jerry\github\program\program\form\background\back.jpg");
-            Image pic = new Bitmap(@"C:\Users\jerry\github\program\program\form\background\button.png"); ;
-
+            BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back1.jpg");
+            Image pic = new Bitmap(Application.StartupPath + @"\background\button.jpg");
             button1.BackgroundImage = pic;
-            comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+
+            cont1 = Convert.ToByte(line[2].Substring(6));
+            Console.WriteLine(cont1);
+            /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
+            foreach (byte s1 in val)
+            Console.WriteLine(s1);*/
+            /*comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
             if (!comport.IsOpen)
@@ -66,7 +69,7 @@ namespace form
                 t = new Thread(DoReceive);
                 t.IsBackground = true;
                 t.Start();               
-            }
+            }*/
             MessageBox.Show("開啟");
         }
 
@@ -124,7 +127,7 @@ namespace form
                                 //MessageBox.Show("12213");
                                 //byte waits1 = wait1;
                                 //waits1 -= 1;
-                                byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
+                                byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
                                 comport.Write(array1, 0, 11);
                             }
                             catch (TimeoutException timeoutEx)
@@ -156,7 +159,7 @@ namespace form
                                         t3 = 0;
                                         t3 = (byte)(t3 + 1);
                                     }
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
+                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
                                 }
@@ -181,7 +184,7 @@ namespace form
                                         t3 = 0;
                                         t3 = (byte)(t3 + 1);
                                     }                                    
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
+                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
                                 }
@@ -205,7 +208,7 @@ namespace form
                                         t3 = 0;
                                         t3 = (byte)(t3 + 1);
                                     }
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x01, 0x00 };
+                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
                                     comport.Write(array1, 0, 11);
                                     label -= 1;
                                 }
@@ -214,7 +217,7 @@ namespace form
                                     MessageBox.Show("no wait");
                                     //byte waits1 = wait1;
                                     //wait1 -= 1;
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, 0x01, 0x00, 0x00 };
+                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x00, 0x00 };
                                     comport.Write(array1, 0, 11);
                                 }
                                 else
@@ -364,7 +367,7 @@ namespace form
                             num2 = buffer[3];
                             num3 = buffer[4];
                             num4 = buffer[5];
-                            byte[] array1 = { 0xED, 0xED, wait2, wait1, num1, num2, num3, num4, 0x01, 0x01, 0x00 };
+                            byte[] array1 = { 0xED, 0xED, wait2, wait1, num1, num2, num3, num4, cont1, 0x01, 0x00 };
                             comport.Write(array1, 0, 11);
                             /*player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
                                 player.PlaySync();*/
@@ -496,7 +499,7 @@ namespace form
                         }
                         else
                         {
-                            byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00 };
+                            byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x00, 0x00, cont1, 0x01, 0x00 };
                             comport.Write(array1, 0, 11);
                             Console.WriteLine("陣列外");
                         }

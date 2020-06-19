@@ -18,10 +18,7 @@ namespace form
     {
         private SerialPort comport;
         delegate void Display(Byte[] buffer);
-        private Int32 totalLength = 0;
         private Boolean receiving;
-        private Thread t;
-        byte[] array;
         byte cont1 = 0x02;
         byte t1 = 0;
         byte t2 = 0;

@@ -1,3 +1,6 @@
+[控制器號碼]
+控制器1=0x02
+
 [背景圖片]
 FILENAME=background\back.jpg
 WIDTH=700
