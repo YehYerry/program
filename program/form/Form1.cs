@@ -19,6 +19,7 @@ namespace form
         private SerialPort comport;
         delegate void Display(Byte[] buffer);
         private Boolean receiving;
+        private Thread t;
         byte cont1 = 0x02;
         byte t1 = 0;
         byte t2 = 0;
@@ -50,14 +51,14 @@ namespace form
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            /*if (!comport.IsOpen)
+            if (!comport.IsOpen)
             {
                 comport.Open();
                 receiving = true;
                 t = new Thread(DoReceive);
                 t.IsBackground = true;
                 t.Start();               
-            }*/
+            }
             MessageBox.Show("開啟");
         }
 

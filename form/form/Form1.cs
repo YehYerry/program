@@ -19,7 +19,8 @@ namespace form
         private SerialPort comport;
         delegate void Display(Byte[] buffer);
         private Int32 totalLength = 0;
-        private Boolean receiving; 
+        private Boolean receiving;
+        private Thread t;
         byte cont1 ;
         byte t1 = 0;
         byte t2 = 0;
@@ -59,7 +60,7 @@ namespace form
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
-            /*comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+            comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
             if (!comport.IsOpen)
@@ -69,7 +70,7 @@ namespace form
                 t = new Thread(DoReceive);
                 t.IsBackground = true;
                 t.Start();               
-            }*/
+            }
             MessageBox.Show("開啟");
         }
 
@@ -120,7 +121,7 @@ namespace form
 
                     try
                     {
-                        if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && buffer[6] == 127)
+                        if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && (buffer[6] == 0 || buffer[6] == 1 || buffer[6] == 2 || buffer[6] == 3 || buffer[6] == 4 || buffer[6] == 5 || buffer[6] == 6 || buffer[6] == 7 || buffer[6] == 8 || buffer[6] == 9 || buffer[6] == 10 || buffer[6] == 11 || buffer[6] == 12 || buffer[6] == 13 || buffer[6] == 14) && buffer[7] == 0 && buffer[8] == 0) //無資料時
                         {
                             try
                             {
@@ -135,7 +136,7 @@ namespace form
                                 MessageBox.Show("送出失敗");
                             }
                         }
-                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 01 && buffer[7] == 01)
+                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == cont1 && buffer[7] == 01) //CALL
                         {                            
                             try
                             {
@@ -361,7 +362,7 @@ namespace form
                                 MessageBox.Show("送出失敗");
                             }
                         }
-                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == 01 && buffer[7] == 02)//指定叫號
+                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == cont1 && buffer[7] == 02)//指定叫號
                         {
                             num1 = buffer[2];
                             num2 = buffer[3];
