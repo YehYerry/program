@@ -17,3 +17,13 @@ C:\Users\jerry\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.csproj.Gen
 C:\Users\jerry\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.csproj.CoreCompileInputs.cache
 C:\Users\jerry\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.exe
 C:\Users\jerry\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.pdb
+C:\Users\bock\github\program\voiceTest\voiceTest\bin\Debug\voiceTest.exe.config
+C:\Users\bock\github\program\voiceTest\voiceTest\bin\Debug\voiceTest.exe
+C:\Users\bock\github\program\voiceTest\voiceTest\bin\Debug\voiceTest.pdb
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.csprojAssemblyReference.cache
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.Form1.resources
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.Properties.Resources.resources
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.csproj.GenerateResource.cache
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.csproj.CoreCompileInputs.cache
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.exe
+C:\Users\bock\github\program\voiceTest\voiceTest\obj\Debug\voiceTest.pdb

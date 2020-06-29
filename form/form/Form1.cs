@@ -21,14 +21,18 @@ namespace form
         private Int32 totalLength = 0;
         private Boolean receiving;
         private Thread t;
-        byte cont1 ;
+        byte cont1;
+        byte cont2;
         byte t1 = 0;
         byte t2 = 0;
         byte t3 = 0;
         byte t4 = 0;
-        byte wait1 = 0;
-        byte wait2 = 0;        
+        byte[] wait1 = { 0, 0 };
+        byte[] wait2 = { 0, 0 };
+        //byte wait1 = 0;
+        //byte wait2 = 0;        
         int label = 0;
+        int label2 = 0;
         byte num1;
         byte num2;
         byte num3;
@@ -56,7 +60,9 @@ namespace form
             button1.BackgroundImage = pic;
 
             cont1 = Convert.ToByte(line[2].Substring(6));
+            cont2 = Convert.ToByte(line[3].Substring(6));
             Console.WriteLine(cont1);
+            Console.WriteLine(cont2);
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
@@ -77,12 +83,12 @@ namespace form
         public void button1_Click(object sender, EventArgs e)
         {
 
-            wait1 += 1;
+            wait1[0] += 1;
             //wait1 = (byte)(a + 1);
-            if (wait1 == 10)
+            if (wait1[0] == 10)
             {
-                wait1 = 0;
-                wait2 += 1;
+                wait1[0] = 0;
+                wait2[0] += 1;
             }
             //array = new byte[] { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
             //a = wait1;
@@ -94,6 +100,19 @@ namespace form
             {
                 Console.WriteLine(byteValue);
             }*/            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            wait1[1] += 1;
+            //wait1 = (byte)(a + 1);
+            if (wait1[1] == 10)
+            {
+                wait1[1] = 0;
+                wait2[1] += 1;
+            }
+            label2 += 1;
+            label_wait2.Text = label2.ToString();
         }
 
         private void DoReceive()
@@ -128,381 +147,460 @@ namespace form
                                 //MessageBox.Show("12213");
                                 //byte waits1 = wait1;
                                 //waits1 -= 1;
-                                byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
+                                byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], t4, t3, t2, t1, cont1, 0x01, 0x00 };
+                                byte[] array2 = { 0xED, 0xED, wait2[1], wait1[1], t4, t3, t2, t1, cont2, 0x01, 0x00 };
                                 comport.Write(array1, 0, 11);
+                                comport.Write(array2, 0, 11);
                             }
                             catch (TimeoutException timeoutEx)
                             {
                                 MessageBox.Show("送出失敗");
                             }
                         }
-                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == cont1 && buffer[7] == 01) //CALL
-                        {                            
+                        else if (buffer[0] == 165 && buffer[1] == 182 && (buffer[6] == cont1 || buffer[6] == cont2) && buffer[7] == 01) //CALL
+                        {
                             try
                             {
-                                if (wait2 == 0 && wait1 != 0)
+                                if (buffer[6] == cont1)
                                 {
-                                    //byte waits1 = wait1;
-                                    wait1 -= 1;
-                                    t1 += 1;
-                                    if (t1 == 10)
+                                    if (wait2[0] == 0 && wait1[0] != 0)
                                     {
-                                        t1 = 0;
-                                        t2 = (byte)(t2 + 1);
+                                        //byte waits1 = wait1;
+                                        wait1[0] -= 1;
+                                        t1 += 1;
+                                        if (t1 == 10)
+                                        {
+                                            t1 = 0;
+                                            t2 = (byte)(t2 + 1);
+                                        }
+                                        else if (t2 == 10)
+                                        {
+                                            t2 = 0;
+                                            t3 = (byte)(t3 + 1);
+                                        }
+                                        else if (t3 == 10)
+                                        {
+                                            t3 = 0;
+                                            t3 = (byte)(t3 + 1);
+                                        }
+                                        byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], t4, t3, t2, t1, cont1, 0x01, 0x00 };
+                                        comport.Write(array1, 0, 11);
+                                        label -= 1;
                                     }
-                                    else if (t2 == 10)
+                                    else if (wait2[0] != 0 && wait1[0] == 0)
                                     {
-                                        t2 = 0;
-                                        t3 = (byte)(t3 + 1);
+                                        //byte waits1 = wait1;
+                                        wait2[0] -= 1;
+                                        wait1[0] = 9;
+                                        t1 += 1;
+                                        if (t1 == 10)
+                                        {
+                                            t1 = 0;
+                                            t2 = (byte)(t2 + 1);
+                                        }
+                                        else if (t2 == 10)
+                                        {
+                                            t2 = 0;
+                                            t3 = (byte)(t3 + 1);
+                                        }
+                                        else if (t3 == 10)
+                                        {
+                                            t3 = 0;
+                                            t3 = (byte)(t3 + 1);
+                                        }
+                                        byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], t4, t3, t2, t1, cont1, 0x01, 0x00 };
+                                        comport.Write(array1, 0, 11);
+                                        label -= 1;
                                     }
-                                    else if (t3 == 10)
+                                    else if (wait2[0] != 0 && wait1[0] != 0)
                                     {
-                                        t3 = 0;
-                                        t3 = (byte)(t3 + 1);
+                                        //byte waits1 = wait1;
+                                        wait1[0] -= 1;
+                                        t1 += 1;
+                                        if (t1 == 10)
+                                        {
+                                            t1 = 0;
+                                            t2 = (byte)(t2 + 1);
+                                        }
+                                        else if (t2 == 10)
+                                        {
+                                            t2 = 0;
+                                            t3 = (byte)(t3 + 1);
+                                        }
+                                        else if (t3 == 10)
+                                        {
+                                            t3 = 0;
+                                            t3 = (byte)(t3 + 1);
+                                        }
+                                        byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], t4, t3, t2, t1, cont1, 0x01, 0x00 };
+                                        comport.Write(array1, 0, 11);
+                                        label -= 1;
                                     }
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
-                                    comport.Write(array1, 0, 11);
-                                    label -= 1;
+                                    else if (wait2[0] == 0 && wait1[0] == 0)
+                                    {
+                                        MessageBox.Show("no wait");
+                                        //byte waits1 = wait1;
+                                        //wait1 -= 1;
+                                        byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], t4, t3, t2, t1, cont1, 0x00, 0x00 };
+                                        comport.Write(array1, 0, 11);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("等待有誤");
+                                    }
+                                    /*player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
+                                    player.PlaySync();*/
+                                    if (t4 == 0 && t3 == 0 && t2 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t1 + ".wav";
+                                        player.PlaySync();
+
+                                    }
+                                    else if (t4 == 0 && t3 == 0 && t2 == 1 && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if (t4 == 0 && t3 == 0 && t2 == 1 && (t1 == 1 || t1 == 2 || t1 == 3 || t1 == 4 || t1 == 5 || t1 == 6 || t1 == 7 || t1 == 8 || t1 == 9))
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t1 + ".wav";
+                                        player.PlaySync();
+                                    }
+                                    else if (t4 == 0 && t3 == 0 && (t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if (t4 == 0 && t3 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t1 + ".wav";
+                                        player.PlaySync();
+
+                                        Console.WriteLine(t2);
+                                        Console.WriteLine(t1);
+                                    }
+                                    else if (t4 == 0 && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && t2 == 0 && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if (t4 == 0 && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if (t4 == 0 && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && t2 == 0 && (t1 == 1 || t1 == 2 || t1 == 3 || t1 == 4 || t1 == 5 || t1 == 6 || t1 == 7 || t1 == 8 || t1 == 9))
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t1 + ".wav";
+                                        player.PlaySync();
+                                    }
+                                    else if (t4 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t1 + ".wav";
+                                        player.PlaySync();
+                                    }
+                                    else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && t3 == 0 && t2 == 0 && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t4 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && t2 == 0 && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t4 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t4 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 0 || t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 0 || t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t4 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                    }
+                                    else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 0 || t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 0 || t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && (t1 == 1 || t1 == 2 || t1 == 3 || t1 == 4 || t1 == 5 || t1 == 6 || t1 == 7 || t1 == 8 || t1 == 9))
+                                    {
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t4 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t3 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t2 + ".wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                        player.PlaySync();
+                                        player.SoundLocation = Application.StartupPath + @"\voice\" + t1 + ".wav";
+                                        player.PlaySync();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("人數超過9999號!!");
+                                    }
+                                    /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
+                                    player.PlaySync();*/
                                 }
-                                else if (wait2 != 0 && wait1 == 0)
+                                if (buffer[6] == cont2)
                                 {
-                                    //byte waits1 = wait1;
-                                    wait2 -= 1;
-                                    wait1 = 9;
-                                    t1 += 1;
-                                    if (t1 == 10)
-                                    {
-                                        t1 = 0;
-                                        t2 = (byte)(t2 + 1);
-                                    }
-                                    else if (t2 == 10)
-                                    {
-                                        t2 = 0;
-                                        t3 = (byte)(t3 + 1);
-                                    }
-                                    else if (t3 == 10)
-                                    {
-                                        t3 = 0;
-                                        t3 = (byte)(t3 + 1);
-                                    }                                    
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
-                                    comport.Write(array1, 0, 11);
-                                    label -= 1;
+                                    MessageBox.Show("2");
                                 }
-                                else if (wait2 != 0 && wait1 != 0)
+                            }
+                            catch (TimeoutException timeoutEx)
+                            {
+                                MessageBox.Show("送出失敗");
+                            }
+                        }
+                        else if (buffer[0] == 165 && buffer[1] == 182 && (buffer[6] == cont1 || buffer[6] == cont2) && buffer[7] == 02)//指定叫號
+                        {
+                            if (buffer[6] == cont1)
+                            {
+                                num1 = buffer[2];
+                                num2 = buffer[3];
+                                num3 = buffer[4];
+                                num4 = buffer[5];
+                                byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], num1, num2, num3, num4, cont1, 0x01, 0x00 };
+                                comport.Write(array1, 0, 11);
+                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
+                                    player.PlaySync();*/
+                                if (num1 == 0 && num2 == 0 && num3 == 0)
                                 {
-                                    //byte waits1 = wait1;
-                                    wait1 -= 1;
-                                    t1 += 1;
-                                    if (t1 == 10)
-                                    {
-                                        t1 = 0;
-                                        t2 = (byte)(t2 + 1);
-                                    }
-                                    else if (t2 == 10)
-                                    {
-                                        t2 = 0;
-                                        t3 = (byte)(t3 + 1);
-                                    }
-                                    else if (t3 == 10)
-                                    {
-                                        t3 = 0;
-                                        t3 = (byte)(t3 + 1);
-                                    }
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x01, 0x00 };
-                                    comport.Write(array1, 0, 11);
-                                    label -= 1;
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
+                                    player.PlaySync();
+
                                 }
-                                else if (wait2 == 0 && wait1 == 0)
+                                else if (num1 == 0 && num2 == 0 && num3 == 1 && num4 == 0)
                                 {
-                                    MessageBox.Show("no wait");
-                                    //byte waits1 = wait1;
-                                    //wait1 -= 1;
-                                    byte[] array1 = { 0xED, 0xED, wait2, wait1, t4, t3, t2, t1, cont1, 0x00, 0x00 };
-                                    comport.Write(array1, 0, 11);
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                }
+                                else if (num1 == 0 && num2 == 0 && num3 == 1 && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
+                                    player.PlaySync();
+                                }
+                                else if (num1 == 0 && num2 == 0 && (num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                }
+                                else if (num1 == 0 && num2 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
+                                    player.PlaySync();
+
+                                    Console.WriteLine(num3);
+                                    Console.WriteLine(num4);
+                                }
+                                else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                }
+                                else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                }
+                                else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
+                                    player.PlaySync();
+                                }
+                                else if (num1 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
+                                    player.PlaySync();
+                                }
+                                else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && num2 == 0 && num3 == 0 && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num1 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                    player.PlaySync();
+                                }
+                                else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num1 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                }
+                                else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num1 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                }
+                                else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 0 || num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 0 || num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num1 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                }
+                                else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 0 || num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 0 || num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
+                                {
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num1 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\仟.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num2 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\佰_.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num3 + ".wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\拾.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
+                                    player.PlaySync();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("等待有誤");
-                                }
-                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
-                                player.PlaySync();*/
-                                if (t4 == 0 && t3 == 0 && t2 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
-                                    player.PlaySync();
-
-                                }
-                                else if (t4 == 0 && t3 == 0 && t2 == 1 && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                }
-                                else if (t4 == 0 && t3 == 0 && t2 == 1 && (t1 == 1 || t1 == 2 || t1 == 3 || t1 == 4 || t1 == 5 || t1 == 6 || t1 == 7 || t1 == 8 || t1 == 9))
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
-                                    player.PlaySync();
-                                }
-                                else if (t4 == 0 && t3 == 0 && (t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                }
-                                else if (t4 == 0 && t3 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
-                                    player.PlaySync();
-                                }
-                                else if (t4 == 0 && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && t2 == 0 && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                    player.PlaySync();
-                                }
-                                else if (t4 == 0 && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                }
-                                else if (t4 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
-                                    player.PlaySync();
-                                }
-                                else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && t3 == 0 && t2 == 0 && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t4 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                    player.PlaySync();
-                                }
-                                else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && t2 == 0 && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t4 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                    player.PlaySync();
-                                }
-                                else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && t1 == 0)
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t4 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                }
-                                else if ((t4 == 1 || t4 == 2 || t4 == 3 || t4 == 4 || t4 == 5 || t4 == 6 || t4 == 7 || t4 == 8 || t4 == 9) && (t3 == 1 || t3 == 2 || t3 == 3 || t3 == 4 || t3 == 5 || t3 == 6 || t3 == 7 || t3 == 8 || t3 == 9) && (t2 == 1 || t2 == 2 || t2 == 3 || t2 == 4 || t2 == 5 || t2 == 6 || t2 == 7 || t2 == 8 || t2 == 9) && (t1 == 1 || t1 == 2 || t1 == 3 || t1 == 4 || t1 == 5 || t1 == 6 || t1 == 7 || t1 == 8 || t1 == 9))
-                                {
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t4 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t3 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t2 + ".wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                    player.PlaySync();
-                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\" + t1 + ".wav";
-                                    player.PlaySync();
-                                }
-                                else 
-                                {
                                     MessageBox.Show("人數超過9999號!!");
-                                }                             
-                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
-                                player.PlaySync();*/
-                            }
-                            catch (TimeoutException timeoutEx)
-                            {
-                                MessageBox.Show("送出失敗");
-                            }
-                        }
-                        else if (buffer[0] == 165 && buffer[1] == 182 && buffer[6] == cont1 && buffer[7] == 02)//指定叫號
-                        {
-                            num1 = buffer[2];
-                            num2 = buffer[3];
-                            num3 = buffer[4];
-                            num4 = buffer[5];
-                            byte[] array1 = { 0xED, 0xED, wait2, wait1, num1, num2, num3, num4, cont1, 0x01, 0x00 };
-                            comport.Write(array1, 0, 11);
-                            /*player.SoundLocation = @"C:\Users\bock\github\program\voice\來賓.wav";
-                                player.PlaySync();*/
-                            if (num1 == 0 && num2 == 0 && num3 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
-                                player.PlaySync();
+                                }
 
+                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
+                                   player.PlaySync();*/
                             }
-                            else if (num1 == 0 && num2 == 0 && num3 == 1 && num4 == 0)
+                            if (buffer[6] == cont2) 
                             {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
+                                MessageBox.Show("指定2");
                             }
-                            else if (num1 == 0 && num2 == 0 && num3 == 1 && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
+                            else
                             {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
-                                player.PlaySync();
+                                byte[] array1 = { 0xED, 0xED, wait2[0], wait1[0], 0x00, 0x00, 0x00, 0x00, cont1, 0x01, 0x00 };
+                                comport.Write(array1, 0, 11);
+                                Console.WriteLine("陣列外");
                             }
-                            else if (num1 == 0 && num2 == 0 && (num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                            }
-                            else if (num1 == 0 && num2 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
-                                player.PlaySync();
-                            }
-                            else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                player.PlaySync();
-                            }
-                            else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                            }
-                            else if (num1 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
-                                player.PlaySync();
-                            }
-                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && num2 == 0 && num3 == 0 && num4 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                player.PlaySync();
-                            }
-                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                player.PlaySync();
-                            }
-                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && num4 == 0)
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                            }
-                            else if ((num1 == 1 || num1 == 2 || num1 == 3 || num1 == 4 || num1 == 5 || num1 == 6 || num1 == 7 || num1 == 8 || num1 == 9) && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && (num3 == 1 || num3 == 2 || num3 == 3 || num3 == 4 || num3 == 5 || num3 == 6 || num3 == 7 || num3 == 8 || num3 == 9) && (num4 == 1 || num4 == 2 || num4 == 3 || num4 == 4 || num4 == 5 || num4 == 6 || num4 == 7 || num4 == 8 || num4 == 9))
-                            {
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num1 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\仟.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num2 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\佰_.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num3 + ".wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\拾.wav";
-                                player.PlaySync();
-                                player.SoundLocation = @"C:\Users\bock\github\program\voice\" + num4 + ".wav";
-                                player.PlaySync();
-                            }
-                            /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                               player.PlaySync();
-                               player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
-                               player.PlaySync();
-                               player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
-                               player.PlaySync();
-                               player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                               player.PlaySync();
-                               player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
-                               player.PlaySync();*/
-                        }
-                        else
-                        {
-                            byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x00, 0x00, cont1, 0x01, 0x00 };
-                            comport.Write(array1, 0, 11);
-                            Console.WriteLine("陣列外");
                         }
                     }
                     catch (TimeoutException timeoutEx)
@@ -595,13 +693,14 @@ namespace form
         private void label1_Click(object sender, EventArgs e)
         {
             //byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
-            byte waits1 = wait1;
-            waits1 -= 1;
-           byte[] array1 = { 0xED, 0xED, wait2, waits1, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
-           foreach (byte byteValue in array1)
+            //byte waits1 = wait1;
+           // waits1 -= 1;
+           byte[] clear = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
+            comport.Write(clear, 0, 11);
+            foreach (byte byteValue in clear)
            {
                     Console.WriteLine(byteValue);
            }                      
-        }
+        }       
     }
 }
