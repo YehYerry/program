@@ -23,12 +23,10 @@ namespace form
         private Thread t;
         byte cont1;
         byte cont2;
-        byte t1 = 0;
-        byte t2 = 0;
-        byte t3 = 0;
-        byte t4 = 0;
-        byte[] wait1 = { 0, 0 };
-        byte[] wait2 = { 0, 0 };
+        byte[,] num = new byte[,] { {0 , 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
+        byte t1 = 0, t2 = 0, t3 = 0, t4 = 0;
+        byte[] wait1 = { 0, 0 , 0, 0 }; //四個按鈕的等待人數(十位數)
+        byte[] wait2 = { 0, 0 , 0, 0 }; //四個按鈕的等待人數(個位數)
         //byte wait1 = 0;
         //byte wait2 = 0;        
         int label = 0;
