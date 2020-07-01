@@ -21,6 +21,7 @@ Width=200
 Height=100
 BorderWidth=200
 BorderHeight=200
+StartNum=1000
 
 [«ö¶s2]
 IsVisible=1
@@ -28,6 +29,7 @@ Width=100
 Height=100
 BorderWidth=600
 BorderHeight=200
+StartNum=0000
 
 [«ö¶s3]
 IsVisible=1
@@ -35,6 +37,7 @@ Width=100
 Height=100
 BorderWidth=1000
 BorderHeight=200
+StartNum=0000
 
 [«ö¶s4]
 IsVisible=1
@@ -42,6 +45,7 @@ Width=100
 Height=100
 BorderWidth=1400
 BorderHeight=200
+StartNum=0000
 
 [­I´º¹Ï¤ù]
 FILENAME=background\back.jpg

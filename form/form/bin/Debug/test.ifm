@@ -1,16 +1,75 @@
 [北竟腹絏]
-北竟1=2
-北竟2=4
+北竟01=0
+北竟02=0
+北竟03=0
+北竟04=1
+北竟05=1
+北竟06=0
+北竟07=2
+北竟08=2
+北竟09=3
+北竟10=3
+北竟11=3
+北竟12=0
+北竟13=4
+北竟14=4
+北竟15=4
 
-[璉春瓜]
-FILENAME=background\back.jpg
-WIDTH=700
-HEIGHT=120
+[秙1]
+IsVisible=1
+Width=183
+Height=72
+BorderWidth=23
+BorderHeight=237
+StartNum=1000
 
-[秙瓜]
-FILENAME=background\button.png
-WIDTH=700
-HEIGHT=120
+[秙2]
+IsVisible=0
+Width=183
+Height=72
+BorderWidth=23
+BorderHeight=315
+StartNum=0000
+
+[秙3]
+IsVisible=0
+Width=183
+Height=72
+BorderWidth=23
+BorderHeight=405
+StartNum=0000
+
+[秙4]
+IsVisible=0
+Width=183
+Height=72
+BorderWidth=23
+BorderHeight=500
+StartNum=0000
+
+[秙1单计竚の](EX:Times New RomanArial夹发砰)
+Size=10
+BorderWidth=148
+BorderHeight=276
+Font=Times New Roman
+
+[秙2单计竚の]
+Size=10
+BorderWidth=148
+BorderHeight=362
+Font=Times New Roman
+
+[秙3单计竚の]
+Size=10
+BorderWidth=23
+BorderHeight=500
+Font=Times New Roman
+
+[秙4单计竚の]
+Size=10
+BorderWidth=23
+BorderHeight=500
+Font=Times New Roman
 
 [瓜]
 FILENAME=C:\Users\jerry\github\program\note
