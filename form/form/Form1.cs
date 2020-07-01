@@ -69,14 +69,14 @@ namespace form
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            /*if (!comport.IsOpen)
+            if (!comport.IsOpen)
             {
                 comport.Open();
                 receiving = true;
                 t = new Thread(DoReceive);
                 t.IsBackground = true;
                 t.Start();               
-            }*/
+            }
 
             b1 = line[19].Substring(10);
             b2 = line[27].Substring(10);
