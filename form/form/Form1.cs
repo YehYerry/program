@@ -83,8 +83,8 @@ namespace form
             Image pic = new Bitmap(Application.StartupPath + @"\background\button.jpg");
             button1.BackgroundImage = pic;
 
-            cont1 = Convert.ToByte(line[2].Substring(5,1));
-            cont2 = Convert.ToByte(line[3].Substring(5,1));
+            cont1 = Convert.ToByte(line[3].Substring(5,1));
+            cont2 = Convert.ToByte(line[5].Substring(5,1));
             Console.WriteLine(cont1);
             Console.WriteLine(cont2);
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
@@ -777,6 +777,10 @@ namespace form
                                     player.PlaySync();*/
 
                                 }
+                                else 
+                                {
+                                    Console.WriteLine("收到"+ buffer[0] + buffer[1] + buffer[2] + buffer[3] + buffer[4]);
+                                }
                             }
 
                             catch (TimeoutException timeoutEx)
@@ -973,7 +977,7 @@ namespace form
                         MessageBox.Show("陣列過長");
                     }
                 }
-                Thread.Sleep(160);
+                Thread.Sleep(10);
             }
         }
 
@@ -986,16 +990,16 @@ namespace form
             {
                 Console.WriteLine(byteValue);
             }*/
-            Thread.Sleep(16);
+            /*Thread.Sleep(16);
             if ((sender as SerialPort).BytesToRead > 0)
             {
                 try
-                {/*
+                {
                     Byte[] buffer = new Byte[1024];
                     Int32 length = (sender as SerialPort).Read(buffer, 0, buffer.Length);
                     Array.Resize(ref buffer, length);
                     Display d = new Display(DisplayText);
-                    this.Invoke(d, new Object[] { buffer });*/
+                    this.Invoke(d, new Object[] { buffer });
                 }
                 catch (TimeoutException timeoutEx)
                 {
@@ -1010,7 +1014,7 @@ namespace form
             }
             
 
-            byte[] receive = { 0xA5, 0xB6, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00 };
+            byte[] receive = { 0xA5, 0xB6, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x00, 0x00 };*/
             /*if (buffer == receive)
             {
                 try
