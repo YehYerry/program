@@ -13,7 +13,7 @@ namespace buttonchange
 {
     public partial class Form1 : Form
     {
-        byte cont1, cont2, cont3, cont4, cont5, cont6, cont7, cont8, cont9, cont10, cont11, cont12, cont13, cont14, cont15;    
+        byte[,] cont = new byte[15,15];
         string b1, b2, b3, b4;
         int b1h, b2h, b3h, b4h, b1w, b2w, b3w, b4w;
         int b1bh, b2bh, b3bh, b4bh, b1bw, b2bw, b3bw, b4bw;
@@ -21,6 +21,7 @@ namespace buttonchange
         string[] line = new string[1000];
         byte[,] num;
         int ctr = 0;
+        int note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0;
         public Form1()
         {
             StreamReader str = new StreamReader(Application.StartupPath + @"\buttonchange.ifm");//讀取文字檔                      
@@ -31,7 +32,30 @@ namespace buttonchange
                 //Console.WriteLine(line[ctr]);
             } while (line[ctr] != null);
 
-            cont1 = Convert.ToByte(line[2].Substring(7));
+            for (int i = 2; i <= 16; i++) //取得控制器對哪個按鈕，存入陣列 cont[0,0] 中
+            {
+                note = Convert.ToInt32(line[i].Substring(7));
+                if (note == 1)
+                {
+                    cont[0, notej1] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej1 += 1;
+                }
+                else if (note == 2)
+                {
+                    cont[1, notej2] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej2 += 1;
+                }
+                else if (note == 3)
+                {
+                    cont[2, notej3] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej3 += 1;
+                }
+                else if (note == 4)
+                {
+                    cont[3, notej4] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej4 += 1;
+                }
+            }
 
             b1 = line[19].Substring(10);
             b2 = line[27].Substring(10);
@@ -80,10 +104,10 @@ namespace buttonchange
             button4.Size = new Size(b4w, b4h);
             button4.Location = new Point(b4bw, b4bh);
             num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
-            Console.WriteLine(num[0, 0]);
+            /*Console.WriteLine(num[0, 0]);
             Console.WriteLine(num[0, 1]);
             Console.WriteLine(num[0, 2]);
-            Console.WriteLine(num[0, 3]);
+            Console.WriteLine(num[0, 3]);*/
 
             this.WindowState = FormWindowState.Maximized;
             if (b1 == "0")
@@ -105,7 +129,24 @@ namespace buttonchange
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Visible = false;
+            for(int j=0; j< notej1;j++)
+            Console.WriteLine(cont[0, j]);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int j = 0; j < notej2; j++)
+                Console.WriteLine(cont[1, j]);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (int j = 0; j < notej3; j++)
+                Console.WriteLine(cont[2, j]);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            for (int j = 0; j < notej4; j++)
+                Console.WriteLine(cont[3, j]);
         }
     }
 }

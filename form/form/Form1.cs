@@ -22,6 +22,7 @@ namespace form
         private Boolean receiving;
         private Thread t;
         byte cont1, cont2, cont3, cont4, cont5, cont6, cont7, cont8, cont9, cont10, cont11, cont12, cont13, cont14, cont15;
+        byte[,] cont = new byte[15, 15];
         string b1, b2, b3, b4;
         int b1h, b2h, b3h, b4h, b1w, b2w, b3w, b4w;
         int L1s, L2s, L3s, L4s;
@@ -31,14 +32,12 @@ namespace form
         byte b1num1, b1num2, b1num3, b1num4, b2num1, b2num2, b2num3, b2num4, b3num1, b3num2, b3num3, b3num4, b4num1, b4num2, b4num3, b4num4;
         byte[,] num;
         byte[] wait1 = { 0, 0 , 0, 0 }; //四個按鈕的等待人數(十位數)
-        byte[] wait2 = { 0, 0 , 0, 0 }; //四個按鈕的等待人數(個位數)
-        //byte wait1 = 0;
-        //byte wait2 = 0;        
+        byte[] wait2 = { 0, 0 , 0, 0 }; //四個按鈕的等待人數(個位數)      
         int label = 0;
         int label2 = 0;
         byte num1, num2, num3, num4;
         string[] line = new string[1000];
-        int ctr = 0;
+        int ctr = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0;
 
         public Form1()
         {
@@ -54,6 +53,31 @@ namespace form
                 line[ctr] = str.ReadLine();
                 //Console.WriteLine(line[ctr]);
             } while (line[ctr] != null);
+
+            for (int i = 2; i <= 16; i++) 
+            {
+                note = Convert.ToInt32(line[i].Substring(7));
+                if (note == 1)
+                {
+                    cont[0, notej1] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej1 += 1;
+                }
+                else if (note == 2)
+                {
+                    cont[1, notej2] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej2 += 1;
+                }
+                else if (note == 3)
+                {
+                    cont[2, notej3] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej3 += 1;
+                }
+                else if (note == 4)
+                {
+                    cont[3, notej4] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej4 += 1;
+                }
+            }//取得控制器對哪個按鈕，存入陣列 cont[0,0] 中
 
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back1.jpg");
             Image pic = new Bitmap(Application.StartupPath + @"\background\button.jpg");
