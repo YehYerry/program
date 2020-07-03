@@ -14,8 +14,26 @@ namespace testprint
 {
     public partial class Form1 : Form
     {
+        string test, test1;
+        string[] line = new string[1000];
+        string[] line1 = new string[1000];
+        int ctr,ctr1 = 0;
         public Form1()
         {
+            StreamReader str = new StreamReader(Application.StartupPath + @"\config.ifm");//讀取文字檔
+            StreamReader str1 = new StreamReader(Application.StartupPath + @"\print_config.txt");//讀取文字檔
+            do
+            {
+                ctr++; 
+                ctr1++;
+                line[ctr] = str.ReadLine();
+                line1[ctr1] = str1.ReadLine();
+                //Console.WriteLine(line[ctr]);
+            } while (line[ctr] != null && line[ctr1] != null);
+
+            test = line[5];
+            test1 = line1[2];
+
             InitializeComponent();
             String[] pairs = { "Color1=red", "Color2=green", "Color3=blue",
                  "Title=Code Repository" };
@@ -61,7 +79,7 @@ namespace testprint
         {
             string str = System.Windows.Forms.Application.StartupPath;
             //列印圖片
-            Image temp = Image.FromFile(@"/*.\test.bmp");//圖片檔案
+            Image temp = Image.FromFile(Application.StartupPath + @"\photo\test.bmp");//圖片檔案
             //C:\Users\jerry\github\program\testprint\testprint\bin\Debug\photo
             //GetResultIntoImage(ref temp);//
 
@@ -123,6 +141,16 @@ namespace testprint
             MessageBox.Show(str);
             MessageBox.Show(str1);
             MessageBox.Show(str2);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(test1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(test);
         }
     }    
 }
