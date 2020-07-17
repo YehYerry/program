@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,20 @@ namespace finalprogram
             //button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;//設定button為Cancel  
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy/MM/dd  HH:mm:ss";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "yyyy/MM/dd  HH:mm:ss";
+            StreamReader str = new StreamReader(Application.StartupPath + @"\SetupTime\SetTime.txt");
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+                //Console.WriteLine(s[ctr]);
+            } while (s[ctr] != null);
+            label2.Text = s[1].Substring(22);
+            //Console.WriteLine(s[1].Substring(22));
+            str.Close();
         }
         private string string1;
         public string String1
@@ -56,11 +71,8 @@ namespace finalprogram
 
             //時間差換算成秒
             String s1 = Convert.ToInt32(ts.TotalSeconds).ToString();
-            Console.WriteLine(start);
-            Console.WriteLine(end);
             label1.Text = s1.ToString();
             System.Diagnostics.Process.Start("shutdown.exe", "-s -t " + s1.ToString());
-            //label1.Text = dateTimePicker1.Value.Year.ToString() + dateTimePicker1.Value.Month.ToString() + dateTimePicker1.Value.Day.ToString();
             label2.Text = "已設定關機時間:" + dateTimePicker1.Value.ToString();            
             shut = "已設定關機時間:" + dateTimePicker1.Value.ToString();
         }
@@ -76,6 +88,11 @@ namespace finalprogram
             Form1 lForm1 = (Form1)this.Owner;//把Form2的父窗口指針賦給lForm1
             shut = label2.Text;
             lForm1.StrValue = shut;//使用父窗口指針賦值  
+            // 將字串寫入TXT檔
+            StreamWriter timestr = new StreamWriter(Application.StartupPath + @"\SetupTime\SetTime.txt");
+            string wr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + " => " + label2.Text;
+            timestr.WriteLine(wr);
+            timestr.Close();
             this.Close();
         }
         private void setControls(float newx, float newy, Control cons)

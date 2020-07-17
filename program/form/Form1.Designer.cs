@@ -40,6 +40,8 @@
             this.label_wait2 = new System.Windows.Forms.Label();
             this.label_wait3 = new System.Windows.Forms.Label();
             this.label_wait4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -133,6 +135,16 @@
             this.label_wait4.TabIndex = 11;
             this.label_wait4.Text = "0";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(1120, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.exit_Click);
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.mouseDoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -141,6 +153,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1220, 634);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label_wait4);
             this.Controls.Add(this.label_wait3);
             this.Controls.Add(this.label_wait2);
@@ -157,6 +170,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Leave += new System.EventHandler(this.Form1_Leave);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +188,7 @@
         private System.Windows.Forms.Label label_wait2;
         private System.Windows.Forms.Label label_wait3;
         private System.Windows.Forms.Label label_wait4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

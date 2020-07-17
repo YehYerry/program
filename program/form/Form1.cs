@@ -41,6 +41,7 @@ namespace form
         int print = 0;
         int i = 3;
         int decimalLength;
+        DateTime doubleClickTimer = DateTime.Now;
         public Form1()
         {
             InitializeComponent();
@@ -1125,6 +1126,20 @@ namespace form
            {
                     Console.WriteLine(byteValue);
            }                      
+        }
+        void mouseDoubleClick(object sender, EventArgs e)
+        {
+            doubleClickTimer = DateTime.Now; //記下DoubleClick的時間 
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            TimeSpan t = (TimeSpan)(DateTime.Now - doubleClickTimer); //DoubleClick後又點了一下, 計算時間差 
+
+            if (t.TotalMilliseconds <= 200) //如果小於200豪秒就執行 
+            {
+                Console.WriteLine("3");
+            }
         }
     }
 }

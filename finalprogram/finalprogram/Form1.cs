@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,20 +17,55 @@ namespace finalprogram
         private float Y;//當前窗體的高度
         bool isLoaded;
         private string strValue;
-        private int[] intValue;
+        private int[] intValue, numValue;
         string shutstr = "未設定關機時間";
+        string shutstr1;
         public Form1()
         {
             InitializeComponent();
             //this.WindowState = FormWindowState.Maximized;
             timer1.Interval = 100;
             timer1.Enabled = true;
+            StreamReader str = new StreamReader(Application.StartupPath + @"\SetupTime\SetTime.txt");
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+                //Console.WriteLine(s[ctr]);
+            } while (s[ctr] != null);
+            shutstr = s[1].Substring(23);
+            str.Close();
+            if (shutstr == "未設定關機時間")
+            {
+                MessageBox.Show("未設定關機時間");
+            }
+            else
+            {
+                shutstr1 = shutstr.Substring(8);
+                Console.WriteLine(shutstr1);
+                DateTime start = DateTime.Now;
+                DateTime end = DateTime.Parse(shutstr1);
+                //C#的日期型態可直接相減並傳回TimeSpan物件
+                TimeSpan ts = end - start;
+                String s1 = Convert.ToInt32(ts.TotalSeconds).ToString();
+                System.Diagnostics.Process.Start("shutdown.exe", "-s -t " + s1.ToString());
+                Console.WriteLine(s1);
+            }            
         }
         public int[] IntValue
         {
             set
             {
                 intValue = value;
+            }
+        }
+        public int[] NumValue
+        {
+            set
+            {
+                numValue = value;
             }
         }
         public string StrValue
@@ -97,7 +133,7 @@ namespace finalprogram
             X = this.Width;//獲取窗體的寬度
             Y = this.Height;//獲取窗體的高度
             isLoaded = true;
-            setTag(this);//調用方法
+            setTag(this);//調用方法                     
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -116,6 +152,19 @@ namespace finalprogram
             f.ShowDialog(this);
             MessageBox.Show(intValue[0].ToString());
             MessageBox.Show(intValue[1].ToString());
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form4 f = new Form4();//產生Form2的物件，才可以使用它所提供的Method
+            f.ShowDialog(this);
+            StreamWriter num = new StreamWriter(Application.StartupPath + @"\SetupNum\SetNum.txt");
+            num.WriteLine(DateTime.Now.ToString());
+            num.WriteLine(numValue[0].ToString());
+            num.WriteLine(numValue[1].ToString());
+            num.WriteLine(numValue[2].ToString());
+            num.WriteLine(numValue[3].ToString());
+            num.Close();
         }
     }
 }

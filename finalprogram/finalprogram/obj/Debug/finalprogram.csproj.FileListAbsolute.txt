@@ -10,3 +10,4 @@ C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.p
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form1.resources
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form2.resources
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form3.resources
+C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form4.resources
