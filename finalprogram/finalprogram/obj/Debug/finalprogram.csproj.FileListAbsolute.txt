@@ -12,3 +12,17 @@ C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.F
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form3.resources
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form4.resources
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.comportshow.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\bin\Debug\finalprogram.exe.config
+C:\Users\bock\github\program\finalprogram\finalprogram\bin\Debug\finalprogram.exe
+C:\Users\bock\github\program\finalprogram\finalprogram\bin\Debug\finalprogram.pdb
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.csprojAssemblyReference.cache
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.comportshow.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form1.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form2.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form3.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Form4.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Properties.Resources.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.csproj.GenerateResource.cache
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.csproj.CoreCompileInputs.cache
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.exe
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.pdb

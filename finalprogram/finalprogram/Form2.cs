@@ -48,7 +48,9 @@ namespace finalprogram
             }
             else 
             {
-                button1.Visible = false;                
+                button1.Visible = false;
+                label4.Visible = false;
+                dateTimePicker1.Visible = false;
             }
         }
         private string string1;
@@ -66,7 +68,6 @@ namespace finalprogram
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = DateTime.Now.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,12 +79,13 @@ namespace finalprogram
 
             //時間差換算成秒
             String s1 = Convert.ToInt32(ts.TotalSeconds).ToString();
-            label1.Text = s1.ToString();
             System.Diagnostics.Process.Start("shutdown.exe", "-s -t " + s1.ToString());
             label2.Text = "已設定關機時間:" + dateTimePicker1.Value.ToString();            
             shut = "已設定關機時間:" + dateTimePicker1.Value.ToString();
             button1.Visible = false;
             button3.Visible = true;
+            label4.Visible = false;
+            dateTimePicker1.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -92,6 +94,8 @@ namespace finalprogram
             label2.Text = "未設定關機時間";
             button3.Visible = false;
             button1.Visible = true;
+            label4.Visible = true;
+            dateTimePicker1.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
