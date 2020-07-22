@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,25 @@ namespace finalprogram
             textBox2.MaxLength = 4;
             textBox3.MaxLength = 4;
             textBox4.MaxLength = 4;
+            StreamReader str = new StreamReader(Application.StartupPath + @"\\SetupNum\SetNum.txt");
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+                //Console.WriteLine(s[ctr]);
+            } while (s[ctr] != null);
+            textBox1.Text = s[2];
+            textBox2.Text = s[3];
+            textBox3.Text = s[4];
+            textBox4.Text = s[5];
+            textBox5.Text = s[6];
+            textBox6.Text = s[7];
+            textBox7.Text = s[8];
+            textBox8.Text = s[9];
+            //Console.WriteLine(s[1].Substring(22));
+            str.Close();
         }
         private void setControls(float newx, float newy, Control cons)
         {
@@ -78,23 +98,39 @@ namespace finalprogram
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.ToString() == null)
+            if (textBox1.Text.ToString() == "")
             {
                 textBox1.Text = "0000";
             }
-            else if (textBox2.Text.ToString() == null)
+            if (textBox2.Text.ToString() == "")
             {
                 textBox2.Text = "0000";
             }
-            else if (textBox3.Text.ToString() == null)
+            if (textBox3.Text.ToString() == "")
             {
                 textBox3.Text = "0000";
             }
-            else if (textBox4.Text.ToString() == null)
+            if (textBox4.Text.ToString() == "")
             {
                 textBox4.Text = "0000";
             }
-            int[] array = { Int32.Parse(textBox1.Text.ToString()), Int32.Parse(textBox2.Text.ToString()), Int32.Parse(textBox3.Text.ToString()) , Int32.Parse(textBox4.Text.ToString())};
+            if (textBox5.Text.ToString() == "")
+            {
+                textBox5.Text = "業務一";
+            }
+            if (textBox6.Text.ToString() == "")
+            {
+                textBox6.Text = "業務二";
+            }
+            if (textBox7.Text.ToString() == "")
+            {
+                textBox7.Text = "業務三";
+            }
+            if (textBox8.Text.ToString() == "")
+            {
+                textBox8.Text = "業務四";
+            }
+            string[] array = { textBox1.Text.ToString(), textBox2.Text.ToString(), textBox3.Text.ToString(), textBox4.Text.ToString(), textBox5.Text.ToString(), textBox6.Text.ToString(), textBox7.Text.ToString(), textBox8.Text.ToString()};
             Form1 lForm1 = (Form1)this.Owner;//把Form2的父窗口指針賦給lForm1
             lForm1.NumValue = array;//使用父窗口指針賦值  
             MessageBox.Show("設定完成!");
@@ -106,6 +142,26 @@ namespace finalprogram
             {
                 e.Handled = true;
             }
+        }
+        private string[] string1;
+        public string[] String1
+        {
+            set
+            {
+                string1 = value;
+            }
+        }
+
+        public void SetValue()
+        {
+            this.textBox1.Text = string1[0];
+            this.textBox2.Text = string1[1];
+            this.textBox3.Text = string1[2];
+            this.textBox4.Text = string1[3];
+            this.textBox5.Text = string1[4];
+            this.textBox6.Text = string1[5];
+            this.textBox7.Text = string1[6];
+            this.textBox8.Text = string1[7];
         }
     }
 }

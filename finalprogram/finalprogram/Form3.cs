@@ -83,5 +83,11 @@ namespace finalprogram
             lForm1.IntValue = array;//使用父窗口指針賦值  
             MessageBox.Show("設定完成!");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            comportshow f = new comportshow();//產生Form2的物件，才可以使用它所提供的Method
+            f.ShowDialog(this);
+        }
     }
 }

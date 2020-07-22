@@ -17,7 +17,8 @@ namespace finalprogram
         private float Y;//當前窗體的高度
         bool isLoaded;
         private string strValue;
-        private int[] intValue, numValue;
+        private int[] intValue;
+        private string[] numValue;
         string shutstr = "未設定關機時間";
         string shutstr1;
         public Form1()
@@ -61,7 +62,7 @@ namespace finalprogram
                 intValue = value;
             }
         }
-        public int[] NumValue
+        public string[] NumValue
         {
             set
             {
@@ -159,11 +160,23 @@ namespace finalprogram
             Form4 f = new Form4();//產生Form2的物件，才可以使用它所提供的Method
             f.ShowDialog(this);
             StreamWriter num = new StreamWriter(Application.StartupPath + @"\SetupNum\SetNum.txt");
+            string numValue1 = string.Format("{0:0000}", Convert.ToInt16(numValue[0]));
+            string numValue2 = string.Format("{0:0000}", Convert.ToInt16(numValue[1]));
+            string numValue3 = string.Format("{0:0000}", Convert.ToInt16(numValue[2]));
+            string numValue4 = string.Format("{0:0000}", Convert.ToInt16(numValue[3]));
+            string numValue5 = numValue[4];
+            string numValue6 = numValue[5];
+            string numValue7 = numValue[6];
+            string numValue8 = numValue[7];
             num.WriteLine(DateTime.Now.ToString());
-            num.WriteLine(numValue[0].ToString());
-            num.WriteLine(numValue[1].ToString());
-            num.WriteLine(numValue[2].ToString());
-            num.WriteLine(numValue[3].ToString());
+            num.WriteLine(numValue1);
+            num.WriteLine(numValue2);
+            num.WriteLine(numValue3);
+            num.WriteLine(numValue4);
+            num.WriteLine(numValue5);
+            num.WriteLine(numValue6);
+            num.WriteLine(numValue7);
+            num.WriteLine(numValue8);
             num.Close();
         }
     }

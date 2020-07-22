@@ -29,8 +29,6 @@ namespace finalprogram
             //button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;//設定button為Cancel  
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy/MM/dd  HH:mm:ss";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "yyyy/MM/dd  HH:mm:ss";
             StreamReader str = new StreamReader(Application.StartupPath + @"\SetupTime\SetTime.txt");
             string[] s = new string[1000];
             int ctr = 0;
@@ -40,9 +38,18 @@ namespace finalprogram
                 s[ctr] = str.ReadLine();
                 //Console.WriteLine(s[ctr]);
             } while (s[ctr] != null);
-            label2.Text = s[1].Substring(22);
+            label2.Text = s[1].Substring(23);
             //Console.WriteLine(s[1].Substring(22));
             str.Close();
+            Console.WriteLine(label2.Text);
+            if (label2.Text.ToString() == "未設定關機時間")
+            {            
+                button3.Visible = false;
+            }
+            else 
+            {
+                button1.Visible = false;                
+            }
         }
         private string string1;
         public string String1
@@ -75,12 +82,16 @@ namespace finalprogram
             System.Diagnostics.Process.Start("shutdown.exe", "-s -t " + s1.ToString());
             label2.Text = "已設定關機時間:" + dateTimePicker1.Value.ToString();            
             shut = "已設定關機時間:" + dateTimePicker1.Value.ToString();
+            button1.Visible = false;
+            button3.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("shutdown.exe", "-a");
             label2.Text = "未設定關機時間";
+            button3.Visible = false;
+            button1.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
