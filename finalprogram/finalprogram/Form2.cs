@@ -17,7 +17,7 @@ namespace finalprogram
         private float X;//當前窗體的寬度
         private float Y;//當前窗體的高度
         bool isLoaded;
-        string shut = "未設定關機時間";
+        string shut = "設定關機時間:";
         public Form2()
         {
             InitializeComponent();
@@ -42,14 +42,13 @@ namespace finalprogram
             //Console.WriteLine(s[1].Substring(22));
             str.Close();
             Console.WriteLine(label2.Text);
-            if (label2.Text.ToString() == "未設定關機時間")
+            if (label2.Text.ToString() == "設定關機時間:")
             {            
                 button3.Visible = false;
             }
             else 
             {
                 button1.Visible = false;
-                label4.Visible = false;
                 dateTimePicker1.Visible = false;
             }
         }
@@ -84,17 +83,15 @@ namespace finalprogram
             shut = "已設定關機時間:" + dateTimePicker1.Value.ToString();
             button1.Visible = false;
             button3.Visible = true;
-            label4.Visible = false;
             dateTimePicker1.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("shutdown.exe", "-a");
-            label2.Text = "未設定關機時間";
+            label2.Text = "設定關機時間:";
             button3.Visible = false;
             button1.Visible = true;
-            label4.Visible = true;
             dateTimePicker1.Visible = true;
         }
 

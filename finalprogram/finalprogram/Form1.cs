@@ -19,7 +19,7 @@ namespace finalprogram
         private string strValue;
         private int[] intValue;
         private string[] numValue;
-        string shutstr = "未設定關機時間";
+        string shutstr = "設定關機時間:";
         string shutstr1;
         public Form1()
         {
@@ -38,7 +38,7 @@ namespace finalprogram
             } while (s[ctr] != null);
             shutstr = s[1].Substring(23);
             str.Close();
-            if (shutstr == "未設定關機時間")
+            if (shutstr == "設定關機時間:")
             {
                 MessageBox.Show("未設定關機時間");
             }
