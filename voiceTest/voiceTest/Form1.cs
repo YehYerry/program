@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -14,9 +15,55 @@ namespace voiceTest
     public partial class Form1 : Form
     {
         int t1 = 0, t2, t3, t4;
+        int ctr = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0;
+        string[] line = new string[1000];
+        byte[,] cont = new byte[15, 15];
         public Form1()
         {
             InitializeComponent();
+            StreamReader str = new StreamReader(Application.StartupPath + @"\config.ifm");//讀取文字檔                      
+            do
+            {
+                ctr++;
+                line[ctr] = str.ReadLine();
+                //Console.WriteLine(line[ctr]);
+            } while (line[ctr] != null);
+            for (int i = 2; i <= 16; i++)
+            {
+                note = Convert.ToInt32(line[i].Substring(7));
+                if (note == 1)
+                {
+                    cont[0, notej1] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej1 += 1;
+                }
+                else if (note == 2)
+                {
+                    cont[1, notej2] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej2 += 1;
+                }
+                else if (note == 3)
+                {
+                    cont[2, notej3] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej3 += 1;
+                }
+                else if (note == 4)
+                {
+                    cont[3, notej4] = Convert.ToByte(line[i].Substring(4, 2));
+                    notej4 += 1;
+                }
+            }//取得控制器對哪個按鈕，存入陣列 cont[0,0] 中 , notej1為控制器1的數量
+             //int[,] arr1 = new int[,] {{1,3,4 } , {2,5,7},{ 8, 10 , 5 }, { 6, 5, 7 } };
+            for (int i = 0; i <= cont.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j <= cont.GetUpperBound(1); j++)/*第二維是2(有幾「戶」)，因arr1[1,0],arr1[1,1]，故第二維上限是1*/
+                {
+                    if (cont[i, j].ToString() == "13") 
+                    {
+                        Console.WriteLine(i.ToString());
+                        Console.WriteLine(cont[i, j].ToString());
+                    }
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
