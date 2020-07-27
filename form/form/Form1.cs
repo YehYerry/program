@@ -233,7 +233,8 @@ namespace form
 
         private void DoReceive()
         {
-            Byte[] buffer = new Byte[1024];            
+            Byte[] buffer = new Byte[1024];
+            Thread.Sleep(100);
             while (receiving)
             {
                 /*收到100個BYTE才寫入
@@ -257,7 +258,8 @@ namespace form
                     {
                         try
                         {
-                            if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && buffer[6] ==126 && buffer[7] == 0 && buffer[8] == 0) //無資料時，送總等待人數
+                            //無資料時，送總等待人數
+                            if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && buffer[6] ==126 && buffer[7] == 0 && buffer[8] == 0) 
                             {
                                 try
                                 {
@@ -274,7 +276,8 @@ namespace form
                                     MessageBox.Show("送出失敗");
                                 }
                             }
-                            else if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && (buffer[6] == 0 || buffer[6] == 1 || buffer[6] == 2 || buffer[6] == 3 || buffer[6] == 4 || buffer[6] == 5 || buffer[6] == 6 || buffer[6] == 7 || buffer[6] == 8 || buffer[6] == 9 || buffer[6] == 10 || buffer[6] == 11 || buffer[6] == 12 || buffer[6] == 13 || buffer[6] == 14 || buffer[6] == 15) && buffer[7] == 03 && buffer[8] == 0) //無資料時，送個別等待人數
+                            //無資料時，送個別等待人數
+                            else if (buffer[0] == 165 && buffer[1] == 182 && buffer[2] == 0 && buffer[3] == 0 && buffer[4] == 0 && buffer[5] == 0 && (buffer[6] == 0 || buffer[6] == 1 || buffer[6] == 2 || buffer[6] == 3 || buffer[6] == 4 || buffer[6] == 5 || buffer[6] == 6 || buffer[6] == 7 || buffer[6] == 8 || buffer[6] == 9 || buffer[6] == 10 || buffer[6] == 11 || buffer[6] == 12 || buffer[6] == 13 || buffer[6] == 14 || buffer[6] == 15) && buffer[7] == 03 && buffer[8] == 0)
                             {
                                 for (int i = 0; i <= cont.GetUpperBound(0); i++)
                                 {
@@ -305,6 +308,9 @@ namespace form
                                             n2 = num[i, 1];
                                             n3 = num[i, 2];
                                             n4 = num[i, 3];
+                                            Console.WriteLine(i);
+                                            Console.WriteLine(w2);
+                                            Console.WriteLine(w1);
                                         }
                                     }
                                 }
@@ -333,6 +339,7 @@ namespace form
                                             byte[] array1 = { 0xED, 0xED, w2, w1, n1, n2, n3, n4, buffer[6], 0x01, 0x00 };
                                             comport.Write(array1, 0, 11);
                                             label -= 1;
+                                            
                                         }
                                         else if (w2 != 0 && w1 == 0)
                                         {
@@ -745,8 +752,8 @@ namespace form
                             }
                             else
                             {
-                                //byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, buffer[6], 0x00, 0x00 };
-                                //comport.Write(array1, 0, 11);
+                                byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, buffer[6], 0x00, 0x00 };
+                                comport.Write(array1, 0, 11);
                                 Console.WriteLine("陣列外");
                             }
                         }
@@ -758,8 +765,8 @@ namespace form
                     else 
                     {
                         Console.WriteLine(buffer.Length);
-                        //byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, buffer[6], 0x00, 0x00 };
-                        //comport.Write(array1, 0, 11);
+                        byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+                        comport.Write(array1, 0, 11);
                     }
                 }
                 Thread.Sleep(100);
