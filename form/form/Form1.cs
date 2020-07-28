@@ -296,7 +296,8 @@ namespace form
                             //CALL 叫號
                             else if (buffer[0] == 165 && buffer[1] == 182 && (buffer[6] == 0x00 || buffer[6] == 0x01 || buffer[6] == 0x02 || buffer[6] == 0x03 || buffer[6] == 0x04 || buffer[6] == 0x05 || buffer[6] == 0x06 || buffer[6] == 0x07 || buffer[6] == 0x08 || buffer[6] == 0x09 || buffer[6] == 0x10 || buffer[6] == 0x11 || buffer[6] == 0x12 || buffer[6] == 0x13 || buffer[6] == 0x14 || buffer[6] == 0x15) && buffer[7] == 01) 
                             {
-                                for (int i = 0; i <= cont.GetUpperBound(0); i++)//找出控制器 ID 屬於哪個群組， i 為第幾群 有 0,1,2,3 四個群
+                                int i;
+                                for (i = 0; i <= cont.GetUpperBound(0); i++)//找出控制器 ID 屬於哪個群組， i 為第幾群 有 0,1,2,3 四個群
                                 {
                                     for (int j = 0; j <= cont.GetUpperBound(1); j++)
                                     {
@@ -336,6 +337,7 @@ namespace form
                                                 n2 = 0;
                                                 n2 = (byte)(n2 + 1);
                                             }
+                                            wait2[i] = w2; wait1[i] = w1; num[i, 0] = n1; num[i, 1] = n1; num[i, 2] = n3; num[i, 3] = n4;
                                             byte[] array1 = { 0xED, 0xED, w2, w1, n1, n2, n3, n4, buffer[6], 0x01, 0x00 };
                                             comport.Write(array1, 0, 11);
                                             label -= 1;
