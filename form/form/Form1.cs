@@ -85,8 +85,6 @@ namespace form
 
             cont1 = Convert.ToByte(line[5].Substring(5,1));
             cont2 = Convert.ToByte(line[5].Substring(5,1));
-            Console.WriteLine(cont1);
-            Console.WriteLine(cont2);
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
@@ -169,8 +167,6 @@ namespace form
             label_wait.Location = new Point(L1bw, L1bh);
             label_wait2.Font = new Font(L2f, L2s);
             label_wait2.Location = new Point(L2bw, L2bh);
-            Console.WriteLine(L1f);
-            Console.WriteLine(L2f);
 
             num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
 
@@ -198,7 +194,6 @@ namespace form
 
         public void button1_Click(object sender, EventArgs e)
         {
-
             wait1[0] += 1;
             //wait1 = (byte)(a + 1);
             if (wait1[0] == 10)
@@ -296,7 +291,7 @@ namespace form
                             //CALL 叫號
                             else if (buffer[0] == 165 && buffer[1] == 182 && (buffer[6] == 0x00 || buffer[6] == 0x01 || buffer[6] == 0x02 || buffer[6] == 0x03 || buffer[6] == 0x04 || buffer[6] == 0x05 || buffer[6] == 0x06 || buffer[6] == 0x07 || buffer[6] == 0x08 || buffer[6] == 0x09 || buffer[6] == 0x10 || buffer[6] == 0x11 || buffer[6] == 0x12 || buffer[6] == 0x13 || buffer[6] == 0x14 || buffer[6] == 0x15) && buffer[7] == 01) 
                             {
-                                int i;
+                                int i, icount=0;
                                 for (i = 0; i <= cont.GetUpperBound(0); i++)//找出控制器 ID 屬於哪個群組， i 為第幾群 有 0,1,2,3 四個群
                                 {
                                     for (int j = 0; j <= cont.GetUpperBound(1); j++)
@@ -309,9 +304,10 @@ namespace form
                                             n2 = num[i, 1];
                                             n3 = num[i, 2];
                                             n4 = num[i, 3];
-                                            Console.WriteLine(i);
-                                            Console.WriteLine(w2);
-                                            Console.WriteLine(w1);
+                                            Console.WriteLine("wait = " + i);
+                                            Console.WriteLine("w2 = " + w2);
+                                            Console.WriteLine("w1 = " + w1);
+                                            icount = i; 
                                         }
                                     }
                                 }
@@ -319,7 +315,6 @@ namespace form
                                 {
                                         if (w2 == 0 && w1 != 0)
                                         {
-                                            //byte waits1 = wait1;
                                             w1 -= 1;
                                             n4 += 1;
                                             if (n4 == 10)
@@ -337,15 +332,31 @@ namespace form
                                                 n2 = 0;
                                                 n2 = (byte)(n2 + 1);
                                             }
-                                            wait2[i] = w2; wait1[i] = w1; num[i, 0] = n1; num[i, 1] = n1; num[i, 2] = n3; num[i, 3] = n4;
+                                            wait2[icount] = w2; wait1[icount] = w1; num[icount, 0] = n1; num[icount, 1] = n2; num[icount, 2] = n3; num[icount, 3] = n4;
                                             byte[] array1 = { 0xED, 0xED, w2, w1, n1, n2, n3, n4, buffer[6], 0x01, 0x00 };
                                             comport.Write(array1, 0, 11);
-                                            label -= 1;
-                                            
+                                            //label 看哪個要 -1  
+                                            switch (icount)
+                                            {
+                                                case 0:
+                                                    label -= 1;
+                                                    break;
+                                                case 1:
+                                                    label2 -= 1;
+                                                    break;
+                                                case 2:
+                                                    label -= 1;
+                                                    break;
+                                                case 3:
+                                                    label -= 1;
+                                                    break;
+                                                default:
+                                                        Console.WriteLine("叫號沒扣1");
+                                                        break;
+                                            }                                         
                                         }
                                         else if (w2 != 0 && w1 == 0)
                                         {
-                                            //byte waits1 = wait1;
                                             w2 -= 1;
                                             w1 = 9;
                                             n4 += 1;
@@ -364,9 +375,27 @@ namespace form
                                                 n2 = 0;
                                                 n2 = (byte)(n2 + 1);
                                             }
+                                            wait2[icount] = w2; wait1[icount] = w1; num[icount, 0] = n1; num[icount, 1] = n2; num[icount, 2] = n3; num[icount, 3] = n4;
                                             byte[] array1 = { 0xED, 0xED, w2, w1, n1, n2, n3, n4, buffer[6], 0x01, 0x00 };
                                             comport.Write(array1, 0, 11);
-                                            label -= 1;
+                                            switch (icount)
+                                            {
+                                                case 0:
+                                                    label -= 1;
+                                                    break;
+                                                case 1:
+                                                    label2 -= 1;
+                                                    break;
+                                                case 2:
+                                                    label -= 1;
+                                                    break;
+                                                case 3:
+                                                    label -= 1;
+                                                    break;
+                                                default:
+                                                    Console.WriteLine("叫號沒扣1");
+                                                    break;
+                                            }
                                         }
                                         else if (w2 != 0 && w1 != 0)
                                         {
@@ -388,9 +417,27 @@ namespace form
                                                 n2 = 0;
                                                 n2 = (byte)(n2 + 1);
                                             }
+                                            wait2[icount] = w2; wait1[icount] = w1; num[icount, 0] = n1; num[icount, 1] = n2; num[icount, 2] = n3; num[icount, 3] = n4;
                                             byte[] array1 = { 0xED, 0xED, w2, w1, n1, n2, n3, n4, buffer[6], 0x01, 0x00 };
                                             comport.Write(array1, 0, 11);
-                                            label -= 1;
+                                            switch (icount)
+                                            {
+                                                case 0:
+                                                    label -= 1;
+                                                    break;
+                                                case 1:
+                                                    label2 -= 1;
+                                                    break;
+                                                case 2:
+                                                    label -= 1;
+                                                    break;
+                                                case 3:
+                                                    label -= 1;
+                                                    break;
+                                                default:
+                                                    Console.WriteLine("叫號沒扣1");
+                                                    break;
+                                            }
                                         }
                                         else if (w2 == 0 && w1 == 0)
                                         {
@@ -439,9 +486,6 @@ namespace form
                                             player.PlaySync();
                                             player.SoundLocation = Application.StartupPath + @"\voice\" + n4 + ".wav";
                                             player.PlaySync();
-
-                                            Console.WriteLine(n3);
-                                            Console.WriteLine(n4);
                                         }
                                         else if (n1 == 0 && (n2 == 1 || n2 == 2 || n2 == 3 || n2 == 4 || n2 == 5 || n2 == 6 || n2 == 7 || n2 == 8 || n2 == 9) && n3 == 0 && n4 == 0)
                                         {
@@ -581,6 +625,10 @@ namespace form
                                         {
                                             w2 = wait2[i];
                                             w1 = wait1[i];
+                                            n1 = num[i, 0];
+                                            n2 = num[i, 1];
+                                            n3 = num[i, 2];
+                                            n4 = num[i, 3];
                                         }
                                     }
                                 }
@@ -626,8 +674,6 @@ namespace form
                                         player.SoundLocation = Application.StartupPath + @"\voice\" + num4 + ".wav";
                                         player.PlaySync();
 
-                                        Console.WriteLine(num3);
-                                        Console.WriteLine(num4);
                                     }
                                     else if (num1 == 0 && (num2 == 1 || num2 == 2 || num2 == 3 || num2 == 4 || num2 == 5 || num2 == 6 || num2 == 7 || num2 == 8 || num2 == 9) && num3 == 0 && num4 == 0)
                                     {
@@ -751,10 +797,15 @@ namespace form
                                        player.PlaySync();
                                        player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
                                        player.PlaySync();*/
+                                    //指定叫號，存記事本
+                                    StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\pickcall_log.txt", true);
+                                    //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
+                                    str.WriteLine(DateTime.Now.ToString() + " => 控制器:" + buffer[6] + " => 目前號碼:" + n1 + n2 + n3 + n4 + " => 指定叫號:" + num1 + num2 + num3 + num4);
+                                    str.Close();
                             }
                             else
                             {
-                                byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, buffer[6], 0x00, 0x00 };
+                                byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                                 comport.Write(array1, 0, 11);
                                 Console.WriteLine("陣列外");
                             }
@@ -846,13 +897,24 @@ namespace form
             totalLength = totalLength + buffer.Length;
             label1.Text = totalLength.ToString();
             label_wait.Text = label.ToString();
+            label_wait2.Text = label2.ToString();
         }
 
         private void Form1_Leave(object sender, EventArgs e)
         {
             comport.Close();
         }
-
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //關閉後，存記事本
+            StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\num_log.txt");
+            //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
+            str.WriteLine(DateTime.Now.ToString() + " => 業務一等待人數:" + wait2[0] + wait1[0] + " => 叫號:" + num[0, 0] + num[0, 1] + num[0, 2] + num[0, 3]);
+            str.WriteLine(DateTime.Now.ToString() + " => 業務二等待人數:" + wait2[1] + wait1[1] + " => 叫號:" + num[1, 0] + num[1, 1] + num[1, 2] + num[1, 3]);
+            str.WriteLine(DateTime.Now.ToString() + " => 業務三等待人數:" + wait2[2] + wait1[2] + " => 叫號:" + num[2, 0] + num[2, 1] + num[2, 2] + num[2, 3]);
+            str.WriteLine(DateTime.Now.ToString() + " => 業務四等待人數:" + wait2[3] + wait1[3] + " => 叫號:" + num[3, 0] + num[3, 1] + num[3, 2] + num[3, 3]);
+            str.Close();
+        }
         private void label1_Click(object sender, EventArgs e)
         {
             //byte[] array1 = { 0xED, 0xED, wait2, wait1, 0x00, 0x00, 0x03, 0x05, 0x01, 0x01, 0x00, 0x00 };
