@@ -70,18 +70,3 @@ Size=10
 BorderWidth=23
 BorderHeight=500
 Font=Times New Roman
-
-[列印圖片]
-FILENAME=C:\Users\jerry\github\program\note
-WIDTH=700
-HEIGHT=120
-
-[列印文字]
-FONTNAME=標楷體
-STYLE=
-SIZE=24
-
-[列印文字]
-FONTNAME=標楷體
-STYLE=
-SIZE=24

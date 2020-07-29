@@ -190,6 +190,7 @@ namespace form
                 button4.Visible = false;
             }
             MessageBox.Show("開啟");
+            str.Close();
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -210,7 +211,8 @@ namespace form
             /*foreach (byte byteValue in array)//看ARRAY 中的數值
             {
                 Console.WriteLine(byteValue);
-            }*/            
+            }*/
+            Console.WriteLine(n4.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -242,7 +244,8 @@ namespace form
                     Int32 length = comport.Read(buffer, 0, buffer.Length);
                     Array.Resize(ref buffer, length);
                     Display d = new Display(DisplayText);
-                    this.Invoke(d, new Object[] { buffer });
+                    if (this.IsHandleCreated)
+                        this.Invoke(d, new Object[] { buffer });
 
                     SoundPlayer player = new SoundPlayer();
                     SoundPlayer player1 = new SoundPlayer();
@@ -914,7 +917,7 @@ namespace form
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //關閉後，存記事本
-            StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\num_log.txt");
+            StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt");
             //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
             str.WriteLine(DateTime.Now.ToString() + " => 業務一等待人數:" + wait2[0] + wait1[0] + " => 叫號:" + num[0, 0] + num[0, 1] + num[0, 2] + num[0, 3]);
             str.WriteLine(DateTime.Now.ToString() + " => 業務二等待人數:" + wait2[1] + wait1[1] + " => 叫號:" + num[1, 0] + num[1, 1] + num[1, 2] + num[1, 3]);
