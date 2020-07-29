@@ -598,16 +598,21 @@ namespace form
                                         {
                                             MessageBox.Show("人數超過9999號!!");
                                         }
-                                        /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                                        player.PlaySync();
-                                        player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
-                                        player.PlaySync();
-                                        player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
-                                        player.PlaySync();
-                                        player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                                        player.PlaySync();
-                                        player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
-                                        player.PlaySync();*/
+                                    /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                    player.PlaySync();
+                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
+                                    player.PlaySync();*/
+                                    StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\callnum_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", true);
+                                    str.WriteLine(DateTime.Now.ToString() + " => 控制器:" + buffer[6] + " => 目前號碼:" + n1 + n2 + n3 + n4 + " => 指定叫號:" + num1 + num2 + num3 + num4);
+                                    str.Close();
+                                    FileStream fs = File.Create(Application.StartupPath + @"\Log\callnum_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt");
+                                    fs.Close();
                                 }
                                 catch (TimeoutException timeoutEx)
                                 {
@@ -787,21 +792,23 @@ namespace form
                                         MessageBox.Show("人數超過9999號!!");
                                     }
 
-                                    /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                                       player.PlaySync();
-                                       player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
-                                       player.PlaySync();
-                                       player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
-                                       player.PlaySync();
-                                       player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
-                                       player.PlaySync();
-                                       player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
-                                       player.PlaySync();*/
-                                    //指定叫號，存記事本
-                                    StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\pickcall_log.txt", true);
-                                    //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
-                                    str.WriteLine(DateTime.Now.ToString() + " => 控制器:" + buffer[6] + " => 目前號碼:" + n1 + n2 + n3 + n4 + " => 指定叫號:" + num1 + num2 + num3 + num4);
-                                    str.Close();
+                                /*player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\請到.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\1.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\號.wav";
+                                   player.PlaySync();
+                                   player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
+                                   player.PlaySync();*/
+                                //指定叫號，存記事本
+                                FileStream fs = File.Create(Application.StartupPath + @"\Log\pickcall_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt");
+                                fs.Close();
+                                StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\pickcall_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", true);
+                                //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
+                                str.WriteLine(DateTime.Now.ToString() + " => 控制器:" + buffer[6] + " => 目前號碼:" + n1 + n2 + n3 + n4 + " => 指定叫號:" + num1 + num2 + num3 + num4);
+                                str.Close();
                             }
                             else
                             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,10 +14,14 @@ namespace testprint
 {
     public partial class Form1 : Form
     {
+        int timeLeft;
         public Form1()
         {
             InitializeComponent();
-           
+            Console.WriteLine(DateTime.Now.Year.ToString());
+            //FileStream fs = File.Create(Application.StartupPath + @"\NOTE\2.txt");
+            FileStream fs = File.Create(Application.StartupPath + @"\NOTE\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt");
+            fs.Close();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -54,12 +59,61 @@ namespace testprint
 
         private void button2_Click(object sender, EventArgs e)
         {
-                // 將字串寫入TXT檔
-                StreamWriter str = new StreamWriter(@"C:\Users\jerry\Desktop\testprint\1.txt");
-                string WriteWord = "aaaaa";
-                str.WriteLine(WriteWord);
-                str.WriteLine("bbb");
-                str.Close();           
+            // 將字串寫入TXT檔
+            StreamWriter str = new StreamWriter(@"C:\Users\jerry\github\program\note\1.txt",true);
+            string WriteWord = "aaaaa";
+            str.WriteLine(WriteWord);
+            str.WriteLine("bbb");
+            for (int n = 1; n <= 10; n++) 
+            {
+                Console.WriteLine(DateTime.Now.AddDays(7*n).ToShortDateString());
+            }
+            str.Close();
+            //清空檔案
+            if (DateTime.Now.Hour.ToString() == "11" & DateTime.Now.Minute.ToString() == "32") 
+            {
+                FileStream fs = null;
+                try
+                {
+                    fs = new FileStream(@"C:\Users\jerry\github\program\note\1.txt", FileMode.Truncate, FileAccess.ReadWrite);
+
+                }
+                catch (Exception ex)
+                {
+                    Trace.Write("清空日誌檔案失敗：" + ex.Message);
+                }
+                finally
+                {
+                    fs.Close();
+                }
+                Console.WriteLine("清空");
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft = timeLeft - 1;
+                label2.Text = timeLeft + " seconds";
+            }
+            else
+            {
+                /* 倒數時間到執行 */
+
+                timeLeft = 5;
+                label2.Text = "5 seconds";
+            }
+            if (timeLeft == 0) 
+            {
+                timer1.Stop();
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timeLeft = 5;
+            label2.Text = "5 seconds";
+            /* Timer 啟動 */
+            timer1.Start();
         }
     }
 }

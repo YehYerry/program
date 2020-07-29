@@ -179,5 +179,11 @@ namespace finalprogram
             num.WriteLine(numValue8);
             num.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Main f = new Main();//產生Form2的物件，才可以使用它所提供的Method
+            f.ShowDialog(this);
+        }
     }
 }

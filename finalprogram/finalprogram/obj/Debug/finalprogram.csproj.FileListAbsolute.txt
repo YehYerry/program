@@ -26,3 +26,4 @@ C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.cs
 C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.csproj.CoreCompileInputs.cache
 C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.exe
 C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.pdb
+C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Main.resources

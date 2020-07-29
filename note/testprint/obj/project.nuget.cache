@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "39ipwVrwkoegjrsbQzy2yN+S6YYbbCEDRVW68oaY3LUyN2f5aj/x5uxFwvNM0ZVKfa8ZItxKk0bq6ZPFIuGysg==",
+  "dgSpecHash": "USwCAv8eDyTSKSfJGCMuGzpXOopaFfRtieu5RG11Hf8Lvl4+dzjScK7n68OfOsU1iVMcEibg9TNTcnpua/nLQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bock\\github\\program\\note\\testprint\\testprint.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\bock\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\jerry\\github\\program\\note\\testprint\\testprint.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
