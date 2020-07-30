@@ -37,7 +37,8 @@ namespace form
         int label2 = 0;
         byte num1, num2, num3, num4, w1, w2, n1, n2, n3, n4;
         string[] line = new string[1000];
-        int ctr = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0;
+        string[] line2 = new string[1000];
+        int ctr = 0, ctr2 = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0;
 
         public Form1()
         {
@@ -46,7 +47,8 @@ namespace form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            StreamReader str = new StreamReader(Application.StartupPath + @"\test.ifm");//讀取文字檔                      
+            StreamReader str = new StreamReader(Application.StartupPath + @"\test.ifm");//讀取文字檔
+            StreamReader str2 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
             do
             {
                 ctr++;
@@ -171,6 +173,44 @@ namespace form
             num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
 
             this.WindowState = FormWindowState.Maximized;
+            //列印號碼
+            do
+            {
+                ctr2++;
+                line2[ctr2] = str2.ReadLine();
+            } while (line2[ctr2] != null);
+            /*pnum1 = Convert.ToInt32(line2[1].Substring(42));//起始號碼
+            pnum2 = Convert.ToInt32(line2[2].Substring(42));
+            pnum3 = Convert.ToInt32(line2[3].Substring(42));
+            pnum4 = Convert.ToInt32(line2[4].Substring(42));*/
+            wait2[0] = Convert.ToByte(line2[1].Substring(33, 1));
+            wait1[0] = Convert.ToByte(line2[1].Substring(34, 1));
+            wait2[1] = Convert.ToByte(line2[2].Substring(33, 1));
+            wait1[1] = Convert.ToByte(line2[2].Substring(34, 1));
+            wait2[2] = Convert.ToByte(line2[3].Substring(33, 1));
+            wait1[2] = Convert.ToByte(line2[3].Substring(34, 1));
+            wait2[3] = Convert.ToByte(line2[4].Substring(33, 1));
+            wait1[3] = Convert.ToByte(line2[4].Substring(34, 1));
+            b1num1 = Convert.ToByte(line2[1].Substring(42, 1));
+            b1num2 = Convert.ToByte(line2[1].Substring(43, 1));
+            b1num3 = Convert.ToByte(line2[1].Substring(44, 1));
+            b1num4 = Convert.ToByte(line2[1].Substring(45, 1));
+            b2num1 = Convert.ToByte(line2[2].Substring(42, 1));
+            b2num2 = Convert.ToByte(line2[2].Substring(43, 1));
+            b2num3 = Convert.ToByte(line2[2].Substring(44, 1));
+            b2num4 = Convert.ToByte(line2[2].Substring(45, 1));
+            b3num1 = Convert.ToByte(line2[3].Substring(42, 1));
+            b3num2 = Convert.ToByte(line2[3].Substring(43, 1));
+            b3num3 = Convert.ToByte(line2[3].Substring(44, 1));
+            b3num4 = Convert.ToByte(line2[3].Substring(45, 1));
+            b4num1 = Convert.ToByte(line2[4].Substring(42, 1));
+            b4num2 = Convert.ToByte(line2[4].Substring(43, 1));
+            b4num3 = Convert.ToByte(line2[4].Substring(44, 1));
+            b4num4 = Convert.ToByte(line2[4].Substring(45, 1));
+            label = Convert.ToInt32(line2[1].Substring(33, 1)) * 10 + Convert.ToInt32(line2[1].Substring(34, 1));
+            label2 = Convert.ToInt32(line2[2].Substring(33, 1)) * 10 + Convert.ToInt32(line2[2].Substring(34, 1));
+            num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
+
             if (b1 == "0")
             {
                 button1.Visible = false;
@@ -191,6 +231,7 @@ namespace form
             }
             MessageBox.Show("開啟");
             str.Close();
+            str2.Close();
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -307,9 +348,6 @@ namespace form
                                             n2 = num[i, 1];
                                             n3 = num[i, 2];
                                             n4 = num[i, 3];
-                                            Console.WriteLine("wait = " + i);
-                                            Console.WriteLine("w2 = " + w2);
-                                            Console.WriteLine("w1 = " + w1);
                                             icount = i; 
                                         }
                                     }
@@ -611,11 +649,11 @@ namespace form
                                     player.PlaySync();
                                     player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
                                     player.PlaySync();*/
-                                    StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\callnum_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", true);
-                                    str.WriteLine(DateTime.Now.ToString() + " => 控制器:" + buffer[6] + " => 目前號碼:" + n1 + n2 + n3 + n4 + " => 指定叫號:" + num1 + num2 + num3 + num4);
-                                    str.Close();
-                                    FileStream fs = File.Create(Application.StartupPath + @"\Log\callnum_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt");
+                                    FileStream fs = new FileStream(Application.StartupPath + @"\Log\callnum_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", FileMode.Append);//若沒有此檔名，建立一個記事本
                                     fs.Close();
+                                    StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\callnum_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", true);
+                                    str.WriteLine(DateTime.Now.ToString() + " => 控制器:" + buffer[6] + " => 叫號:" + n1 + n2 + n3 + n4 );
+                                    str.Close();
                                 }
                                 catch (TimeoutException timeoutEx)
                                 {
@@ -806,7 +844,7 @@ namespace form
                                    player.SoundLocation = @"C:\Users\bock\github\program\voice\櫃台.wav";
                                    player.PlaySync();*/
                                 //指定叫號，存記事本
-                                FileStream fs = File.Create(Application.StartupPath + @"\Log\pickcall_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt");
+                                FileStream fs = new FileStream(Application.StartupPath + @"\Log\pickcall_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", FileMode.Append);//若沒有此檔名，建立一個記事本
                                 fs.Close();
                                 StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\pickcall_log\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt", true);
                                 //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
