@@ -19,6 +19,7 @@ namespace finalprogram
         private string strValue;
         private int[] intValue;
         private string[] numValue;
+        private int check , checkbox=0;
         string shutstr = "設定關機時間:";
         string shutstr1;
         public Form1()
@@ -76,15 +77,27 @@ namespace finalprogram
                 strValue = value;
             }
         }
+        public int Check
+        {
+            set
+            {
+                check = value;
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Form2 f = new Form2();//產生Form2的物件，才可以使用它所提供的Method
-            f.String1 = shutstr;//設置Form2中string1的值  
-            f.SetValue();//設置Form2中Label1的  
+            f.String1 = shutstr;//設置Form2中string1的值 
+            f.Check1 = check;
+            f.SetValue();//設置Form2中Label1的 
+            //f.SetCheck();//設置Form2中Checkbox 
             f.ShowDialog(this);//設定Form2為Form1的上層，並開啟Form2視窗。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
             //MessageBox.Show(strValue);//顯示返回的值  
+            MessageBox.Show(check.ToString());//顯示返回的值   
+            f.SetCheck();//設置Form2中Checkbox 
             shutstr = strValue;
+            check = checkbox;
         }
         private void setControls(float newx, float newy, Control cons)
         {
@@ -151,15 +164,14 @@ namespace finalprogram
         {
             Form3 f = new Form3();//產生Form2的物件，才可以使用它所提供的Method
             f.ShowDialog(this);
-            MessageBox.Show(intValue[0].ToString());
-            MessageBox.Show(intValue[1].ToString());
+            //MessageBox.Show(intValue[0].ToString());回傳的值
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Form4 f = new Form4();//產生Form2的物件，才可以使用它所提供的Method
-            f.ShowDialog(this);
-            StreamWriter num = new StreamWriter(Application.StartupPath + @"\SetupNum\SetNum.txt");
+            f.ShowDialog(this);            
+            /*StreamWriter num = new StreamWriter(Application.StartupPath + @"\SetupNum\SetNum.txt");
             string numValue1 = string.Format("{0:0000}", Convert.ToInt16(numValue[0]));
             string numValue2 = string.Format("{0:0000}", Convert.ToInt16(numValue[1]));
             string numValue3 = string.Format("{0:0000}", Convert.ToInt16(numValue[2]));
@@ -177,7 +189,7 @@ namespace finalprogram
             num.WriteLine(numValue6);
             num.WriteLine(numValue7);
             num.WriteLine(numValue8);
-            num.Close();
+            num.Close();*/
         }
 
         private void button3_Click(object sender, EventArgs e)

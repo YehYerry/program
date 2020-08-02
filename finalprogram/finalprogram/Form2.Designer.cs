@@ -41,10 +41,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(271, 206);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(361, 258);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 58);
+            this.button1.Size = new System.Drawing.Size(115, 72);
             this.button1.TabIndex = 0;
             this.button1.Text = "確認關機時間";
             this.button1.UseVisualStyleBackColor = true;
@@ -52,10 +52,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(418, 206);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(557, 258);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 58);
+            this.button2.Size = new System.Drawing.Size(115, 72);
             this.button2.TabIndex = 1;
             this.button2.Text = "返回目錄";
             this.button2.UseVisualStyleBackColor = true;
@@ -70,18 +70,18 @@
             // 
             this.dateTimePicker1.CustomFormat = "MMMM dd, yyyy - dddd";
             this.dateTimePicker1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(203, 127);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePicker1.Location = new System.Drawing.Point(271, 159);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(301, 36);
+            this.dateTimePicker1.Size = new System.Drawing.Size(400, 43);
             this.dateTimePicker1.TabIndex = 3;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(248, 206);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(331, 258);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 58);
+            this.button3.Size = new System.Drawing.Size(145, 72);
             this.button3.TabIndex = 4;
             this.button3.Text = "取消自動關機時間";
             this.button3.UseVisualStyleBackColor = true;
@@ -93,10 +93,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(198, 70);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(264, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 27);
+            this.label2.Size = new System.Drawing.Size(228, 34);
             this.label2.TabIndex = 5;
             this.label2.Text = "設定關機時間:";
             // 
@@ -105,10 +104,9 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.label3.Font = new System.Drawing.Font("標楷體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(246, 348);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(328, 435);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(263, 48);
+            this.label3.Size = new System.Drawing.Size(351, 60);
             this.label3.TabIndex = 6;
             this.label3.Text = "*如果已經設定關機時間，要做更改時間的動作時\r\n  1. 請先按 \"取消自動關機時間\" 按鈕\r\n  2. 再輸入關機時間\r\n  3. 再按下 \"確認關機時間按鈕\"" +
     " 完成設定";
@@ -117,19 +115,20 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox1.Location = new System.Drawing.Point(522, 139);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox1.Location = new System.Drawing.Point(696, 174);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(161, 23);
+            this.checkBox1.Size = new System.Drawing.Size(200, 28);
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "隔日將號碼歸回";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 417);
+            this.ClientSize = new System.Drawing.Size(1039, 521);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -137,7 +136,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form1_Load);

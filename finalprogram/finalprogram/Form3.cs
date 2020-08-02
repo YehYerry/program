@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,30 @@ namespace finalprogram
         public Form3()
         {
             InitializeComponent();
+            StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+            } while (s[ctr] != null);
+            textBox1.Text = s[2].Substring(6);
+            textBox2.Text = s[3].Substring(6);
+            textBox3.Text = s[4].Substring(6);
+            textBox4.Text = s[5].Substring(6);
+            textBox5.Text = s[6].Substring(6);
+            textBox6.Text = s[7].Substring(6);
+            textBox7.Text = s[8].Substring(6);
+            textBox8.Text = s[9].Substring(6);
+            textBox9.Text = s[10].Substring(6);
+            textBox10.Text = s[11].Substring(6);
+            textBox11.Text = s[12].Substring(6);
+            textBox12.Text = s[13].Substring(6);
+            textBox13.Text = s[14].Substring(6);
+            textBox14.Text = s[15].Substring(6);
+            textBox15.Text = s[16].Substring(6);
+            str.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -81,7 +106,74 @@ namespace finalprogram
             int[] array = { Int32.Parse(textBox1.Text.ToString()), Int32.Parse(textBox2.Text.ToString()) };
             Form1 lForm1 = (Form1)this.Owner;//把Form2的父窗口指針賦給lForm1
             lForm1.IntValue = array;//使用父窗口指針賦值  
+            //更改記事本內容，先讀取在寫入 (,Encoding.Default)UTF-8
+            StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+            } while (s[ctr] != null);
+            str.Close();
+            StreamWriter str1 = new StreamWriter(Application.StartupPath + @"\config.txt", false);
+            for (int ctr1 = 1; ctr1 <= ctr; ctr1++)
+            {
+                switch (ctr1)
+                {
+                    case 2:
+                        str1.WriteLine("控制器01=" + textBox1.Text);
+                        break;
+                    case 3:
+                        str1.WriteLine("控制器02=" + textBox2.Text);
+                        break;
+                    case 4:
+                        str1.WriteLine("控制器03=" + textBox3.Text);
+                        break;
+                    case 5:
+                        str1.WriteLine("控制器04=" + textBox4.Text);
+                        break;
+                    case 6:
+                        str1.WriteLine("控制器05=" + textBox5.Text);
+                        break;
+                    case 7:
+                        str1.WriteLine("控制器06=" + textBox6.Text);
+                        break;
+                    case 8:
+                        str1.WriteLine("控制器07=" + textBox7.Text);
+                        break;
+                    case 9:
+                        str1.WriteLine("控制器08=" + textBox8.Text);
+                        break;
+                    case 10:
+                        str1.WriteLine("控制器09=" + textBox9.Text);
+                        break;
+                    case 11:
+                        str1.WriteLine("控制器10=" + textBox10.Text);
+                        break;
+                    case 12:
+                        str1.WriteLine("控制器11=" + textBox11.Text);
+                        break;
+                    case 13:
+                        str1.WriteLine("控制器12=" + textBox12.Text);
+                        break;
+                    case 14:
+                        str1.WriteLine("控制器13=" + textBox13.Text);
+                        break;
+                    case 15:
+                        str1.WriteLine("控制器14=" + textBox14.Text);
+                        break;
+                    case 16:
+                        str1.WriteLine("控制器15=" + textBox15.Text);
+                        break;
+                    default:
+                        str1.WriteLine(s[ctr1]);
+                        break;
+                }
+            }
+            str1.Close();
             MessageBox.Show("設定完成!");
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)

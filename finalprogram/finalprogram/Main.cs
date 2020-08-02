@@ -51,7 +51,7 @@ namespace finalprogram
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            StreamReader str = new StreamReader(Application.StartupPath + @"\config.ifm");//讀取文字檔
+            StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");//讀取文字檔
             StreamReader str1 = new StreamReader(Application.StartupPath + @"\print_config.txt");
             StreamReader str2 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
             do

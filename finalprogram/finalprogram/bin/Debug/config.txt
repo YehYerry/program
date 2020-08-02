@@ -1,29 +1,29 @@
-[±±¨î¾¹¸¹½X]
-±±¨î¾¹01=0
-±±¨î¾¹02=1
-±±¨î¾¹03=0
-±±¨î¾¹04=2
-±±¨î¾¹05=0
-±±¨î¾¹06=0
-±±¨î¾¹07=0
-±±¨î¾¹08=0
-±±¨î¾¹09=0
-±±¨î¾¹10=0
-±±¨î¾¹11=0
-±±¨î¾¹12=0
-±±¨î¾¹13=0
-±±¨î¾¹14=0
-±±¨î¾¹15=0
+[æ§åˆ¶å™¨è™Ÿç¢¼]
+æ§åˆ¶å™¨01=0
+æ§åˆ¶å™¨02=1
+æ§åˆ¶å™¨03=0
+æ§åˆ¶å™¨04=2
+æ§åˆ¶å™¨05=0
+æ§åˆ¶å™¨06=0
+æ§åˆ¶å™¨07=0
+æ§åˆ¶å™¨08=0
+æ§åˆ¶å™¨09=0
+æ§åˆ¶å™¨10=0
+æ§åˆ¶å™¨11=0
+æ§åˆ¶å™¨12=0
+æ§åˆ¶å™¨13=0
+æ§åˆ¶å™¨14=0
+æ§åˆ¶å™¨15=0
 
-[«ö¶s1]
+[æŒ‰éˆ•1]
 IsVisible=1
 Width=650
 Height=390
 BorderWidth=268
 BorderHeight=182
-StartNum=1000
+StartNum=1001
 
-[«ö¶s2]
+[æŒ‰éˆ•2]
 IsVisible=0
 Width=183
 Height=72
@@ -31,7 +31,7 @@ BorderWidth=23
 BorderHeight=315
 StartNum=0000
 
-[«ö¶s3]
+[æŒ‰éˆ•3]
 IsVisible=0
 Width=183
 Height=72
@@ -39,7 +39,7 @@ BorderWidth=23
 BorderHeight=405
 StartNum=0000
 
-[«ö¶s4]
+[æŒ‰éˆ•4]
 IsVisible=0
 Width=183
 Height=72
@@ -47,26 +47,31 @@ BorderWidth=23
 BorderHeight=500
 StartNum=0000
 
-[«ö¶s1¤Wªºµ¥«İ¤H¼Æ¦ì¸m¤Î¤j¤p](¦r«¬EX:Times New Roman¡BArial¡B¼Ğ·¢Åé)
+[æŒ‰éˆ•1ä¸Šçš„ç­‰å¾…äººæ•¸ä½ç½®åŠå¤§å°](å­—å‹EX:Times New Romanã€Arialã€æ¨™æ¥·é«”)
 Size=24
 BorderWidth=841
 BorderHeight=494
-Font=¼Ğ·¢Åé
+Font=æ¨™æ¥·é«”
 
-[«ö¶s2¤Wªºµ¥«İ¤H¼Æ¦ì¸m¤Î¤j¤p]
+[æŒ‰éˆ•2ä¸Šçš„ç­‰å¾…äººæ•¸ä½ç½®åŠå¤§å°]
 Size=10
 BorderWidth=148
 BorderHeight=362
 Font=Times New Roman
 
-[«ö¶s3¤Wªºµ¥«İ¤H¼Æ¦ì¸m¤Î¤j¤p]
+[æŒ‰éˆ•3ä¸Šçš„ç­‰å¾…äººæ•¸ä½ç½®åŠå¤§å°]
 Size=10
 BorderWidth=23
 BorderHeight=500
 Font=Times New Roman
 
-[«ö¶s4¤Wªºµ¥«İ¤H¼Æ¦ì¸m¤Î¤j¤p]
+[æŒ‰éˆ•4ä¸Šçš„ç­‰å¾…äººæ•¸ä½ç½®åŠå¤§å°]
 Size=10
 BorderWidth=23
 BorderHeight=500
 Font=Times New Roman
+
+
+
+
+

@@ -22,6 +22,7 @@ namespace testprint
             //FileStream fs = File.Create(Application.StartupPath + @"\NOTE\2.txt");
             FileStream fs = File.Create(Application.StartupPath + @"\NOTE\" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + ".txt");
             fs.Close();
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -59,11 +60,34 @@ namespace testprint
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //更改記事本內容，先讀取在寫入
+            StreamReader str = new StreamReader(@"C:\Users\bock\github\program\note\test.ifm", Encoding.Default);
+            string ReadLine1, ReadAll;
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+            } while (s[ctr] != null);
+            str.Close();
             // 將字串寫入TXT檔
-            StreamWriter str = new StreamWriter(@"C:\Users\jerry\github\program\note\1.txt",true);
-            string WriteWord = "aaaaa";
-            str.WriteLine(WriteWord);
-            str.WriteLine("bbb");
+            StreamWriter str1 = new StreamWriter(@"C:\Users\bock\github\program\note\test.ifm", false, Encoding.Default);
+            for (int ctr1 = 1; ctr1 <= ctr; ctr1++) 
+            {
+                if (ctr1 == 5)
+                {
+                    str1.WriteLine("WIDTH=0000000");
+                    Console.WriteLine("YES");
+                }
+                else
+                {
+                    str1.WriteLine(s[ctr1]);
+                }
+            }
+            str1.Close();
+            //更改記事本內容，先讀取在寫入
+
             for (int n = 1; n <= 10; n++) 
             {
                 Console.WriteLine(DateTime.Now.AddDays(7*n).ToShortDateString());

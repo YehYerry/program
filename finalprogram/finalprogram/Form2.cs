@@ -18,6 +18,7 @@ namespace finalprogram
         private float Y;//當前窗體的高度
         bool isLoaded;
         string shut = "設定關機時間:";
+        int checkbox = 0;
         public Form2()
         {
             InitializeComponent();
@@ -41,7 +42,6 @@ namespace finalprogram
             label2.Text = s[1].Substring(23);
             //Console.WriteLine(s[1].Substring(22));
             str.Close();
-            Console.WriteLine(label2.Text);
             if (label2.Text.ToString() == "設定關機時間:")
             {            
                 button3.Visible = false;
@@ -50,6 +50,16 @@ namespace finalprogram
             {
                 button1.Visible = false;
                 dateTimePicker1.Visible = false;
+            }
+
+            if (checkbox == 0)
+            {
+                checkBox1.Checked = false;
+            }
+            if (checkbox == 1)
+            {
+                checkBox1.Checked = true;
+
             }
         }
         private string string1;
@@ -60,10 +70,22 @@ namespace finalprogram
                 string1 = value;
             }
         }
+        private int check1;
+        public int Check1
+        {
+            set
+            {
+                check1 = value;
+            }
+        }
 
         public void SetValue()
         {
             this.label2.Text = string1;
+        }
+        public void SetCheck()
+        {
+            check1 = checkbox;
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -99,7 +121,8 @@ namespace finalprogram
         {
             Form1 lForm1 = (Form1)this.Owner;//把Form2的父窗口指針賦給lForm1
             shut = label2.Text;
-            lForm1.StrValue = shut;//使用父窗口指針賦值  
+            lForm1.StrValue = shut;//使用父窗口指針賦值
+            lForm1.Check = checkbox;//使用父窗口指針賦值  
             // 將字串寫入TXT檔
             StreamWriter timestr = new StreamWriter(Application.StartupPath + @"\SetupTime\SetTime.txt");
             string wr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + " => " + label2.Text;
@@ -158,6 +181,37 @@ namespace finalprogram
         private void Frm_Shown(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                checkbox = 0;
+                Console.WriteLine("N");
+            }
+            if (checkBox1.Checked == true)
+            {
+                checkbox = 1;
+                Console.WriteLine("Y");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+
+            if (checkbox == 0)
+            {
+                checkBox1.Checked = false;
+                Console.WriteLine("NN");
+            }
+            if (checkbox == 1)
+            {
+                checkBox1.Checked = true;
+
+                Console.WriteLine("NN");
+            }
         }
     }
 }
