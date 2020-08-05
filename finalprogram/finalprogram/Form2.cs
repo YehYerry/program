@@ -51,16 +51,18 @@ namespace finalprogram
                 button1.Visible = false;
                 dateTimePicker1.Visible = false;
             }
-
-            if (checkbox == 0)
+            //判斷是否隔日歸零
+            StreamReader ischeck = new StreamReader(Application.StartupPath + @"\is_check.txt");
+            string a = ischeck.ReadLine();
+            if (Convert.ToInt32(a) == 0)
             {
                 checkBox1.Checked = false;
             }
-            if (checkbox == 1)
+            if (Convert.ToInt32(a) == 1)
             {
                 checkBox1.Checked = true;
-
             }
+            ischeck.Close();
         }
         private string string1;
         public string String1
@@ -128,6 +130,16 @@ namespace finalprogram
             string wr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + " => " + label2.Text;
             timestr.WriteLine(wr);
             timestr.Close();
+            StreamWriter is_check = new StreamWriter(Application.StartupPath + @"\is_check.txt");
+            if (checkBox1.Checked == true)
+            {
+                is_check.WriteLine("1");
+            }
+            else 
+            {
+                is_check.WriteLine("0");
+            }
+            is_check.Close();
             this.Close();
         }
         private void setControls(float newx, float newy, Control cons)
@@ -188,29 +200,10 @@ namespace finalprogram
             if (checkBox1.Checked == false)
             {
                 checkbox = 0;
-                Console.WriteLine("N");
             }
             if (checkBox1.Checked == true)
             {
                 checkbox = 1;
-                Console.WriteLine("Y");
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-
-            if (checkbox == 0)
-            {
-                checkBox1.Checked = false;
-                Console.WriteLine("NN");
-            }
-            if (checkbox == 1)
-            {
-                checkBox1.Checked = true;
-
-                Console.WriteLine("NN");
             }
         }
     }

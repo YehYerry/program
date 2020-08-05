@@ -248,16 +248,16 @@ namespace finalprogram
                 switch (ctr1)
                 {
                     case 1:
-                        str1.WriteLine(DateTime.Now.ToString() + " => 業務一等待人數:00 => 叫號:" + s2[2]);
+                        str1.WriteLine("業務一等待人數:00 => 叫號:" + s2[2] + " => " + DateTime.Now.ToString());
                         break;
                     case 2:
-                        str1.WriteLine(DateTime.Now.ToString() + " => 業務二等待人數:00 => 叫號:" + s2[3]);
+                        str1.WriteLine("業務二等待人數:00 => 叫號:" + s2[3] + " => " + DateTime.Now.ToString());
                         break;
                     case 3:
-                        str1.WriteLine(DateTime.Now.ToString() + " => 業務三等待人數:00 => 叫號:" + s2[4]);
+                        str1.WriteLine("業務三等待人數:00 => 叫號:" + s2[4] + " => " + DateTime.Now.ToString());
                         break;
                     case 4:
-                        str1.WriteLine(DateTime.Now.ToString() + " => 業務四等待人數:00 => 叫號:" + s2[5]);
+                        str1.WriteLine("業務四等待人數:00 => 叫號:" + s2[5] + " => " + DateTime.Now.ToString());
                         break;
                     default:
                         str1.WriteLine(s[ctr1]);

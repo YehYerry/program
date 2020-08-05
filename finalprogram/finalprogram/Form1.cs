@@ -30,7 +30,8 @@ namespace finalprogram
             timer1.Enabled = true;
             StreamReader str = new StreamReader(Application.StartupPath + @"\SetupTime\SetTime.txt");
             string[] s = new string[1000];
-            int ctr = 0;
+            string[] str1 = new string[1000];
+            int ctr = 0,ctr1 = 0;
             do
             {
                 ctr++;
@@ -54,7 +55,73 @@ namespace finalprogram
                 String s1 = Convert.ToInt32(ts.TotalSeconds).ToString();
                 System.Diagnostics.Process.Start("shutdown.exe", "-s -t " + s1.ToString());
                 Console.WriteLine(s1);
-            }            
+            }
+            //判斷是否隔日歸零
+            StreamReader ischeck = new StreamReader(Application.StartupPath + @"\is_check.txt");
+            string a = ischeck.ReadLine();
+            if (Convert.ToInt32(a) == 1)
+            {
+                StreamReader compare = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
+                do
+                {
+                    ctr1++;
+                    str1[ctr1] = compare.ReadLine();
+                    //Console.WriteLine(s[ctr]);
+                } while (str1[ctr1] != null);
+                string comparedate = str1[5];
+                string now = DateTime.Now.Year.ToString()+ "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Day.ToString();
+                compare.Close();
+                if (comparedate == now)
+                {
+                    Console.WriteLine("同天");
+                }
+                else 
+                {
+                    StreamReader str2 = new StreamReader(Application.StartupPath + @"\SetupNum\SetNum.txt");
+                    string[] s2 = new string[1000];
+                    int ctr3 = 0, ctr2 = 0;
+                    do
+                    {
+                        ctr2++;
+                        s2[ctr2] = str2.ReadLine();
+                    } while (s2[ctr2] != null);
+                    str2.Close();
+                    StreamReader str3 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
+                    string[] s3 = new string[1000];
+                    do
+                    {
+                        ctr3++;
+                        s3[ctr3] = str3.ReadLine();
+                    } while (s3[ctr3] != null);
+                    str3.Close();
+                    Console.WriteLine(ctr3);
+                    StreamWriter str4 = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt", false);
+                    for (int ctr4 = 1; ctr4 <= ctr3; ctr4++)
+                    {
+                        switch (ctr4)
+                        {
+                            case 1:
+                                str4.WriteLine("業務一等待人數:00 => 叫號:" + s2[2] + " => " + DateTime.Now.ToString());
+                                break;
+                            case 2:
+                                str4.WriteLine("業務二等待人數:00 => 叫號:" + s2[3] + " => " + DateTime.Now.ToString());
+                                break;
+                            case 3:
+                                str4.WriteLine("業務三等待人數:00 => 叫號:" + s2[4] + " => " + DateTime.Now.ToString());
+                                break;
+                            case 4:
+                                str4.WriteLine("業務四等待人數:00 => 叫號:" + s2[5] + " => " + DateTime.Now.ToString());
+                                break;
+                            default:
+                                str4.WriteLine(s3[ctr4]);
+                                break;
+                        }
+                    }
+                    str4.Close();
+                }
+                compare.Close();
+            }
+            ischeck.Close();
         }
         public int[] IntValue
         {
@@ -93,8 +160,7 @@ namespace finalprogram
             f.SetValue();//設置Form2中Label1的 
             //f.SetCheck();//設置Form2中Checkbox 
             f.ShowDialog(this);//設定Form2為Form1的上層，並開啟Form2視窗。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
-            //MessageBox.Show(strValue);//顯示返回的值  
-            MessageBox.Show(check.ToString());//顯示返回的值   
+            //MessageBox.Show(strValue);//顯示返回的值   
             f.SetCheck();//設置Form2中Checkbox 
             shutstr = strValue;
             check = checkbox;

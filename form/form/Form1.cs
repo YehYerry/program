@@ -58,6 +58,7 @@ namespace form
 
             for (int i = 2; i <= 16; i++) 
             {
+                Console.WriteLine(Convert.ToInt32(line[i].Substring(7)));
                 note = Convert.ToInt32(line[i].Substring(7));
                 if (note == 1)
                 {
@@ -183,32 +184,32 @@ namespace form
             pnum2 = Convert.ToInt32(line2[2].Substring(42));
             pnum3 = Convert.ToInt32(line2[3].Substring(42));
             pnum4 = Convert.ToInt32(line2[4].Substring(42));*/
-            wait2[0] = Convert.ToByte(line2[1].Substring(33, 1));
-            wait1[0] = Convert.ToByte(line2[1].Substring(34, 1));
-            wait2[1] = Convert.ToByte(line2[2].Substring(33, 1));
-            wait1[1] = Convert.ToByte(line2[2].Substring(34, 1));
-            wait2[2] = Convert.ToByte(line2[3].Substring(33, 1));
-            wait1[2] = Convert.ToByte(line2[3].Substring(34, 1));
-            wait2[3] = Convert.ToByte(line2[4].Substring(33, 1));
-            wait1[3] = Convert.ToByte(line2[4].Substring(34, 1));
-            b1num1 = Convert.ToByte(line2[1].Substring(42, 1));
-            b1num2 = Convert.ToByte(line2[1].Substring(43, 1));
-            b1num3 = Convert.ToByte(line2[1].Substring(44, 1));
-            b1num4 = Convert.ToByte(line2[1].Substring(45, 1));
-            b2num1 = Convert.ToByte(line2[2].Substring(42, 1));
-            b2num2 = Convert.ToByte(line2[2].Substring(43, 1));
-            b2num3 = Convert.ToByte(line2[2].Substring(44, 1));
-            b2num4 = Convert.ToByte(line2[2].Substring(45, 1));
-            b3num1 = Convert.ToByte(line2[3].Substring(42, 1));
-            b3num2 = Convert.ToByte(line2[3].Substring(43, 1));
-            b3num3 = Convert.ToByte(line2[3].Substring(44, 1));
-            b3num4 = Convert.ToByte(line2[3].Substring(45, 1));
-            b4num1 = Convert.ToByte(line2[4].Substring(42, 1));
-            b4num2 = Convert.ToByte(line2[4].Substring(43, 1));
-            b4num3 = Convert.ToByte(line2[4].Substring(44, 1));
-            b4num4 = Convert.ToByte(line2[4].Substring(45, 1));
-            label = Convert.ToInt32(line2[1].Substring(33, 1)) * 10 + Convert.ToInt32(line2[1].Substring(34, 1));
-            label2 = Convert.ToInt32(line2[2].Substring(33, 1)) * 10 + Convert.ToInt32(line2[2].Substring(34, 1));
+            wait2[0] = Convert.ToByte(line2[1].Substring(8, 1));
+            wait1[0] = Convert.ToByte(line2[1].Substring(9, 1));
+            wait2[1] = Convert.ToByte(line2[2].Substring(8, 1));
+            wait1[1] = Convert.ToByte(line2[2].Substring(9, 1));
+            wait2[2] = Convert.ToByte(line2[3].Substring(8, 1));
+            wait1[2] = Convert.ToByte(line2[3].Substring(9, 1));
+            wait2[3] = Convert.ToByte(line2[4].Substring(8, 1));
+            wait1[3] = Convert.ToByte(line2[4].Substring(9, 1));
+            b1num1 = Convert.ToByte(line2[1].Substring(17, 1));
+            b1num2 = Convert.ToByte(line2[1].Substring(18, 1));
+            b1num3 = Convert.ToByte(line2[1].Substring(19, 1));
+            b1num4 = Convert.ToByte(line2[1].Substring(20, 1));
+            b2num1 = Convert.ToByte(line2[2].Substring(17, 1));
+            b2num2 = Convert.ToByte(line2[2].Substring(18, 1));
+            b2num3 = Convert.ToByte(line2[2].Substring(19, 1));
+            b2num4 = Convert.ToByte(line2[2].Substring(20, 1));
+            b3num1 = Convert.ToByte(line2[3].Substring(17, 1));
+            b3num2 = Convert.ToByte(line2[3].Substring(18, 1));
+            b3num3 = Convert.ToByte(line2[3].Substring(19, 1));
+            b3num4 = Convert.ToByte(line2[3].Substring(20, 1));
+            b4num1 = Convert.ToByte(line2[4].Substring(17, 1));
+            b4num2 = Convert.ToByte(line2[4].Substring(18, 1));
+            b4num3 = Convert.ToByte(line2[4].Substring(19, 1));
+            b4num4 = Convert.ToByte(line2[4].Substring(20, 1));
+            label = Convert.ToInt32(line2[1].Substring(8, 1)) * 10 + Convert.ToInt32(line2[1].Substring(9, 1));
+            label2 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
             num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
 
             if (b1 == "0")
@@ -957,10 +958,10 @@ namespace form
             //關閉後，存記事本
             StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt");
             //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
-            str.WriteLine(DateTime.Now.ToString() + " => 業務一等待人數:" + wait2[0] + wait1[0] + " => 叫號:" + num[0, 0] + num[0, 1] + num[0, 2] + num[0, 3]);
-            str.WriteLine(DateTime.Now.ToString() + " => 業務二等待人數:" + wait2[1] + wait1[1] + " => 叫號:" + num[1, 0] + num[1, 1] + num[1, 2] + num[1, 3]);
-            str.WriteLine(DateTime.Now.ToString() + " => 業務三等待人數:" + wait2[2] + wait1[2] + " => 叫號:" + num[2, 0] + num[2, 1] + num[2, 2] + num[2, 3]);
-            str.WriteLine(DateTime.Now.ToString() + " => 業務四等待人數:" + wait2[3] + wait1[3] + " => 叫號:" + num[3, 0] + num[3, 1] + num[3, 2] + num[3, 3]);
+            str.WriteLine("業務一等待人數:" + wait2[0] + wait1[0] + " => 叫號:" + num[0, 0] + num[0, 1] + num[0, 2] + num[0, 3] + " => " + DateTime.Now.ToString());
+            str.WriteLine("業務二等待人數:" + wait2[1] + wait1[1] + " => 叫號:" + num[1, 0] + num[1, 1] + num[1, 2] + num[1, 3] + " => " + DateTime.Now.ToString());
+            str.WriteLine("業務三等待人數:" + wait2[2] + wait1[2] + " => 叫號:" + num[2, 0] + num[2, 1] + num[2, 2] + num[2, 3] + " => " + DateTime.Now.ToString());
+            str.WriteLine("業務四等待人數:" + wait2[3] + wait1[3] + " => 叫號:" + num[3, 0] + num[3, 1] + num[3, 2] + num[3, 3] + " => " + DateTime.Now.ToString());
             str.Close();
         }
         private void label1_Click(object sender, EventArgs e)
