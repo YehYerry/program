@@ -21,8 +21,10 @@ namespace form
         private Int32 totalLength = 0;
         private Boolean receiving;
         private Thread t;
-        byte cont1, cont2;
         byte[,] cont = new byte[15, 15];
+        byte[,] cont2 = new byte[15, 15];
+        byte[,] cont3 = new byte[15, 15];
+        byte[,] cont4 = new byte[15, 15];
         string b1, b2, b3, b4;
         int b1h, b2h, b3h, b4h, b1w, b2w, b3w, b4w;
         int L1s, L2s, L3s, L4s;
@@ -38,7 +40,7 @@ namespace form
         byte num1, num2, num3, num4, w1, w2, n1, n2, n3, n4;
         string[] line = new string[1000];
         string[] line2 = new string[1000];
-        int ctr = 0, ctr2 = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0;
+        int ctr = 0, ctr2 = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0, note1, note1j1 = 0, note1j2 = 0, note1j3 = 0, note1j4 = 0;
 
         public Form1()
         {
@@ -58,8 +60,9 @@ namespace form
 
             for (int i = 2; i <= 16; i++) 
             {
-                Console.WriteLine(Convert.ToInt32(line[i].Substring(7)));
-                note = Convert.ToInt32(line[i].Substring(7));
+                //Console.WriteLine(Convert.ToInt32(line[i].Substring(7,1)));
+                note = Convert.ToInt32(line[i].Substring(7, 1));
+                note1 = Convert.ToInt32(line[i].Substring(8, 1));
                 if (note == 1)
                 {
                     cont[0, notej1] = Convert.ToByte(line[i].Substring(4, 2));
@@ -80,14 +83,36 @@ namespace form
                     cont[3, notej4] = Convert.ToByte(line[i].Substring(4, 2));
                     notej4 += 1;
                 }
-            }//取得控制器對哪個按鈕，存入陣列 cont[0,0] 中 , notej1為控制器1的數量
+                if (note1 == 1)
+                {
+                    cont2[0, note1j1] = Convert.ToByte(line[i].Substring(4, 2));
+                    note1j1 += 1;
+                }
+                else if (note1 == 2)
+                {
+                    cont2[1, note1j2] = Convert.ToByte(line[i].Substring(4, 2));
+                    note1j2 += 1;
+                }
+                else if (note1 == 3)
+                {
+                    cont2[2, note1j3] = Convert.ToByte(line[i].Substring(4, 2));
+                    note1j3 += 1;
+                }
+                else if (note1 == 4)
+                {
+                    cont2[3, note1j4] = Convert.ToByte(line[i].Substring(4, 2));
+                    note1j4 += 1;
+                }
+            }//取得控制器對哪個按鈕，存入陣列 cont1[0,0] 中 , notej1為控制器1的數量
+            Console.WriteLine(cont2[0, 0]);
+            Console.WriteLine(cont2[1, 0]);
 
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back1.jpg");
             Image pic = new Bitmap(Application.StartupPath + @"\background\button.jpg");
             button1.BackgroundImage = pic;
 
-            cont1 = Convert.ToByte(line[5].Substring(5,1));
-            cont2 = Convert.ToByte(line[5].Substring(5,1));
+            //cont1 = Convert.ToByte(line[5].Substring(5,1));
+            //cont2 = Convert.ToByte(line[5].Substring(5,1));
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
