@@ -8,3 +8,13 @@ C:\Users\bock\github\program\clock\clock\obj\Debug\clock.csproj.CoreCompileInput
 C:\Users\bock\github\program\clock\clock\obj\Debug\clock.exe
 C:\Users\bock\github\program\clock\clock\obj\Debug\clock.pdb
 C:\Users\bock\github\program\clock\clock\obj\Debug\clock.Form1.resources
+C:\Users\jerry\github\program\clock\clock\bin\Debug\clock.exe.config
+C:\Users\jerry\github\program\clock\clock\bin\Debug\clock.exe
+C:\Users\jerry\github\program\clock\clock\bin\Debug\clock.pdb
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.csprojAssemblyReference.cache
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.Form1.resources
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.Properties.Resources.resources
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.csproj.GenerateResource.cache
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.csproj.CoreCompileInputs.cache
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.exe
+C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.pdb
