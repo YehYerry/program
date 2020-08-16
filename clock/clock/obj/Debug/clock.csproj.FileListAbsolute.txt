@@ -18,3 +18,4 @@ C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.csproj.GenerateResourc
 C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.csproj.CoreCompileInputs.cache
 C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.exe
 C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.pdb
+C:\Users\bock\github\program\clock\clock\obj\Debug\clock.comportshow.resources
