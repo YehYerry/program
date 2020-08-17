@@ -49,7 +49,6 @@ C:\Users\bock\github\program\note\testprint\bin\Debug\netcoreapp3.1\testprint.ru
 C:\Users\bock\github\program\note\testprint\bin\Debug\netcoreapp3.1\testprint.runtimeconfig.dev.json
 C:\Users\bock\github\program\note\testprint\bin\Debug\netcoreapp3.1\testprint.dll
 C:\Users\bock\github\program\note\testprint\bin\Debug\netcoreapp3.1\testprint.pdb
-C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.csprojAssemblyReference.cache
 C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.Form1.resources
 C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.csproj.GenerateResource.cache
 C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.AssemblyInfoInputs.cache
@@ -58,3 +57,4 @@ C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.cs
 C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.dll
 C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.pdb
 C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.genruntimeconfig.cache
+C:\Users\bock\github\program\note\testprint\obj\Debug\netcoreapp3.1\testprint.csprojAssemblyReference.cache

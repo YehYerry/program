@@ -99,7 +99,7 @@ namespace clock
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = DateTime.Now.Year.ToString() + "年" + DateTime.Now.Month.ToString() + "月" + DateTime.Now.Day.ToString() + "日";
+            label1.Text = DateTime.Now.Year.ToString() + " 年 " + DateTime.Now.Month.ToString() + "月 " + DateTime.Now.Day.ToString() + "日";
             label2.Text = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             string week = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             label3.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -256,7 +256,7 @@ namespace clock
                     }
                     catch 
                     {
-                        MessageBox.Show("沒有此COMPORT請重新選擇");
+                        //MessageBox.Show("沒有此COMPORT請重新選擇");
                     }
                     ctr1 = 0;
                     Console.WriteLine(line1[2]);
