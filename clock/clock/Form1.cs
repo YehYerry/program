@@ -18,7 +18,7 @@ namespace clock
         private float Y;//當前窗體的高度
         bool isLoaded;  // 是否已設定各控制的尺寸資料到Tag屬性
         private SerialPort comport;
-        int a, ctr = 0, ctr1 = 0, wordstyle1,size;
+        int a, ctr = 0, ctr1 = 0, wordstyle1,size, w1bd, w1bh, w2bd, w2bh, w3bd, w3bh;
         string[] line = new string[1000];
         string[] line1 = new string[1000];
         string port, font, color;
@@ -42,6 +42,12 @@ namespace clock
             size = Convert.ToInt32(line[6].Substring(5));
             wordstyle1 = Convert.ToInt32(line[7].Substring(6));
             color = line[8].Substring(6);
+            w1bd = Convert.ToInt32(line[11].Substring(12));
+            w1bh = Convert.ToInt32(line[12].Substring(12));
+            w2bd = Convert.ToInt32(line[15].Substring(12));
+            w2bh = Convert.ToInt32(line[16].Substring(12));
+            w3bd = Convert.ToInt32(line[19].Substring(12));
+            w3bh = Convert.ToInt32(line[20].Substring(12));
 
             switch (wordstyle1)
             {
@@ -64,10 +70,13 @@ namespace clock
 
             label1.Font = new Font(font, size, wdstyle1);//Times New Roman、Arial、標楷體, size
             label1.ForeColor = ColorTranslator.FromHtml(color);
+            label1.Location = new Point(w1bd, w1bh);//位址
             label2.Font = new Font(font, size, wdstyle1);//Times New Roman、Arial、標楷體, size
             label2.ForeColor = ColorTranslator.FromHtml(color);
+            label2.Location = new Point(w2bd, w2bh);
             label3.Font = new Font(font, size, wdstyle1);//Times New Roman、Arial、標楷體, size
             label3.ForeColor = ColorTranslator.FromHtml(color);
+            label3.Location = new Point(w3bd, w3bd);
             str.Close();
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
             
@@ -79,7 +88,7 @@ namespace clock
             }
             catch
             {               
-                MessageBox.Show("COMPORT 不存在! 請點選畫面右上角三下做設定!");
+                MessageBox.Show("COMPORT 不存在! 請點選畫面左上角三下做設定!");
             }
             
             a = DateTime.Now.Minute + 1;
@@ -150,7 +159,7 @@ namespace clock
                 }
                 catch 
                 {
-                    MessageBox.Show("COMPORT 不存在! 請點選畫面右上角三下做設定!");
+                    MessageBox.Show("COMPORT 不存在! 請點選畫面左上角三下做設定!");
                 }
                 /*foreach (byte byteValue in array1)//看ARRAY 中的數值
                 {
