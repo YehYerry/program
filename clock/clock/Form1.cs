@@ -159,7 +159,7 @@ namespace clock
                 }
                 catch 
                 {
-                    MessageBox.Show("COMPORT 不存在! 請點選畫面左上角三下做設定!");
+                    //MessageBox.Show("COMPORT 不存在! 請點選畫面左上角三下做設定!");
                 }
                 /*foreach (byte byteValue in array1)//看ARRAY 中的數值
                 {
@@ -265,7 +265,7 @@ namespace clock
                     }
                     catch 
                     {
-                        //MessageBox.Show("沒有此COMPORT請重新選擇");
+                        MessageBox.Show("沒有此COMPORT請重新選擇");
                     }
                     ctr1 = 0;
                     Console.WriteLine(line1[2]);
