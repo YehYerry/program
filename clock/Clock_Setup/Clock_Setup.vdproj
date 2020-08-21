@@ -22,13 +22,13 @@
         "Entry"
         {
         "MsmKey" = "8:_4CB908DED09B2F8CAF54864F751AE307"
-        "OwnerKey" = "8:_C7BA3A26A49D4E599EC5C4B44D75D2F1"
+        "OwnerKey" = "8:_A096A12C2E634E41AF974BA6A4F6EB7E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_4CB908DED09B2F8CAF54864F751AE307"
-        "OwnerKey" = "8:_A096A12C2E634E41AF974BA6A4F6EB7E"
+        "OwnerKey" = "8:_C7BA3A26A49D4E599EC5C4B44D75D2F1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,13 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4CB908DED09B2F8CAF54864F751AE307"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6395A9CA0D684DD1BEBEED17050BEAC1"
+        "OwnerKey" = "8:_C7BA3A26A49D4E599EC5C4B44D75D2F1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +70,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C7BA3A26A49D4E599EC5C4B44D75D2F1"
+        "OwnerKey" = "8:_4CB908DED09B2F8CAF54864F751AE307"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6395A9CA0D684DD1BEBEED17050BEAC1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -97,6 +97,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -113,6 +129,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -252,7 +276,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_459CF8FB1D72494E9C58B17EAB58995C"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:C:\\[Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -312,7 +336,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Clock_Setup"
         "ProductCode" = "8:{14FEE53A-B1EB-4D8F-A8D5-6765D67D05BC}"
-        "PackageCode" = "8:{42626E23-6118-4DFE-83E5-B7B4FE26C8CE}"
+        "PackageCode" = "8:{E21EB718-7243-48B3-BBB3-2D3EC851CC5F}"
         "UpgradeCode" = "8:{74C09D36-BAB8-4B12-BC83-1EAF04FD7B13}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
