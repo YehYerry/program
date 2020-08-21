@@ -8,16 +8,16 @@ Style=1
 Color=#FFFFFFF
 
 [設定日期位置]
-borderwidth=244
-borderhight=230
+borderwidth=447
+borderhight=431
 
 [設定星期位置]
-borderwidth=404
-borderhight=321
+borderwidth=456
+borderhight=524
 
 [設定時間位置]
-borderwidth=364
-borderhight=405
+borderwidth=454
+borderhight=645
 
 
 [色碼表]
