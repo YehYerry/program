@@ -8,16 +8,29 @@ Style=1
 Color=#FFFFFFF
 
 [設定日期位置]
-borderwidth=669
-borderhight=245
+borderwidth=511
+borderhight=303
 
 [設定星期位置]
-borderwidth=1011
-borderhight=245
+borderwidth=514
+borderhight=445
 
 [設定時間位置]
-borderwidth=1189
-borderhight=245
+borderwidth=512
+borderhight=600
 
 [色碼表]
 https://www.toodoo.com/db/color.html
+
+X = 511
+Y = 303
+X = 514
+Y = 445
+X = 512
+Y = 600
+
+
+
+
+
+
