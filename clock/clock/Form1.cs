@@ -29,7 +29,9 @@ namespace clock
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
-
+            int workarea_width = Screen.PrimaryScreen.WorkingArea.Width;
+            int workarea_Height = Screen.PrimaryScreen.WorkingArea.Height;
+            //MessageBox.Show("工作區域大小" + workarea_width + "X" + workarea_Height);
             StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");//讀取文字檔
             do
             {
@@ -76,10 +78,10 @@ namespace clock
             label2.Location = new Point(w2bd, w2bh);
             label3.Font = new Font(font, size, wdstyle1);//Times New Roman、Arial、標楷體, size
             label3.ForeColor = ColorTranslator.FromHtml(color);
-            label3.Location = new Point(w3bd, w3bd);
+            label3.Location = new Point(w3bd, w3bh);
             str.Close();
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
-            
+            BackgroundImageLayout = ImageLayout.Stretch;
             comport = new SerialPort(port, 9600, Parity.None, 8, StopBits.One);
             String[] COMPorts = SerialPort.GetPortNames();
             try
@@ -220,9 +222,7 @@ namespace clock
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
-            float newx = (this.Width) / X; //窗體寬度縮放比例
-            float newy = (this.Height) / Y;//窗體高度縮放比例
-            SetControls(newx, newy, this);//隨窗體改變控制項大小
+
         }
         private void FrmF3D_Shown(object sender, EventArgs e)
         {

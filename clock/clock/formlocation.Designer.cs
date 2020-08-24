@@ -171,7 +171,6 @@
             this.Load += new System.EventHandler(this.FrmF3D_Load);
             this.Shown += new System.EventHandler(this.FrmF3D_Shown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

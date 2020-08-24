@@ -87,6 +87,7 @@ namespace clock
             label3.Location = new Point(w3bd, w3bd);
             str.Close();
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
+            BackgroundImageLayout = ImageLayout.Stretch;
             this.textBox1.KeyPress += new KeyPressEventHandler(CheckEnter);
         }
         private void FrmF3D_Load(object sender, EventArgs e)
@@ -154,9 +155,7 @@ namespace clock
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
-            float newx = (this.Width) / X; //窗體寬度縮放比例
-            float newy = (this.Height) / Y;//窗體高度縮放比例
-            SetControls(newx, newy, this);//隨窗體改變控制項大小
+
         }
         private void FrmF3D_Shown(object sender, EventArgs e)
         {
