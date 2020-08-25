@@ -18,8 +18,20 @@ namespace clock
         public comportshow()
         {
             InitializeComponent();
-            this.comboBox1.Items.AddRange(SerialPort.GetPortNames());
+            StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");
+            string[] s = new string[1000];
+            int ctr = 0;
+            do
+            {
+                ctr++;
+                s[ctr] = str.ReadLine();
+            } while (s[ctr] != null);
+            str.Close();
+            label1.Text = "已選擇" + s[2];
+            comboBox1.Text = s[2];
+            comboBox1.Items.AddRange(SerialPort.GetPortNames());
             button1.DialogResult = DialogResult.OK;//設定button1為OK
+            button2.DialogResult = DialogResult.Cancel;//設定button2
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,17 +72,7 @@ namespace clock
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (port != null)
-            {
-                serialPort1 = new SerialPort(port, 9600, Parity.None, 8, StopBits.One);
-                serialPort1.Open();
-                label1.Text = "已開啟COMPORT，完成測試";
-                serialPort1.Close();
-            }
-            else
-            {
-                MessageBox.Show("請選擇測試的PORT");
-            }
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

@@ -247,7 +247,7 @@ namespace clock
                 comportshow f = new comportshow();//產生Form2的物件，才可以使用它所提供的Method
                 comport.Close();
                 f.ShowDialog(this); //開啟主視窗
-                if (f.DialogResult == System.Windows.Forms.DialogResult.OK)
+                if (f.DialogResult == DialogResult.OK)
                 {
                     //若使用者在Form2按下了OK，則進入這個判斷式
                     StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");//讀取文字檔
@@ -270,9 +270,9 @@ namespace clock
                     ctr1 = 0;
                     Console.WriteLine(line1[2]);
                 }
-                else if (f.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                else if (f.DialogResult == DialogResult.Cancel)
                 {
-                    MessageBox.Show("請點選確認COMPORT紐做離開");
+                    Console.WriteLine("最小化");
                 }
             }
         }
