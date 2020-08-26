@@ -273,6 +273,7 @@ namespace clock
                 else if (f.DialogResult == DialogResult.Cancel)
                 {
                     Console.WriteLine("最小化");
+                    this.WindowState = FormWindowState.Minimized;
                 }
             }
         }
