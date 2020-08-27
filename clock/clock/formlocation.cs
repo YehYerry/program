@@ -84,7 +84,7 @@ namespace clock
             label2.Location = new Point(w2bd, w2bh);
             label3.Font = new Font(font, size, wdstyle1);//Times New Roman、Arial、標楷體, size
             label3.ForeColor = ColorTranslator.FromHtml(color);
-            label3.Location = new Point(w3bd, w3bd);
+            label3.Location = new Point(w3bd, w3bh);
             str.Close();
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
             BackgroundImageLayout = ImageLayout.Stretch;

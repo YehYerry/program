@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3F25D09C93B4447F9AD7EC2A6AE788F8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4CB908DED09B2F8CAF54864F751AE307"
         "OwnerKey" = "8:_A096A12C2E634E41AF974BA6A4F6EB7E"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,6 +34,12 @@
         "Entry"
         {
         "MsmKey" = "8:_A096A12C2E634E41AF974BA6A4F6EB7E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE5EFA0FDD34455C8395CEF0FDC27559"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -136,6 +136,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -166,26 +174,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F25D09C93B4447F9AD7EC2A6AE788F8"
-            {
-            "SourcePath" = "8:..\\clock\\bin\\Debug\\background\\Icon.ico"
-            "TargetName" = "8:Icon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_F839AE5E14B8438EAA90E2DAEE143FF8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4CB908DED09B2F8CAF54864F751AE307"
             {
             "AssemblyRegister" = "3:1"
@@ -223,6 +211,26 @@
             "TargetName" = "8:config.txt"
             "Tag" = "8:"
             "Folder" = "8:_459CF8FB1D72494E9C58B17EAB58995C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE5EFA0FDD34455C8395CEF0FDC27559"
+            {
+            "SourcePath" = "8:..\\clock\\bin\\Debug\\background\\ico.ico"
+            "TargetName" = "8:ico.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F839AE5E14B8438EAA90E2DAEE143FF8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -336,7 +344,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Clock_Setup"
         "ProductCode" = "8:{14FEE53A-B1EB-4D8F-A8D5-6765D67D05BC}"
-        "PackageCode" = "8:{E21EB718-7243-48B3-BBB3-2D3EC851CC5F}"
+        "PackageCode" = "8:{CA9FDCAB-EA55-451A-BE10-CB5F39D712E8}"
         "UpgradeCode" = "8:{74C09D36-BAB8-4B12-BC83-1EAF04FD7B13}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -467,7 +475,7 @@
             "Target" = "8:_A096A12C2E634E41AF974BA6A4F6EB7E"
             "Folder" = "8:_33BEE1F59E624E0E90D5E2BB594D2AA7"
             "WorkingFolder" = "8:_459CF8FB1D72494E9C58B17EAB58995C"
-            "Icon" = "8:_3F25D09C93B4447F9AD7EC2A6AE788F8"
+            "Icon" = "8:_AE5EFA0FDD34455C8395CEF0FDC27559"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_362E6F852FF94127A229D728C91AEEAE"
@@ -481,7 +489,7 @@
             "Target" = "8:_A096A12C2E634E41AF974BA6A4F6EB7E"
             "Folder" = "8:_E6C0D3D5A01D40FB99C2018CA49EB5EB"
             "WorkingFolder" = "8:_459CF8FB1D72494E9C58B17EAB58995C"
-            "Icon" = "8:_3F25D09C93B4447F9AD7EC2A6AE788F8"
+            "Icon" = "8:_AE5EFA0FDD34455C8395CEF0FDC27559"
             "Feature" = "8:"
             }
         }
@@ -885,7 +893,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6395A9CA0D684DD1BEBEED17050BEAC1"
             {
-            "SourcePath" = "8:..\\clock\\obj\\Debug\\clock.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_459CF8FB1D72494E9C58B17EAB58995C"
