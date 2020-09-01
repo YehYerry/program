@@ -104,12 +104,11 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.label3.Font = new System.Drawing.Font("標楷體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(328, 435);
+            this.label3.Location = new System.Drawing.Point(328, 395);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(351, 60);
+            this.label3.Size = new System.Drawing.Size(351, 45);
             this.label3.TabIndex = 6;
-            this.label3.Text = "*如果已經設定關機時間，要做更改時間的動作時\r\n  1. 請先按 \"取消自動關機時間\" 按鈕\r\n  2. 再輸入關機時間\r\n  3. 再按下 \"確認關機時間按鈕\"" +
-    " 完成設定";
+            this.label3.Text = "*如果已經設定關機時間，要做更改時間的動作時\r\n  1. 請先按 \"取消自動關機時間\" 按鈕\r\n  2. 再輸入關機時間\r\n";
             // 
             // checkBox1
             // 

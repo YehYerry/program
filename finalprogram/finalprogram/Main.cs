@@ -47,6 +47,7 @@ namespace finalprogram
         public Main()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -88,10 +89,15 @@ namespace finalprogram
 
             //設定背景圖
             BackgroundImage = new Bitmap(Application.StartupPath + @"\background\back.jpg");
+            BackgroundImageLayout = ImageLayout.Stretch; //設定圖片填滿
             Image pic1 = new Bitmap(Application.StartupPath + @"\background\button.jpg");
             Image pic2 = new Bitmap(Application.StartupPath + @"\background\button.jpg");
             Image pic3 = new Bitmap(Application.StartupPath + @"\background\button.jpg");
             Image pic4 = new Bitmap(Application.StartupPath + @"\background\button.jpg");
+            button1.BackgroundImageLayout = ImageLayout.Stretch; //設定圖片填滿
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
+            button3.BackgroundImageLayout = ImageLayout.Stretch;
+            button4.BackgroundImageLayout = ImageLayout.Stretch;
             button1.BackgroundImage = pic1;
             button2.BackgroundImage = pic2;
             button3.BackgroundImage = pic1;
@@ -102,13 +108,20 @@ namespace finalprogram
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            if (!comport.IsOpen)
+            try
             {
-                comport.Open();
-                receiving = true;
-                t = new Thread(DoReceive);
-                t.IsBackground = true;
-                t.Start();
+                if (!comport.IsOpen)
+                {
+                    comport.Open();
+                    receiving = true;
+                    t = new Thread(DoReceive);
+                    t.IsBackground = true;
+                    t.Start();
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("COMPORT不存在!請點選右上角離開系統做COMPORT設定!");
             }
             {
                 b1 = line[19].Substring(10);
