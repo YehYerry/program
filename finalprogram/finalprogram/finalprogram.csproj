@@ -76,6 +76,12 @@
     <Compile Include="comportshow.Designer.cs">
       <DependentUpon>comportshow.cs</DependentUpon>
     </Compile>
+    <Compile Include="formlocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formlocation.Designer.cs">
+      <DependentUpon>formlocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formlocation.resx">
+      <DependentUpon>formlocation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

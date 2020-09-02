@@ -105,7 +105,6 @@ namespace clock
         {////Timer, 每10ms讀取滑鼠座標值
             label6.Text = "X = " + Cursor.Position.X.ToString();
             label7.Text = "Y = " + Cursor.Position.Y.ToString();
-            
         }
         private void SetControls(float newx, float newy, Control cons)
         {

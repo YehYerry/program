@@ -29,6 +29,7 @@ namespace finalprogram
         string L1f, L2f, L3f, L4f;
         int b1bh, b2bh, b3bh, b4bh, b1bw, b2bw, b3bw, b4bw;
         int L1bh, L2bh, L3bh, L4bh, L1bw, L2bw, L3bw, L4bw;
+
         byte b1num1, b1num2, b1num3, b1num4, b2num1, b2num2, b2num3, b2num4, b3num1, b3num2, b3num3, b3num4, b4num1, b4num2, b4num3, b4num4;
         byte[,] num;
         byte[] wait1 = { 0, 0, 0, 0 }; //四個按鈕的等待人數(十位數)
@@ -1287,6 +1288,16 @@ namespace finalprogram
             str.WriteLine(DateTime.Now.Year.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Day.ToString());
             str.Close();
             comport.Close();
+        }
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            TimeSpan t = (TimeSpan)(DateTime.Now - doubleClickTimer); //DoubleClick後又點了一下, 計算時間差 
+
+            if (t.TotalMilliseconds <= 200) //如果小於200豪秒就執行 
+            {
+                formlocation f = new formlocation();//產生Form2的物件，才可以使用它所提供的Method
+                f.ShowDialog(this); //開啟主視窗
+            }
         }
     }
 }
