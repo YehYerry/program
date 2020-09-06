@@ -22,7 +22,7 @@ namespace clock
         string[] line = new string[1000];
         string[] line1 = new string[1000];
         string port, font, color;
-        string mont;
+        string mont, dayt;
         byte weeks;
         FontStyle wdstyle1;
         DateTime doubleClickTimer = DateTime.Now;
@@ -112,6 +112,7 @@ namespace clock
         private void timer1_Tick(object sender, EventArgs e)
         {
             int mon = DateTime.Now.Month;
+            int days = DateTime.Now.Day;
             if (mon < 10)
             {
                 mont = string.Format("{0:00}", Convert.ToInt16(mon));
@@ -120,7 +121,15 @@ namespace clock
             {
                 mont = DateTime.Now.Month.ToString();
             }
-            label1.Text = DateTime.Now.Year.ToString() + "年 " + mont + "月 " + DateTime.Now.Day.ToString() + "日";
+            if (days < 10)
+            {
+                dayt = string.Format("{0:00}", Convert.ToInt16(days));
+            }
+            else
+            {
+                mont = DateTime.Now.Month.ToString();
+            }
+            label1.Text = DateTime.Now.Year.ToString() + "年 " + mont + "月 " + dayt + "日";
             label2.Text = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             string week = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
             label3.Text = DateTime.Now.ToString("HH:mm:ss");
