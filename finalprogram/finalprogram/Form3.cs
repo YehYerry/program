@@ -43,6 +43,7 @@ namespace finalprogram
             textBox14.Text = s[15].Substring(6);
             textBox15.Text = s[16].Substring(6);
             str.Close();
+            this.ControlBox = false;
         }
 
         private void button2_Click(object sender, EventArgs e)

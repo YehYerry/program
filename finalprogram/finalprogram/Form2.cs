@@ -63,6 +63,7 @@ namespace finalprogram
                 checkBox1.Checked = true;
             }
             ischeck.Close();
+            this.ControlBox = false;
         }
         private string string1;
         public string String1

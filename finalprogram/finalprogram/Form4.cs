@@ -49,6 +49,7 @@ namespace finalprogram
             textBox8.Text = s[9];
             str.Close();
             str1.Close();
+            this.ControlBox = false;
         }
         private void setControls(float newx, float newy, Control cons)
         {
