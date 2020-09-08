@@ -3,21 +3,21 @@ COM6
 
 [設定介面大小及字型](Style=0:一般文字。1:粗體文字。2:斜體文字。3:中間有線條經過的文字。4:加上底線的文字。)(字型EX:Times New Roman、Arial、標楷體)
 Font=微軟正黑體
-Size=30
+Size=45
 Style=1
 Color=#FFFFFFF
 
 [設定日期位置]
-borderwidth=511
-borderhight=303
+borderwidth=500
+borderhight=330
 
 [設定星期位置]
-borderwidth=514
-borderhight=445
+borderwidth=650
+borderhight=470
 
 [設定時間位置]
-borderwidth=512
-borderhight=600
+borderwidth=625
+borderhight=605
 
 [色碼表]
 https://www.toodoo.com/db/color.html

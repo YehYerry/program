@@ -20,3 +20,4 @@ C:\Users\bock\github\program\clock\clock\obj\Debug\clock.comportshow.resources
 C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.comportshow.resources
 C:\Users\jerry\github\program\clock\clock\obj\Debug\clock.formlocation.resources
 C:\Users\bock\github\program\clock\clock\obj\Debug\clock.formlocation.resources
+C:\Users\bock\github\program\clock\clock\obj\Debug\clock.csprojAssemblyReference.cache
