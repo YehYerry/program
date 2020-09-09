@@ -71,6 +71,27 @@ BorderWidth=23
 BorderHeight=500
 Font=Times New Roman
 
+[COMPORT設定]
+COM3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

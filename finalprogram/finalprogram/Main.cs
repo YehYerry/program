@@ -23,7 +23,7 @@ namespace finalprogram
         private Boolean receiving;
         private Thread t;
         byte[,] cont = new byte[15, 15];
-        string b1, b2, b3, b4;
+        string b1, b2, b3, b4, port;
         int b1h, b2h, b3h, b4h, b1w, b2w, b3w, b4w;
         int L1s, L2s, L3s, L4s;
         string L1f, L2f, L3f, L4f;
@@ -62,6 +62,7 @@ namespace finalprogram
                 line[ctr] = str.ReadLine();
                 //Console.WriteLine(line[ctr]);
             } while (line[ctr] != null);
+            port = line[75];
 
             for (int i = 2; i <= 16; i++)
             {
@@ -106,7 +107,7 @@ namespace finalprogram
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
-            comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+            comport = new SerialPort(port, 9600, Parity.None, 8, StopBits.One);
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
             try

@@ -19,6 +19,7 @@ namespace finalprogram
         int L1s, L2s, L3s, L4s;
         string L1f, L2f, L3f, L4f;
         int b1bh, b2bh, b3bh, b4bh, b1bw, b2bw, b3bw, b4bw;
+
         int L1bh, L2bh, L3bh, L4bh, L1bw, L2bw, L3bw, L4bw;
 
         byte b1num1, b1num2, b1num3, b1num4, b2num1, b2num2, b2num3, b2num4, b3num1, b3num2, b3num3, b3num4, b4num1, b4num2, b4num3, b4num4;
