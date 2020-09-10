@@ -29,7 +29,6 @@ namespace finalprogram
         string L1f, L2f, L3f, L4f;
         int b1bh, b2bh, b3bh, b4bh, b1bw, b2bw, b3bw, b4bw;
         int L1bh, L2bh, L3bh, L4bh, L1bw, L2bw, L3bw, L4bw;
-
         byte b1num1, b1num2, b1num3, b1num4, b2num1, b2num2, b2num3, b2num4, b3num1, b3num2, b3num3, b3num4, b4num1, b4num2, b4num3, b4num4;
         byte[,] num;
         byte[] wait1 = { 0, 0, 0, 0 }; //四個按鈕的等待人數(十位數)
@@ -226,6 +225,10 @@ namespace finalprogram
             label_wait.Location = new Point(L1bw, L1bh);
             label_wait2.Font = new Font(L2f, L2s);
             label_wait2.Location = new Point(L2bw, L2bh);
+            label_wait3.Font = new Font(L3f, L3s);
+            label_wait3.Location = new Point(L3bw, L3bh);
+            label_wait4.Font = new Font(L4f, L4s);
+            label_wait4.Location = new Point(L4bw, L4bh);
 
             num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
 
@@ -371,6 +374,75 @@ namespace finalprogram
                 pd.PrintController.OnEndPrint(pd, new PrintEventArgs());
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pnum3 += 1;
+            wait1[2] += 1;
+            //wait1 = (byte)(a + 1);
+            if (wait1[2] == 10)
+            {
+                wait1[2] = 0;
+                wait2[2] += 1;
+            }
+            label3 += 1;
+            label_wait3.Text = label3.ToString();
+
+            PrintDocument pd = new PrintDocument();
+            //設定印表機邊界
+            Margins margin = new Margins(0, 0, 0, 0);
+            pd.DefaultPageSettings.Margins = margin;
+            ////設定紙張大小 'vbPRPSUser'為使用者自訂
+            PaperSize pageSize = new PaperSize("vbPRPSUser", pageH, pageW);//256
+            pd.DefaultPageSettings.PaperSize = pageSize;
+            //印表機事件設定
+            pd.PrintPage += new PrintPageEventHandler(this.printCoupon_PrintPage3);
+            //列印
+            try
+            {
+                pd.Print();//列印
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "列印失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pd.PrintController.OnEndPrint(pd, new PrintEventArgs());
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pnum4 += 1;
+            wait1[3] += 1;
+            //wait1 = (byte)(a + 1);
+            if (wait1[3] == 10)
+            {
+                wait1[3] = 0;
+                wait2[3] += 1;
+            }
+            label4 += 1;
+            label_wait4.Text = label4.ToString();
+
+            PrintDocument pd = new PrintDocument();
+            //設定印表機邊界
+            Margins margin = new Margins(0, 0, 0, 0);
+            pd.DefaultPageSettings.Margins = margin;
+            ////設定紙張大小 'vbPRPSUser'為使用者自訂
+            PaperSize pageSize = new PaperSize("vbPRPSUser", pageH, pageW);//256
+            pd.DefaultPageSettings.PaperSize = pageSize;
+            //印表機事件設定
+            pd.PrintPage += new PrintPageEventHandler(this.printCoupon_PrintPage4);
+            //列印
+            try
+            {
+                pd.Print();//列印
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "列印失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pd.PrintController.OnEndPrint(pd, new PrintEventArgs());
+            }
+        }
+
         private void printCoupon_PrintPage(object sender, PrintPageEventArgs e)
         {
             //列印圖片
@@ -487,17 +559,6 @@ namespace finalprogram
             int height = photoH;//temp.Height; 80
             Rectangle destRect = new Rectangle(x, y, width, height);
 
-            // public void DrawImage (
-            // Image image, 要繪製的 Image。
-            // Rectangle destRect, Rectangle 結構，指定繪製影像的位置和大小。縮放影像來符合矩形
-            // int srcX, 要繪製之來源影像部分左上角的 X 座標
-            // int srcY, 要繪製之來源影像部分左上角的 Y 座標。
-            // int srcWidth, 要繪製之來源影像部分的寬度。
-            // int srcHeight, 要繪製之來源影像部分的高度。
-            // GraphicsUnit srcUnit, GraphicsUnit 列舉型別的成員，指定用來判斷來源矩形的測量單位。
-            // ImageAttributes imageAttr ImageAttributes，指定 image 物件的重新著色和 Gamma 資訊。
-            //)
-            //將圖片放入要列印的文件中
             e.Graphics.DrawImage(temp, destRect, 0, 0, temp.Width, temp.Height, System.Drawing.GraphicsUnit.Pixel);
             switch (wordstyle1)
             {
@@ -564,17 +625,176 @@ namespace finalprogram
             float yPos = 0f;//收集成列印起始點的參數
             yPos = topMargin + count * MyFont.GetHeight(e.Graphics);
 
-            // public void DrawString (
-            // string s, 要繪製的字串。
-            // Font font, Font，定義字串的文字格式。
-            // Brush brush, Brush，決定所繪製文字的色彩和紋理。
-            // float x, 繪製文字左上角的 X 座標。
-            // float y, 繪製文字左上角的 Y 座標。
-            // StringFormat format StringFormat，指定套用到所繪製文字的格式化屬性，例如，行距和對齊。
-            //)
-            //將要列印的文字放入要列印的文件中
             pnumber2 = string.Format("{0:0000}", pnum2);
             MyGraphics.DrawString(pnumber2, num, MyBrush, numbw, numbh, new StringFormat()); //70,85
+            MyGraphics.DrawString("日期:" + DateTime.Now.ToString("yyyy/MM/dd"), MyFont, MyBrush, str1bw, str1bh, new StringFormat());//30, 145
+            MyGraphics.DrawString("時間:" + DateTime.Now.ToString("HH:mm:ss"), MyFont, MyBrush, str1bw, str1bh + 30, new StringFormat());//30, 175
+            MyGraphics.DrawString(text, MyFont1, MyBrush, str2bw, str2bh, new StringFormat());//80, 210
+        }
+        private void printCoupon_PrintPage3(object sender, PrintPageEventArgs e)
+        {
+            //列印圖片
+            Image temp = Image.FromFile(Application.StartupPath + @"\print_photo\test.bmp");//圖片檔案
+            //設定圖片列印的x,y座標
+            int x = pbw;   //e.MarginBounds.X; 20
+            int y = pbh;  //e.MarginBounds.Y; 0
+            //圖片列印的大小
+            int width = photoW;//temp.Width; 220
+            int height = photoH;//temp.Height; 80
+            Rectangle destRect = new Rectangle(x, y, width, height);
+
+            e.Graphics.DrawImage(temp, destRect, 0, 0, temp.Width, temp.Height, System.Drawing.GraphicsUnit.Pixel);
+            switch (wordstyle1)
+            {
+                case 0:
+                    wdstyle1 = FontStyle.Regular;
+                    break;
+                case 1:
+                    wdstyle1 = FontStyle.Bold;
+                    break;
+                case 2:
+                    wdstyle1 = FontStyle.Italic;
+                    break;
+                case 3:
+                    wdstyle1 = FontStyle.Strikeout;
+                    break;
+                case 4:
+                    wdstyle1 = FontStyle.Underline;
+                    break;
+            }
+            switch (wordstyle2)
+            {
+                case 0:
+                    wdstyle2 = FontStyle.Regular;
+                    break;
+                case 1:
+                    wdstyle2 = FontStyle.Bold;
+                    break;
+                case 2:
+                    wdstyle2 = FontStyle.Italic;
+                    break;
+                case 3:
+                    wdstyle2 = FontStyle.Strikeout;
+                    break;
+                case 4:
+                    wdstyle2 = FontStyle.Underline;
+                    break;
+            }
+            switch (wordstyle3)
+            {
+                case 0:
+                    wdstyle3 = FontStyle.Regular;
+                    break;
+                case 1:
+                    wdstyle3 = FontStyle.Bold;
+                    break;
+                case 2:
+                    wdstyle3 = FontStyle.Italic;
+                    break;
+                case 3:
+                    wdstyle3 = FontStyle.Strikeout;
+                    break;
+                case 4:
+                    wdstyle3 = FontStyle.Underline;
+                    break;
+            }
+            Graphics MyGraphics = e.Graphics;
+            SolidBrush MyBrush = new SolidBrush(Color.Black);
+            Font num = new Font(numfont, nums, wdstyle1);//40
+            Font MyFont = new Font(str1font, str1s, wdstyle2);//設定字型與大小; 20
+            Font MyFont1 = new Font(str2font, str2s, wdstyle3);//10            
+            float leftMargin = e.MarginBounds.Left;//取得文件左邊界
+            float topMargin = e.MarginBounds.Top;//取得文件上邊界
+            int count = 10;//起始列印的行數
+            float yPos = 0f;//收集成列印起始點的參數
+            yPos = topMargin + count * MyFont.GetHeight(e.Graphics);
+
+            pnumber2 = string.Format("{0:0000}", pnum3);
+            MyGraphics.DrawString(pnumber3, num, MyBrush, numbw, numbh, new StringFormat()); //70,85
+            MyGraphics.DrawString("日期:" + DateTime.Now.ToString("yyyy/MM/dd"), MyFont, MyBrush, str1bw, str1bh, new StringFormat());//30, 145
+            MyGraphics.DrawString("時間:" + DateTime.Now.ToString("HH:mm:ss"), MyFont, MyBrush, str1bw, str1bh + 30, new StringFormat());//30, 175
+            MyGraphics.DrawString(text, MyFont1, MyBrush, str2bw, str2bh, new StringFormat());//80, 210
+        }
+        private void printCoupon_PrintPage4(object sender, PrintPageEventArgs e)
+        {
+            //列印圖片
+            Image temp = Image.FromFile(Application.StartupPath + @"\print_photo\test.bmp");//圖片檔案
+            //設定圖片列印的x,y座標
+            int x = pbw;   //e.MarginBounds.X; 20
+            int y = pbh;  //e.MarginBounds.Y; 0
+            //圖片列印的大小
+            int width = photoW;//temp.Width; 220
+            int height = photoH;//temp.Height; 80
+            Rectangle destRect = new Rectangle(x, y, width, height);
+
+            e.Graphics.DrawImage(temp, destRect, 0, 0, temp.Width, temp.Height, System.Drawing.GraphicsUnit.Pixel);
+            switch (wordstyle1)
+            {
+                case 0:
+                    wdstyle1 = FontStyle.Regular;
+                    break;
+                case 1:
+                    wdstyle1 = FontStyle.Bold;
+                    break;
+                case 2:
+                    wdstyle1 = FontStyle.Italic;
+                    break;
+                case 3:
+                    wdstyle1 = FontStyle.Strikeout;
+                    break;
+                case 4:
+                    wdstyle1 = FontStyle.Underline;
+                    break;
+            }
+            switch (wordstyle2)
+            {
+                case 0:
+                    wdstyle2 = FontStyle.Regular;
+                    break;
+                case 1:
+                    wdstyle2 = FontStyle.Bold;
+                    break;
+                case 2:
+                    wdstyle2 = FontStyle.Italic;
+                    break;
+                case 3:
+                    wdstyle2 = FontStyle.Strikeout;
+                    break;
+                case 4:
+                    wdstyle2 = FontStyle.Underline;
+                    break;
+            }
+            switch (wordstyle3)
+            {
+                case 0:
+                    wdstyle3 = FontStyle.Regular;
+                    break;
+                case 1:
+                    wdstyle3 = FontStyle.Bold;
+                    break;
+                case 2:
+                    wdstyle3 = FontStyle.Italic;
+                    break;
+                case 3:
+                    wdstyle3 = FontStyle.Strikeout;
+                    break;
+                case 4:
+                    wdstyle3 = FontStyle.Underline;
+                    break;
+            }
+            Graphics MyGraphics = e.Graphics;
+            SolidBrush MyBrush = new SolidBrush(Color.Black);
+            Font num = new Font(numfont, nums, wdstyle1);//40
+            Font MyFont = new Font(str1font, str1s, wdstyle2);//設定字型與大小; 20
+            Font MyFont1 = new Font(str2font, str2s, wdstyle3);//10            
+            float leftMargin = e.MarginBounds.Left;//取得文件左邊界
+            float topMargin = e.MarginBounds.Top;//取得文件上邊界
+            int count = 10;//起始列印的行數
+            float yPos = 0f;//收集成列印起始點的參數
+            yPos = topMargin + count * MyFont.GetHeight(e.Graphics);
+
+            pnumber2 = string.Format("{0:0000}", pnum4);
+            MyGraphics.DrawString(pnumber4, num, MyBrush, numbw, numbh, new StringFormat()); //70,85
             MyGraphics.DrawString("日期:" + DateTime.Now.ToString("yyyy/MM/dd"), MyFont, MyBrush, str1bw, str1bh, new StringFormat());//30, 145
             MyGraphics.DrawString("時間:" + DateTime.Now.ToString("HH:mm:ss"), MyFont, MyBrush, str1bw, str1bh + 30, new StringFormat());//30, 175
             MyGraphics.DrawString(text, MyFont1, MyBrush, str2bw, str2bh, new StringFormat());//80, 210
@@ -1259,6 +1479,8 @@ namespace finalprogram
             label1.Text = totalLength.ToString();*/
             label_wait.Text = label.ToString();
             label_wait2.Text = label2.ToString();
+            label_wait3.Text = label3.ToString();
+            label_wait4.Text = label4.ToString();
         }
         void mouseDoubleClick(object sender, EventArgs e)
         {
