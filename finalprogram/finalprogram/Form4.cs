@@ -193,6 +193,39 @@ namespace finalprogram
                 }
             }
             str1.Close();
+            //更改記事本內容，改EXITLOG內容，因為主系統會讀取設定的號碼
+            StreamReader str2 = new StreamReader(Application.StartupPath + @"\config.txt");
+            string[] s2 = new string[1000];
+            int ctr2 = 0;
+            do
+            {
+                ctr2++;
+                s2[ctr2] = str2.ReadLine();
+            } while (s2[ctr2] != null);
+            str2.Close();
+            StreamWriter str3 = new StreamWriter(Application.StartupPath + @"\config.txt", false);
+            for (int ctr3 = 1; ctr3 <= ctr2; ctr3++)
+            {
+                switch (ctr3)
+                {
+                    case 24:
+                        str3.WriteLine("StartNum=" + textBox1.Text);
+                        break;
+                    case 32:
+                        str3.WriteLine("StartNum=" + textBox2.Text);
+                        break;
+                    case 40:
+                        str3.WriteLine("StartNum=" + textBox3.Text);
+                        break;
+                    case 48:
+                        str3.WriteLine("StartNum=" + textBox4.Text);
+                        break;
+                    default:
+                        str3.WriteLine(s2[ctr3]);
+                        break;
+                }
+            }
+            str1.Close();
             MessageBox.Show("設定完成!");
             this.Close();
         }

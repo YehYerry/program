@@ -127,7 +127,7 @@ namespace clock
             }
             else
             {
-                mont = DateTime.Now.Month.ToString();
+                dayt = DateTime.Now.Day.ToString();
             }
             label1.Text = DateTime.Now.Year.ToString() + "年 " + mont + "月 " + dayt + "日";
             label2.Text = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);

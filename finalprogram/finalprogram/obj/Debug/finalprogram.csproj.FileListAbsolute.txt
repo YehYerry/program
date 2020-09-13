@@ -29,3 +29,4 @@ C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.pd
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Main.resources
 C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.Main.resources
 C:\Users\jerry\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.formlocation.resources
+C:\Users\bock\github\program\finalprogram\finalprogram\obj\Debug\finalprogram.formlocation.resources
