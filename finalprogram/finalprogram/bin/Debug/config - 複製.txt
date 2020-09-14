@@ -21,7 +21,7 @@ Width=300
 Height=300
 BorderWidth=100
 BorderHeight=378
-StartNum=1005
+StartNum=1000
 
 [按鈕2]
 IsVisible=1
@@ -29,7 +29,7 @@ Width=300
 Height=300
 BorderWidth=500
 BorderHeight=378
-StartNum=2005
+StartNum=2000
 
 [按鈕3]
 IsVisible=1
@@ -37,7 +37,7 @@ Width=300
 Height=300
 BorderWidth=900
 BorderHeight=378
-StartNum=300
+StartNum=3000
 
 [按鈕4]
 IsVisible=1
@@ -45,7 +45,7 @@ Width=300
 Height=300
 BorderWidth=1300
 BorderHeight=378
-StartNum=4005
+StartNum=4000
 
 [按鈕1上的等待人數位置及大小](字型EX:Times New Roman、Arial、標楷體)
 Size=24
@@ -70,3 +70,11 @@ Size=10
 BorderWidth=23
 BorderHeight=500
 Font=T
+
+[COMPORT設定]
+COM3
+
+
+
+
+

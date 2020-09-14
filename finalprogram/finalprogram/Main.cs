@@ -106,11 +106,11 @@ namespace finalprogram
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
-            comport = new SerialPort(port, 9600, Parity.None, 8, StopBits.One);
-            comport.ReadTimeout = 2000;
-            comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
             try
             {
+                comport = new SerialPort(port, 9600, Parity.None, 8, StopBits.One);
+                comport.ReadTimeout = 2000;
+                comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
                 if (!comport.IsOpen)
                 {
                     comport.Open();
@@ -1493,10 +1493,18 @@ namespace finalprogram
 
             if (t.TotalMilliseconds <= 200) //如果小於200豪秒就執行 
             {
-                Console.WriteLine("EXIT");
-                comport.Close();
-                this.Close();
+                try
+                {
+                    Console.WriteLine("EXIT");
+                    comport.Close();
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("COMPORT不存在，請點選設定櫃台/COMPORT");
+                }
             }
+            
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -1,9 +1,9 @@
 [控制器號碼]
-控制器01=0
+控制器01=3
 控制器02=1
 控制器03=0
 控制器04=2
-控制器05=0
+控制器05=4
 控制器06=0
 控制器07=0
 控制器08=0
@@ -21,7 +21,7 @@ Width=300
 Height=300
 BorderWidth=100
 BorderHeight=378
-StartNum=0001
+StartNum=1000
 
 [按鈕2]
 IsVisible=1
@@ -29,7 +29,7 @@ Width=300
 Height=300
 BorderWidth=500
 BorderHeight=378
-StartNum=0001
+StartNum=2000
 
 [按鈕3]
 IsVisible=1
@@ -37,7 +37,7 @@ Width=300
 Height=300
 BorderWidth=900
 BorderHeight=378
-StartNum=0062
+StartNum=3000
 
 [按鈕4]
 IsVisible=1
@@ -45,7 +45,7 @@ Width=300
 Height=300
 BorderWidth=1300
 BorderHeight=378
-StartNum=0002
+StartNum=4000
 
 [按鈕1上的等待人數位置及大小](字型EX:Times New Roman、Arial、標楷體)
 Size=24
@@ -70,6 +70,13 @@ Size=10
 BorderWidth=23
 BorderHeight=500
 Font=T
+
+[COMPORT設定]
+COM3
+
+
+
+
 
 
 
