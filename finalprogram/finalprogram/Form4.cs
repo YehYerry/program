@@ -176,16 +176,16 @@ namespace finalprogram
                 switch (ctr1)
                 {
                     case 24:
-                        str1.WriteLine("StartNum=" + textBox1.Text);
+                        str1.WriteLine("StartNum=" + numValue1);
                         break;
                     case 32:
-                        str1.WriteLine("StartNum=" + textBox2.Text);
+                        str1.WriteLine("StartNum=" + numValue2);
                         break;
                     case 40:
-                        str1.WriteLine("StartNum=" + textBox3.Text);
+                        str1.WriteLine("StartNum=" + numValue3);
                         break;
                     case 48:
-                        str1.WriteLine("StartNum=" + textBox4.Text);
+                        str1.WriteLine("StartNum=" + numValue4);
                         break;
                     default:
                         str1.WriteLine(s[ctr1]);
@@ -194,7 +194,7 @@ namespace finalprogram
             }
             str1.Close();
             //更改記事本內容，改EXITLOG內容，因為主系統會讀取設定的號碼
-            StreamReader str2 = new StreamReader(Application.StartupPath + @"\config.txt");
+            StreamReader str2 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
             string[] s2 = new string[1000];
             int ctr2 = 0;
             do
@@ -203,29 +203,33 @@ namespace finalprogram
                 s2[ctr2] = str2.ReadLine();
             } while (s2[ctr2] != null);
             str2.Close();
-            StreamWriter str3 = new StreamWriter(Application.StartupPath + @"\config.txt", false);
+            StreamWriter str3 = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt", false);
+            string now = DateTime.Now.Year.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Day.ToString();//設定今天日期，不設定會導致歸零
             for (int ctr3 = 1; ctr3 <= ctr2; ctr3++)
             {
                 switch (ctr3)
                 {
-                    case 24:
-                        str3.WriteLine("StartNum=" + textBox1.Text);
+                    case 1:
+                        str3.WriteLine("業務一等待人數:00 => 叫號:"+ numValue1 + " => " + DateTime.Now.ToString());
                         break;
-                    case 32:
-                        str3.WriteLine("StartNum=" + textBox2.Text);
+                    case 2:
+                        str3.WriteLine("業務二等待人數:00 => 叫號:" + numValue2 + " => " + DateTime.Now.ToString());
                         break;
-                    case 40:
-                        str3.WriteLine("StartNum=" + textBox3.Text);
+                    case 3:
+                        str3.WriteLine("業務三等待人數:00 => 叫號:" + numValue3 + " => " + DateTime.Now.ToString());
                         break;
-                    case 48:
-                        str3.WriteLine("StartNum=" + textBox4.Text);
+                    case 4:
+                        str3.WriteLine("業務四等待人數:00 => 叫號:" + numValue4 + " => " + DateTime.Now.ToString());
+                        break;
+                    case 5:
+                        str3.WriteLine(now);
                         break;
                     default:
                         str3.WriteLine(s2[ctr3]);
                         break;
                 }
             }
-            str1.Close();
+            str3.Close();
             MessageBox.Show("設定完成!");
             this.Close();
         }
