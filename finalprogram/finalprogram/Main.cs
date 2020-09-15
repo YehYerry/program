@@ -1503,12 +1503,12 @@ namespace finalprogram
                 {
                     MessageBox.Show("COMPORT不存在，請點選設定櫃台/COMPORT");
                 }
+
             }
             
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Console.WriteLine("關");
             //關閉後，存記事本
             StreamWriter str = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt");
             //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
