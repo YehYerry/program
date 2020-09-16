@@ -101,8 +101,8 @@ namespace finalprogram
             button4.BackgroundImageLayout = ImageLayout.Stretch;
             button1.BackgroundImage = pic1;
             button2.BackgroundImage = pic2;
-            button3.BackgroundImage = pic1;
-            button4.BackgroundImage = pic2;
+            button3.BackgroundImage = pic3;
+            button4.BackgroundImage = pic4;
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
@@ -271,8 +271,8 @@ namespace finalprogram
             //關閉前的等待人數
             label = Convert.ToInt32(line2[1].Substring(8, 1)) * 10 + Convert.ToInt32(line2[1].Substring(9, 1));
             label2 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
-            label3 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
-            label4 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
+            label3 = Convert.ToInt32(line2[3].Substring(8, 1)) * 10 + Convert.ToInt32(line2[3].Substring(9, 1));
+            label4 = Convert.ToInt32(line2[4].Substring(8, 1)) * 10 + Convert.ToInt32(line2[4].Substring(9, 1));
 
             //按鈕是否出現
             if (b1 == "0")

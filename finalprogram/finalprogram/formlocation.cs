@@ -126,8 +126,8 @@ namespace finalprogram
             button4.BackgroundImageLayout = ImageLayout.Stretch;
             button1.BackgroundImage = pic1;
             button2.BackgroundImage = pic2;
-            button3.BackgroundImage = pic1;
-            button4.BackgroundImage = pic2;
+            button3.BackgroundImage = pic3;
+            button4.BackgroundImage = pic4;
             /*byte[] val = Encoding.UTF8.GetBytes(line[2].Substring(6));
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
@@ -232,6 +232,10 @@ namespace finalprogram
             label_wait.Location = new Point(L1bw, L1bh);
             label_wait2.Font = new Font(L2f, L2s);
             label_wait2.Location = new Point(L2bw, L2bh);
+            label_wait3.Font = new Font(L3f, L3s);
+            label_wait3.Location = new Point(L3bw, L3bh);
+            label_wait4.Font = new Font(L4f, L4s);
+            label_wait4.Location = new Point(L4bw, L4bh);
 
             num = new byte[,] { { b1num1, b1num2, b1num3, b1num4 }, { b2num1, b2num2, b2num3, b2num4 }, { b3num1, b3num2, b3num3, b3num4 }, { b4num1, b4num2, b4num3, b4num4 } };
 
@@ -274,8 +278,8 @@ namespace finalprogram
             //關閉前的等待人數
             label = Convert.ToInt32(line2[1].Substring(8, 1)) * 10 + Convert.ToInt32(line2[1].Substring(9, 1));
             label2 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
-            label3 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
-            label4 = Convert.ToInt32(line2[2].Substring(8, 1)) * 10 + Convert.ToInt32(line2[2].Substring(9, 1));
+            label3 = Convert.ToInt32(line2[3].Substring(8, 1)) * 10 + Convert.ToInt32(line2[3].Substring(9, 1));
+            label4 = Convert.ToInt32(line2[4].Substring(8, 1)) * 10 + Convert.ToInt32(line2[4].Substring(9, 1));
 
             //按鈕是否出現
             if (b1 == "0")

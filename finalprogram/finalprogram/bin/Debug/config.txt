@@ -49,30 +49,44 @@ StartNum=4000
 
 [按鈕1上的等待人數位置及大小](字型EX:Times New Roman、Arial、標楷體)
 Size=24
-BorderWidth=68
-BorderHeight=378
+BorderWidth=358
+BorderHeight=629
 Font=標楷體
 
 [按鈕2上的等待人數位置及大小]
-Size=10
-BorderWidth=586
-BorderHeight=378
-Font=Times New Roman
+Size=24
+BorderWidth=759
+BorderHeight=629
+Font=標楷體
 
 [按鈕3上的等待人數位置及大小]
-Size=10
-BorderWidth=23
-BorderHeight=500
-Font=Times New Roman
+Size=24
+BorderWidth=1160
+BorderHeight=629
+Font=標楷體
 
 [按鈕4上的等待人數位置及大小]
-Size=10
-BorderWidth=23
-BorderHeight=500
-Font=T
+Size=24
+BorderWidth=1353
+BorderHeight=629
+Font=標楷體
 
 [COMPORT設定]
 COM3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -38,7 +38,6 @@ namespace finalprogram
                 ctr1++;
                 s1[ctr1] = str1.ReadLine();
             } while (s1[ctr1] != null);
-            Console.WriteLine(s1[24]);
             textBox1.Text = s1[24].Substring(9);
             textBox2.Text = s1[32].Substring(9);
             textBox3.Text = s1[40].Substring(9);
@@ -193,43 +192,60 @@ namespace finalprogram
                 }
             }
             str1.Close();
-            //更改記事本內容，改EXITLOG內容，因為主系統會讀取設定的號碼
-            StreamReader str2 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
-            string[] s2 = new string[1000];
-            int ctr2 = 0;
+            //有變更設定時才會歸0
+            StreamReader str4 = new StreamReader(Application.StartupPath + @"\config.txt");
+            string[] s4 = new string[1000];
+            int ctr4 = 0;
             do
             {
-                ctr2++;
-                s2[ctr2] = str2.ReadLine();
-            } while (s2[ctr2] != null);
-            str2.Close();
-            StreamWriter str3 = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt", false);
-            string now = DateTime.Now.Year.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Day.ToString();//設定今天日期，不設定會導致歸零
-            for (int ctr3 = 1; ctr3 <= ctr2; ctr3++)
+                ctr4++;
+                s4[ctr4] = str4.ReadLine();
+            } while (s4[ctr4] != null);
+            str4.Close();
+            if (s[24].Substring(9) == numValue1 && s[32].Substring(9) == numValue2 && s[40].Substring(9) == numValue3 && s[48].Substring(9) == numValue4) 
             {
-                switch (ctr3)
-                {
-                    case 1:
-                        str3.WriteLine("業務一等待人數:00 => 叫號:"+ numValue1 + " => " + DateTime.Now.ToString());
-                        break;
-                    case 2:
-                        str3.WriteLine("業務二等待人數:00 => 叫號:" + numValue2 + " => " + DateTime.Now.ToString());
-                        break;
-                    case 3:
-                        str3.WriteLine("業務三等待人數:00 => 叫號:" + numValue3 + " => " + DateTime.Now.ToString());
-                        break;
-                    case 4:
-                        str3.WriteLine("業務四等待人數:00 => 叫號:" + numValue4 + " => " + DateTime.Now.ToString());
-                        break;
-                    case 5:
-                        str3.WriteLine(now);
-                        break;
-                    default:
-                        str3.WriteLine(s2[ctr3]);
-                        break;
-                }
+                Console.WriteLine("未修改內容");
             }
-            str3.Close();
+            else
+            {
+                //更改記事本內容，改EXITLOG內容，因為主系統會讀取設定的號碼
+                StreamReader str2 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
+                string[] s2 = new string[1000];
+                int ctr2 = 0;
+                do
+                {
+                    ctr2++;
+                    s2[ctr2] = str2.ReadLine();
+                } while (s2[ctr2] != null);
+                str2.Close();
+                StreamWriter str3 = new StreamWriter(Application.StartupPath + @"\Log\exitnum_log.txt", false);
+                string now = DateTime.Now.Year.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Day.ToString();//設定今天日期，不設定會導致歸零
+                for (int ctr3 = 1; ctr3 <= ctr2; ctr3++)
+                {
+                    switch (ctr3)
+                    {
+                        case 1:
+                            str3.WriteLine("業務一等待人數:00 => 叫號:" + numValue1 + " => " + DateTime.Now.ToString());
+                            break;
+                        case 2:
+                            str3.WriteLine("業務二等待人數:00 => 叫號:" + numValue2 + " => " + DateTime.Now.ToString());
+                            break;
+                        case 3:
+                            str3.WriteLine("業務三等待人數:00 => 叫號:" + numValue3 + " => " + DateTime.Now.ToString());
+                            break;
+                        case 4:
+                            str3.WriteLine("業務四等待人數:00 => 叫號:" + numValue4 + " => " + DateTime.Now.ToString());
+                            break;
+                        case 5:
+                            str3.WriteLine(now);
+                            break;
+                        default:
+                            str3.WriteLine(s2[ctr3]);
+                            break;
+                    }
+                }
+                str3.Close(); 
+            }
             MessageBox.Show("設定完成!");
             this.Close();
         }

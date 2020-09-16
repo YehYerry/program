@@ -148,6 +148,7 @@
             // label_wait2
             // 
             this.label_wait2.AutoSize = true;
+            this.label_wait2.BackColor = System.Drawing.Color.White;
             this.label_wait2.Location = new System.Drawing.Point(1002, 244);
             this.label_wait2.Name = "label_wait2";
             this.label_wait2.Size = new System.Drawing.Size(14, 15);
@@ -157,6 +158,7 @@
             // label_wait3
             // 
             this.label_wait3.AutoSize = true;
+            this.label_wait3.BackColor = System.Drawing.Color.White;
             this.label_wait3.Location = new System.Drawing.Point(1002, 407);
             this.label_wait3.Name = "label_wait3";
             this.label_wait3.Size = new System.Drawing.Size(14, 15);
@@ -166,6 +168,7 @@
             // label_wait4
             // 
             this.label_wait4.AutoSize = true;
+            this.label_wait4.BackColor = System.Drawing.Color.White;
             this.label_wait4.Location = new System.Drawing.Point(1002, 543);
             this.label_wait4.Name = "label_wait4";
             this.label_wait4.Size = new System.Drawing.Size(14, 15);
