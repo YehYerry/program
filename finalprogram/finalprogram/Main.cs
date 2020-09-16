@@ -38,8 +38,9 @@ namespace finalprogram
         string[] line = new string[1000];
         string[] line1 = new string[1000];
         string[] line2 = new string[1000];
+        string[] line3 = new string[1000];
         int decimalLength;
-        int ctr = 0, ctr1 = 0, ctr2 = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0, pnum1, pnum2, pnum3, pnum4;
+        int ctr = 0, ctr1 = 0, ctr2 = 0, ctr3 = 0, note, notej1 = 0, notej2 = 0, notej3 = 0, notej4 = 0, pnum1, pnum2, pnum3, pnum4;
         int pageH, pageW, pbw, pbh, photoW, photoH, wordstyle1, wordstyle2, wordstyle3, nums, numbw, numbh, str1s, str1bw, str1bh, str2s, str2bw, str2bh;
         string numfont, str1font, str2font, text, pnumber1, pnumber2, pnumber3, pnumber4;
         FontStyle wdstyle1, wdstyle2, wdstyle3;
@@ -55,6 +56,7 @@ namespace finalprogram
             StreamReader str = new StreamReader(Application.StartupPath + @"\config.txt");//讀取文字檔
             StreamReader str1 = new StreamReader(Application.StartupPath + @"\print_config.txt");
             StreamReader str2 = new StreamReader(Application.StartupPath + @"\Log\exitnum_log.txt");
+            StreamReader str3 = new StreamReader(Application.StartupPath + @"\Log\num_log\num_log.txt");
             do
             {
                 ctr++;
@@ -239,10 +241,16 @@ namespace finalprogram
                 ctr2++;
                 line2[ctr2] = str2.ReadLine();
             } while (line2[ctr2] != null);
-            pnum1 = Convert.ToInt32(line2[1].Substring(17, 4));//起始號碼
-            pnum2 = Convert.ToInt32(line2[2].Substring(17, 4));
-            pnum3 = Convert.ToInt32(line2[3].Substring(17, 4));
-            pnum4 = Convert.ToInt32(line2[4].Substring(17, 4));
+            //列印離開時的號碼
+            do
+            {
+                ctr3++;
+                line3[ctr3] = str3.ReadLine();
+            } while (line3[ctr3] != null) ;
+            pnum1 = Convert.ToInt32(line3[1]);//起始號碼
+            pnum2 = Convert.ToInt32(line3[2]);
+            pnum3 = Convert.ToInt32(line3[3]);
+            pnum4 = Convert.ToInt32(line3[4]);
             wait2[0] = Convert.ToByte(line2[1].Substring(8, 1));
             wait1[0] = Convert.ToByte(line2[1].Substring(9, 1));
             wait2[1] = Convert.ToByte(line2[2].Substring(8, 1));
@@ -298,6 +306,7 @@ namespace finalprogram
             str.Close();
             str1.Close();
             str2.Close();
+            str3.Close();
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -709,7 +718,7 @@ namespace finalprogram
             float yPos = 0f;//收集成列印起始點的參數
             yPos = topMargin + count * MyFont.GetHeight(e.Graphics);
 
-            pnumber2 = string.Format("{0:0000}", pnum3);
+            pnumber3 = string.Format("{0:0000}", pnum3);
             MyGraphics.DrawString(pnumber3, num, MyBrush, numbw, numbh, new StringFormat()); //70,85
             MyGraphics.DrawString("日期:" + DateTime.Now.ToString("yyyy/MM/dd"), MyFont, MyBrush, str1bw, str1bh, new StringFormat());//30, 145
             MyGraphics.DrawString("時間:" + DateTime.Now.ToString("HH:mm:ss"), MyFont, MyBrush, str1bw, str1bh + 30, new StringFormat());//30, 175
@@ -793,7 +802,7 @@ namespace finalprogram
             float yPos = 0f;//收集成列印起始點的參數
             yPos = topMargin + count * MyFont.GetHeight(e.Graphics);
 
-            pnumber2 = string.Format("{0:0000}", pnum4);
+            pnumber4 = string.Format("{0:0000}", pnum4);
             MyGraphics.DrawString(pnumber4, num, MyBrush, numbw, numbh, new StringFormat()); //70,85
             MyGraphics.DrawString("日期:" + DateTime.Now.ToString("yyyy/MM/dd"), MyFont, MyBrush, str1bw, str1bh, new StringFormat());//30, 145
             MyGraphics.DrawString("時間:" + DateTime.Now.ToString("HH:mm:ss"), MyFont, MyBrush, str1bw, str1bh + 30, new StringFormat());//30, 175
@@ -861,6 +870,8 @@ namespace finalprogram
                                                 w1 = wait1[i];
                                             }
                                         }
+                                        Console.WriteLine(wait2[2]);
+                                        Console.WriteLine(wait1[2]);
                                     }
                                     byte[] array1 = { 0xED, 0xED, w2, w1, 0x00, 0x00, 0x00, 0x00, buffer[6], 0x00, 0x00 };
                                     comport.Write(array1, 0, 11);
@@ -1518,6 +1529,18 @@ namespace finalprogram
             str.WriteLine("業務四等待人數:" + wait2[3] + wait1[3] + " => 叫號:" + num[3, 0] + num[3, 1] + num[3, 2] + num[3, 3] + " => " + DateTime.Now.ToString());
             str.WriteLine(DateTime.Now.Year.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Day.ToString());
             str.Close();
+            StreamWriter str2 = new StreamWriter(Application.StartupPath + @"\Log\num_log\num_log.txt");
+            //第二個參數設定為true表示不覆蓋原本的內容，把新內容直接添加進去
+            string a1 = string.Format("{0:0000}", (num[0, 0] * 1000 + num[0, 1] * 100 + num[0, 2] * 10 + num[0, 3] + wait2[0] * 10 + wait1[0]));
+            string a2 = string.Format("{0:0000}", (num[1, 0] * 1000 + num[1, 1] * 100 + num[1, 2] * 10 + num[1, 3] + wait2[1] * 10 + wait1[1]));
+            string a3 = string.Format("{0:0000}", (num[2, 0] * 1000 + num[2, 1] * 100 + num[2, 2] * 10 + num[2, 3] + wait2[2] * 10 + wait1[2]));
+            string a4 = string.Format("{0:0000}", (num[3, 0] * 1000 + num[3, 1] * 100 + num[3, 2] * 10 + num[3, 3] + wait2[3] * 10 + wait1[3]));
+            str2.WriteLine(a1);
+            str2.WriteLine(a2);
+            str2.WriteLine(a3);
+            str2.WriteLine(a4);
+            str2.WriteLine(DateTime.Now.ToString());
+            str2.Close();
             comport.Close();
         }
         private void pictureBox2_Click(object sender, EventArgs e)
