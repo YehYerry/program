@@ -118,6 +118,14 @@ namespace finalprogram
                         }
                     }
                     str4.Close();
+                    //將暫存的號碼歸零
+                    StreamWriter str5 = new StreamWriter(Application.StartupPath + @"\Log\num_log\num_log.txt");
+                    str5.WriteLine(s2[2]);
+                    str5.WriteLine(s2[3]);
+                    str5.WriteLine(s2[4]);
+                    str5.WriteLine(s2[5]);
+                    str5.WriteLine(DateTime.Now.ToString());
+                    str5.Close();
                 }
                 compare.Close();
             }

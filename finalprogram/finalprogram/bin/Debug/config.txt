@@ -40,7 +40,7 @@ BorderHeight=378
 StartNum=3000
 
 [按鈕4]
-IsVisible=1
+IsVisible=0
 Width=300
 Height=300
 BorderWidth=1300
@@ -73,6 +73,10 @@ Font=標楷體
 
 [COMPORT設定]
 COM3
+
+
+
+
 
 
 

@@ -319,6 +319,15 @@ namespace finalprogram
                 }
             }
             str1.Close();
+            //將暫存的號碼歸零
+            StreamWriter str3 = new StreamWriter(Application.StartupPath + @"\Log\num_log\num_log.txt");
+            str3.WriteLine(s2[2]);
+            str3.WriteLine(s2[3]);
+            str3.WriteLine(s2[4]);
+            str3.WriteLine(s2[5]);
+            str3.WriteLine(DateTime.Now.ToString());
+            str3.Close();
+            
             MessageBox.Show("歸零成功!");
         }
     }
