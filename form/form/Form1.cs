@@ -117,6 +117,7 @@ namespace form
             foreach (byte s1 in val)
             Console.WriteLine(s1);*/
             comport = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+            comport.ReadBufferSize = 8192;
             comport.ReadTimeout = 2000;
             comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
             if (!comport.IsOpen)
@@ -298,13 +299,13 @@ namespace form
         private void DoReceive()
         {
             Byte[] buffer = new Byte[1024];
-            Thread.Sleep(100);
+            Thread.Sleep(10);
             while (receiving)
             {
                 /*收到100個BYTE才寫入
-                while (comport.BytesToRead < 100)
+                while (comport.BytesToRead <= 8)
                 {
-                    Thread.Sleep(16);
+                    Console.WriteLine("8");
                 }*/
                 if (comport.BytesToRead > 0)
                 {
@@ -879,7 +880,7 @@ namespace form
                             }
                             else
                             {
-                                byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+                                byte[] array1 = { 0xED, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7E, 0x00, 0x00 };
                                 comport.Write(array1, 0, 11);
                                 Console.WriteLine("陣列外");
                             }
