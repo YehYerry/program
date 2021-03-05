@@ -1,0 +1,10 @@
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.csprojAssemblyReference.cache
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.Form1.resources
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.Properties.Resources.resources
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.csproj.GenerateResource.cache
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.csproj.CoreCompileInputs.cache
+C:\Users\jerry\github\program\testport\testport\bin\Debug\testport.exe.config
+C:\Users\jerry\github\program\testport\testport\bin\Debug\testport.exe
+C:\Users\jerry\github\program\testport\testport\bin\Debug\testport.pdb
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.exe
+C:\Users\jerry\github\program\testport\testport\obj\Debug\testport.pdb

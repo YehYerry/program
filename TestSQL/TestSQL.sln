@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSQL", "TestSQL\TestSQL.csproj", "{CBDB31C6-0DA4-4145-9866-FC0898B94F96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBDB31C6-0DA4-4145-9866-FC0898B94F96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDB31C6-0DA4-4145-9866-FC0898B94F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDB31C6-0DA4-4145-9866-FC0898B94F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDB31C6-0DA4-4145-9866-FC0898B94F96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EE9B6D0-7ABF-4D99-A0A1-7EE9173858A9}
+	EndGlobalSection
+EndGlobal

@@ -322,6 +322,7 @@ namespace form
                     //player.PlaySync(); //UI執行緒同步播放                    
                     if (buffer.Length == 9)
                     {
+                        Console.Write("ok1");
                         try
                         {
                             //無資料時，送總等待人數
@@ -336,6 +337,7 @@ namespace form
                                     int total2 = wait1[0] + wait1[1]+ wait1[2] + wait1[3];
                                     byte[] array1 = { 0xED, 0xED, Convert.ToByte(total1), Convert.ToByte(total2), 0x00, 0x00, 0x00, 0x00, 0x7E, 0x00, 0x00 };
                                     comport.Write(array1, 0, 11);
+                                    Console.Write("ok2");
                                 }
                                 catch (TimeoutException timeoutEx)
                                 {
